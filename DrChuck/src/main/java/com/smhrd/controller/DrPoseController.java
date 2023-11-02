@@ -42,6 +42,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.smhrd.entity.DrMember;
 import com.smhrd.entity.DrPose;
 import com.smhrd.repository.DrPoseRepository;
 
@@ -81,7 +82,7 @@ public class DrPoseController {
       } catch (InterruptedException e) {
          e.printStackTrace();
       }
-      return "redirect:/uploadRe/" + dpId;
+      return "redirect:/uploadRe";
    }
 
    private void handleFileUpload(MultipartFile file, String dpId, String dayday, String prefix) {
@@ -143,15 +144,16 @@ public class DrPoseController {
       }
    }
    
-   @GetMapping("/uploadRe/{dpId}")
-   @ResponseBody
-   public ResponseEntity<List<DrPose>> getUploadRe(@PathVariable String dpId) {
-	   List<DrPose> imagesList = drPoseRepository.findTop2ByDpIdOrderByDpIdxDesc(dpId);
-       System.out.println("이미지에는 뭐가 들어갈까 ? : "+imagesList);
-       
-       return new ResponseEntity<>(imagesList, HttpStatus.OK);
-   }
-   
+	@GetMapping("/uploadRe")
+	@ResponseBody
+	public List<DrPose> getUploadRe(HttpSession session) {
+	    DrMember user = (DrMember) session.getAttribute("user");
+	    String userId = user.getDmId();
+	    List<DrPose> imagesList = drPoseRepository.findTop2ByDpIdOrderByDpIdxDesc(userId);
+	    System.out.println("이미지에는 뭐가 들어갈까? : " + imagesList);
+
+	    return imagesList;
+	}
    
    
 }
