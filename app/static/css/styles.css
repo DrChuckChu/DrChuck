@@ -1,0 +1,4 @@
+#videoElement {
+    width: 50%;  /* 혹은 원하는 크기로 설정 */
+    height: auto;
+}
