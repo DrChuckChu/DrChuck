@@ -46,7 +46,7 @@
 			<li><a href="#none" class="link_nav link_nav4" data-page="3">기록
 					확인</a></li>
 
-<<<<<<< HEAD
+
 		</ul>
 		<!-- 이벤트 메뉴-->
 		<button class="alarm">
@@ -55,15 +55,6 @@
 		<ul class="list_util">
 			<li><a role="buttons" onclick="toggleContent()"
 				class="img_comm btn_home"><img src="images/로그인로그아웃최종.png"></a>
-=======
-      </ul>
-      <!-- 이벤트 메뉴-->
-      <button class="alarm"><img src="images/알람끔.png" alt=""></button>
-      <ul class="list_util">
-         <li><a role="buttons" onclick="toggleContent()" class="img_comm btn_home"><img
-                  src="images/로그인로그아웃최종.png"></a>
->>>>>>> branch 'master' of https://github.com/DrChuckChu/DrChuck.git
-
 			</li>
 		</ul>
 
