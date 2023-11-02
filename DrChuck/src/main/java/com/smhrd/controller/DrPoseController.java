@@ -19,7 +19,6 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 
 // import org.apache.commons.io.FilenameUtils; // 제거
 // import org.apache.tomcat.util.codec.binary.StringUtils; // 제거
@@ -29,18 +28,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.smhrd.entity.DrMember;
 import com.smhrd.entity.DrPose;
@@ -51,7 +47,7 @@ public class DrPoseController {
 
 	@Autowired
 	private DrPoseRepository drPoseRepository;
-
+	
 	private static final String UPLOAD_DIRECTORY = "C:\\Users\\smhrd\\git\\DrChuck\\DrChuck\\src\\main\\resources\\static\\images\\pose";
 	private static final String RESULT_DIRECTORY = "C:\\Users\\smhrd\\git\\DrChuck\\DrChuck\\src\\main\\resources\\static\\images\\resultpose";
 
