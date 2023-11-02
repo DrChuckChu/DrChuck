@@ -47,8 +47,6 @@
 		</li>
 		<li><a href="#none" class="link_nav link_nav4" data-page="3">기록조회</a>
 		</li>
-		<li><a href="#none" class="link_nav link_nav5">${user.dmId }님
-				ㅎㅇ</a></li>
 
 
 
