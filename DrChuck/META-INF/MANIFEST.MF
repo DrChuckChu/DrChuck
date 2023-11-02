@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DrChuck
+Bundle-SymbolicName: DrChuck
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: DrChuck
+Export-Package: com.smhrd,
+ com.smhrd.controller,
+ com.smhrd.entity,
+ com.smhrd.repository,
+ com.smhrd.service
