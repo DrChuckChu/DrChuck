@@ -409,6 +409,7 @@
 						        // 서버로부터 받아온 이미지 데이터를 이용하여 이미지를 갱신
 						        $('#preview-1').attr('src', data[0].dpReImg);
 						        $('#preview-2').attr('src', data[1].dpReImg);
+						        // 십할
 						    },
 						    error: function() {
 						        console.log('Failed to fetch image data!');
