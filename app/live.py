@@ -37,6 +37,7 @@ def gen_frames(camera, get_session):
 
         cnt_exist = 0
         cnt_none = 0
+        threshold = 60
         while camera.isOpened():
 
             values_lst = []
@@ -99,7 +100,7 @@ def gen_frames(camera, get_session):
 
                 # 이마-턱 사이의 거리
                 face_dis = cal.calculate_distance(ima_point, tuck_point)
-                # print(face_dis)
+                print(face_dis)
                 values_lst.append(face_dis)
 
                 # 성별 
@@ -137,22 +138,29 @@ def gen_frames(camera, get_session):
                 if class_pred == 'Good':
                     border_color = (0,255,0)
                     word_color = (0,128,0)
-                    text = '조아쒀~!'
+                    text = 'Good'
 
 
                 elif class_pred == 'Bad':
                     border_color = (0,0,255)
                     word_color = (0,0,128)
-                    text = '나빠쒀~!'
+                    text = 'Bad'
 
                 elif class_pred == 'Turtle':
                     border_color = (255,0,0)
                     word_color = (128,0,0)
-                    text = '거북거북'
+                    text = '거북목 위험!'
 
                 
-                dst = cv2.copyMakeBorder(image, 5, 5, 5, 5, cv2.BORDER_CONSTANT, value=border_color)
-                dst = cv2.flip(dst, 1)
+                if face_dis <= threshold: 
+                    dst = cv2.copyMakeBorder(image, 5, 5, 5, 5, cv2.BORDER_CONSTANT, value=(255,255,255))
+                    dst = cv2.blur(dst, (25,25))
+                    dst = cv2.flip(dst, 1)
+                    text = ''
+                else:
+                    dst = cv2.copyMakeBorder(image, 5, 5, 5, 5, cv2.BORDER_CONSTANT, value=border_color)
+                    dst = cv2.flip(dst, 1)
+
 
                 dst_pill = Image.fromarray(dst)
                 font = ImageFont.truetype('./font/NPSfont_bold.ttf',40)
@@ -186,11 +194,13 @@ def gen_frames(camera, get_session):
                 # Recolor image back to BGR for rendering
                 image.flags.writeable = True   
                 image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+                dst = cv2.copyMakeBorder(image, 5, 5, 5, 5, cv2.BORDER_CONSTANT, value=(255,255,255))
+                dst = cv2.blur(dst, (25,25))
 
                 cnt_none += 1
                 
                 # Apply flip to the frame
-                flipped_image = cv2.flip(image, 1)
+                flipped_image = cv2.flip(dst, 1)
 
                 ret, buffer = cv2.imencode('.jpg', flipped_image)
                 frame = buffer.tobytes()
