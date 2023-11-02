@@ -210,14 +210,15 @@ var {
     height: 7px;
   }
   
-  .spinner-border {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 2000;
-    width: 3rem;
-    height: 3rem;
-  }
+.spinner-border {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2000; /* 이 값을 로딩 레이어의 z-index보다 높게 설정합니다. */
+  width: 3rem;
+  height: 3rem;
+  border-width: 5px;
+}
   
   .btn_upload {
     width: 110px;
