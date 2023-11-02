@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.smhrd</groupId>
-	<artifactId>SpringBoot2</artifactId>
+	<artifactId>DrChuck</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SpringBoot2</name>
 	<description>Demo project for Spring Boot</description>
