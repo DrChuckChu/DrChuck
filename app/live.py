@@ -35,9 +35,9 @@ def gen_frames(camera, get_session):
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
         
 
-        cnt_exist = 0
-        cnt_none = 0
-        threshold = 60
+        cnt_exist = 0 # 사람이 있을 때 카운트
+        cnt_none = 0 # 사람이 없을 때 카운트
+        threshold = 60 # 사용자 얼굴크기의 임계값
         while camera.isOpened():
 
             values_lst = []
@@ -135,11 +135,11 @@ def gen_frames(camera, get_session):
                 image.flags.writeable = True   
                 image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
                 
+                # 모델 결과별
                 if class_pred == 'Good':
                     border_color = (0,255,0)
                     word_color = (0,128,0)
                     text = 'Good'
-
 
                 elif class_pred == 'Bad':
                     border_color = (0,0,255)
@@ -151,7 +151,7 @@ def gen_frames(camera, get_session):
                     word_color = (128,0,0)
                     text = '거북목 위험!'
 
-                
+                # 사용자 얼굴크기기반 거리
                 if face_dis <= threshold: 
                     dst = cv2.copyMakeBorder(image, 5, 5, 5, 5, cv2.BORDER_CONSTANT, value=(255,255,255))
                     dst = cv2.blur(dst, (25,25))
@@ -161,20 +161,21 @@ def gen_frames(camera, get_session):
                     dst = cv2.copyMakeBorder(image, 5, 5, 5, 5, cv2.BORDER_CONSTANT, value=border_color)
                     dst = cv2.flip(dst, 1)
 
-
+                # 이미지 위 글씨 설정
                 dst_pill = Image.fromarray(dst)
                 font = ImageFont.truetype('./font/NPSfont_bold.ttf',40)
                 draw = ImageDraw.Draw(dst_pill)
                 draw.text((460, 30),text,word_color,font=font)
 
+                # np.ndarray형태로 확실히 변환하고 .jpg로 인코딩
                 dst_final = np.array(dst_pill)
                 ret, buffer = cv2.imencode('.jpg', dst_final)
-
+                # 바이트로 변환
                 frame = buffer.tobytes()
                 
-                # 여기서 시간별로 db에 넣는 로직
                 val_dict_lst_str = json.dumps(val_dict_lst)
 
+                # 여기서 시간별로 db에 넣는 로직
                 # threading.Timer(1, dao.insert_live(id, val_dict_lst_str, class_pred)).start()
                 if cnt_exist == 600:
                     print(val_dict_lst_str)
