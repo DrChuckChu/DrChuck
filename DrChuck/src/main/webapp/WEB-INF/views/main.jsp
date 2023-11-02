@@ -406,6 +406,13 @@
 	                        $('.upload3 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
 	                        $('.upload4 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
 	                        
+	                        
+	                        $('.resultcontent').
+	                    
+	        			<div class="resultcontent2">
+	        				<p>2안녕하세요 여기는 결과 피드백이 들어갈 자리예요</p>
+	        			</div>
+	                        
 	                        // 로딩 화면 숨기기
 	                        hideLoading();
 
