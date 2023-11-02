@@ -44,4 +44,4 @@ def f_feedback(point1, point2):
     if angle <= 5:
         return f'{angle}도로 아주 좋습니다!,', angle
     else:
-        return f'{angle}도 입니다. 기울임에 더 신경써보세요!,', angle
+        return f'{angle}도 입니다., 기울임에 더 신경써보세요!,', angle

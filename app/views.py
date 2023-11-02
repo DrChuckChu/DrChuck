@@ -92,6 +92,8 @@ def gen_frames(img, f_name_lst, filename):
             result_str = f"""
             고개 기울임 각도는 {ear_feedback}
             어깨 기울임 각도는 {shoulder_feedback}
+            정면에서 봤을 때 고개와 어깨는 기울어짐이 없이 균형적인 모습이어야 좋은 자세라고 할 수 있습니다.,
+            PC작업을 할 때 책상의 끝에 손이 위치할 수 있도록 키보드를 위치해 보세요!,
             """
             print(result_str)
             # db update
@@ -122,6 +124,7 @@ def gen_frames(img, f_name_lst, filename):
                 일반적으로 CVA각도가 50도 미만일 때 거북목이라고 판단합니다.,
                 또한, 사진에 그려진 귀 선과 어깨 선이 일치할 수록 거북목이 아닌 좋은 자세입니다.,
                 좋은 자세를 유지할 수 있도록 노력해봐요!,
+                장시간 앉아 있는 경우 자세가 흐트러질 수 있습니다., 틈틈히 자리에서 일어나 스트레칭도 해봐요!,
                 """
             else:
                 result_str = f"""
@@ -130,6 +133,7 @@ def gen_frames(img, f_name_lst, filename):
                 일반적으로 CVA각도가 50도 미만일 때 거북목이라고 판단합니다.,
                 또한, 사진에 그려진 귀 선과 어깨 선이 일치할 수록 거북목이 아닌 좋은 자세입니다.,
                 PC작업을 하실 때 자세에 조금 더 신경써봐요!,
+                장시간 앉아 있는 경우 자세가 흐트러질 수 있습니다., 틈틈히 자리에서 일어나 스트레칭도 해봐요!,
                 """
             print(result_str)            
             val_dict_lst = [{
