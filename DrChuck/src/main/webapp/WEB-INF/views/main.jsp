@@ -1,282 +1,324 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
-   <title>스크롤 템플릿 1</title>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<meta charset="utf-8" name="viewport"
+	content="width=device-width, initial-scale=1">
+<title>스크롤 템플릿 1</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-   <script src="http://s1.daumcdn.net/svc/original/U03/cssjs/jquery/jquery-1.8.3.min.js"></script>
-   <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script
+	src="http://s1.daumcdn.net/svc/original/U03/cssjs/jquery/jquery-1.8.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <header>
-   <div id="kakaoHead" class="head_promo">
-      <ul class="list_util2">
-         <li><a href="#none" class="imgLogo"><img src="images/최종_로고-배경제거.png"></a></li>
-      </ul>
+	<div id="kakaoHead" class="head_promo">
+		<ul class="list_util2">
+			<li><a href="#none" class="imgLogo"><img
+					src="images/최종_로고-배경제거.png"></a></li>
+		</ul>
 
 
-      <strong class="screen_out">이벤트 메뉴</strong>
-      <ul class="list_nav">
-         <li class="on">
-            <a href="#none" class="link_nav link_nav1" data-page="0">소개</a>
-         </li>
-         <li>
-            <a href="#none" class="link_nav link_nav2" data-page="1">측정</a>
-         </li>
-         <li>
-            <a href="#none" class="link_nav link_nav3" data-page="2">실시간</a>
-         </li>
-         <li>
-            <a href="#none" class="link_nav link_nav4" data-page="3">기록 확인</a>
-         </li>
+		<strong class="screen_out">이벤트 메뉴</strong>
+		<ul class="list_nav">
+			<li class="on"><a href="#none" class="link_nav link_nav1"
+				data-page="0">소개</a></li>
+			<li><a href="#none" class="link_nav link_nav2" data-page="1">측정</a>
+			</li>
+			<li><a href="#none" class="link_nav link_nav3" data-page="2">실시간</a>
+			</li>
+			<li><a href="#none" class="link_nav link_nav4" data-page="3">기록
+					확인</a></li>
 
-      </ul>
-      <!-- 이벤트 메뉴-->
-      <button class="alarm"><img src="images/알림이미지최종.png" alt=""></button>
-      <ul class="list_util">
-         <li><a role="buttons" onclick="toggleContent()" class="img_comm btn_home"><img
-                  src="images/로그인로그아웃최종.png"></a>
+		</ul>
+		<!-- 이벤트 메뉴-->
+		<button class="alarm">
+			<img src="images/알림이미지최종.png" alt="">
+		</button>
+		<ul class="list_util">
+			<li><a role="buttons" onclick="toggleContent()"
+				class="img_comm btn_home"><img src="images/로그인로그아웃최종.png"></a>
 
-         </li>
-      </ul>
+			</li>
+		</ul>
 
 
-      <div id="content">
-         <div class="buttons">
-            <a href="#">개인정보 수정</a>
-         </div>
-         <div class="buttons">
-            <a href="#">로그아웃</a>
-         </div>
-         <div class="buttons">
-            <a href="#">회원 탈퇴</a>
-         </div>
-      </div>
+		<div id="content">
+			<div class="buttons">
+				<a href="goUpdate">개인정보 수정</a>
+			</div>
+			<div class="buttons">
+				<a href="logOut">로그아웃</a>
+			</div>
+			<div class="buttons">
+				<a href="goodBye">회원 탈퇴</a>
+			</div>
+		</div>
 
 
-   </div>
+	</div>
 </header>
 
 <body>
-   <div id="kakaoPromotion" class="prm_promo">
+	<div id="kakaoPromotion" class="prm_promo">
 
-      <!-- // head -->
-      <div class="section_type4 page_scroll" id="aa">
+		<!-- // head -->
+		<div class="section_type4 page_scroll" id="aa">
 
-      <!-- content -->
-      <div onscroll="headerbarToggle()" class="banner">
-         <!-- 소중한 내 몸 -->
-         <h1 class="shadowed-text" id="a3"><strong><span style="font-size: 50px;">소중한 내 몸,</span></strong></h1>
-         <h1 class="shadowed-text" id="a4"><strong><span style="font-size: 50px;">어떤 고민이 있으신가요?</span></strong></h1>
+			<!-- content -->
+			<div onscroll="headerbarToggle()" class="banner">
+				<!-- 소중한 내 몸 -->
+				<h1 class="shadowed-text" id="a3">
+					<strong><span style="font-size: 50px;">소중한 내 몸,</span></strong>
+				</h1>
+				<h1 class="shadowed-text" id="a4">
+					<strong><span style="font-size: 50px;">어떤 고민이
+							있으신가요?</span></strong>
+				</h1>
 
-         <!-- 국가대표 물리치료사 출신 트레이너들과 해결하세요! -->
-
-
-         <!-- 해시태그 모음 배너 추가 -->
-         <div class="hashtag"><strong><span class="hash-symbol">#</span><span class="hash-contents">건강그램</span></strong>
-         </div>
-         <div class="hashtag"><strong><span class="hash-symbol">#</span><span class="hash-contents">자세교정</span></strong>
-         </div>
-         <div class="custom-exercise"><strong>OPenCv</strong></div>
-         <div class="custom-exercise2"><strong><span class="hash-symbol2">#</span><span
-                  class="hash-contents2">척추측만증</span></strong></div>
-         </li>
-         <div class="hashtag"><strong><span class="hash-symbol">#</span><span class="hash-contents">거북목</span></strong>
-         </div>
-         </li>
-         <br>
-         <div class="hashtag"><strong><span class="hash-symbol">#</span><span class="hash-contents">건강</span></strong>
-         </div>
-         <div class="hashtag"><strong><span class="hash-symbol">#</span><span class="hash-contents">바른체형</span></strong>
-         </div>
-         <div class="hashtag"><strong><span class="hash-symbol">#</span><span class="hash-contents">관절통증</span></strong>
-         </div>
-         <div class="hashtag"><strong><span class="hash-symbol">#</span><span class="hash-contents">체력향상
-                  프로그램</span></strong></div>
-         </li>
-         <div class="hashtag"><strong><span class="hash-symbol">#</span><span class="hash-contents">해결</span></strong>
-         </div>
-         </li>
-         <div class="custom-exercise"><strong>실시간 알림</strong></div>
-         <br>
-         <div class="hashtag"><strong><span class="hash-symbol">#</span><span class="hash-contents">척추박사</span></strong>
-         </div>
-         <div class="custom-exercise"><strong>개인맞춤 운동</strong></div>
-         <div class="hashtag"><strong><span class="hash-symbol">#</span><span
-                  class="hash-contents">스마트인재개발원</span></strong></div>
-         <div class="custom-exercise2"><strong><span class="hash-symbol2">#</span><span
-                  class="hash-contents2">바른자세</span></strong></div>
-         </li>
-         <br>
-         <div class="hashtag"><strong><span class="hash-symbol">#</span><span
-                  class="hash-contents">자세불균형</span></strong></div>
-         </li>
-         <div class="hashtag"><strong><span class="hash-symbol">#</span><span
-                  class="hash-contents">척추교정비용</span></strong></div>
-         </li>
-         <br>
-         <br>
-         <hr style="border: 1px solid black;">
-         <h2><strong style="background-color: skyblue;">저희 웹 사이트와 함께 해결하세요!</strong></h2>
-         <p>
-            <a class="scroll2" href="#1"><span></span></a>
-         </p>
-
-         <div style="margin-top: 600px;">
-            <h1>Test Content</h1>
-            <p>This is a test content.</p>
-
-         </div>
-      </div>
-   </div>
-</div>
-
-   <div class="section_type2 page_scroll" id="1">
+				<!-- 국가대표 물리치료사 출신 트레이너들과 해결하세요! -->
 
 
-    <div class="image-upload">
-        <form id="imageUploadForm" action="/upload" method="post" enctype="multipart/form-data">
-          <label for="image-upload-1" class="custom-file-upload">
-            <img id="preview-1" src="" alt="앞모습 이미지를 첨부해주세요">
-            <br>
-            <input type="file" id="image-upload-1" accept="image/*" onchange="previewImage(this, 'preview-1')">
-          </label>
-        </form>
-      </div>
-    
-      <div class="image-upload">
-        <form id="imageUploadForm2" action="/upload" method="post" enctype="multipart/form-data">
-          <label for="image-upload-2" class="custom-file-upload">
-            <img id="preview-2" src="" alt="옆모습 이미지를 첨부해주세요">
-            <br>
-            <input type="file" id="image-upload-2" accept="image/*" onchange="previewImage(this, 'preview-2')">
-          </label>
-        </form>
-      </div>
-    
-      <div class="center">
-         <div class="spinner-border roadingStatus" id="roadingStatus" role="status" style="display: none;">
-             <span class="sr-only">Loading...</span>
-         </div>
-     </div>
- 
-     <div class="upload_btn" id="buttonContainer">
-         <button class="btn_upload" id="testBtn" onclick="clickedBtn()">업로드하기</button>
-     </div>
- 
-     <div id="modalContainer" class="hidden">
-      <div id="modalContent">
-          <img src="image1.jpg" alt="Image 1">
-          <img src="image2.jpg" alt="Image 2">
-          <div>
-              <button id="closeModal">종료</button>
-          </div>
-      </div>
-  </div>
+				<!-- 해시태그 모음 배너 추가 -->
+				<div class="hashtag">
+					<strong><span class="hash-symbol">#</span><span
+						class="hash-contents">건강그램</span></strong>
+				</div>
+				<div class="hashtag">
+					<strong><span class="hash-symbol">#</span><span
+						class="hash-contents">자세교정</span></strong>
+				</div>
+				<div class="custom-exercise">
+					<strong>OPenCv</strong>
+				</div>
+				<div class="custom-exercise2">
+					<strong><span class="hash-symbol2">#</span><span
+						class="hash-contents2">척추측만증</span></strong>
+				</div>
+				</li>
+				<div class="hashtag">
+					<strong><span class="hash-symbol">#</span><span
+						class="hash-contents">거북목</span></strong>
+				</div>
+				</li> <br>
+				<div class="hashtag">
+					<strong><span class="hash-symbol">#</span><span
+						class="hash-contents">건강</span></strong>
+				</div>
+				<div class="hashtag">
+					<strong><span class="hash-symbol">#</span><span
+						class="hash-contents">바른체형</span></strong>
+				</div>
+				<div class="hashtag">
+					<strong><span class="hash-symbol">#</span><span
+						class="hash-contents">관절통증</span></strong>
+				</div>
+				<div class="hashtag">
+					<strong><span class="hash-symbol">#</span><span
+						class="hash-contents">체력향상 프로그램</span></strong>
+				</div>
+				</li>
+				<div class="hashtag">
+					<strong><span class="hash-symbol">#</span><span
+						class="hash-contents">해결</span></strong>
+				</div>
+				</li>
+				<div class="custom-exercise">
+					<strong>실시간 알림</strong>
+				</div>
+				<br>
+				<div class="hashtag">
+					<strong><span class="hash-symbol">#</span><span
+						class="hash-contents">척추박사</span></strong>
+				</div>
+				<div class="custom-exercise">
+					<strong>개인맞춤 운동</strong>
+				</div>
+				<div class="hashtag">
+					<strong><span class="hash-symbol">#</span><span
+						class="hash-contents">스마트인재개발원</span></strong>
+				</div>
+				<div class="custom-exercise2">
+					<strong><span class="hash-symbol2">#</span><span
+						class="hash-contents2">바른자세</span></strong>
+				</div>
+				</li> <br>
+				<div class="hashtag">
+					<strong><span class="hash-symbol">#</span><span
+						class="hash-contents">자세불균형</span></strong>
+				</div>
+				</li>
+				<div class="hashtag">
+					<strong><span class="hash-symbol">#</span><span
+						class="hash-contents">척추교정비용</span></strong>
+				</div>
+				</li> <br> <br>
+				<hr style="border: 1px solid black;">
+				<h2>
+					<strong style="background-color: skyblue;">저희 웹 사이트와 함께
+						해결하세요!</strong>
+				</h2>
+				<p>
+					<a class="scroll2" href="#1"><span></span></a>
+				</p>
 
-   </div>
+				<div style="margin-top: 600px;">
+					<h1>Test Content</h1>
+					<p>This is a test content.</p>
 
+				</div>
+			</div>
+		</div>
+	</div>
 
-
-   <div class="section_type1 page_scroll">
-      <!--cam-->
-      <div class="centered-container">
-         <img id="cameraview" width="720" height="480" />
-         <div class="guide-container">
-            <h6>올바른 자세 예시</h6>
-            <p>1. 등받이에 엉덩이와 허리 붙이기<br>
-               2. 발바닥은 땅에 닿도록 앉기<br>
-               3. 모니터 눈높이는 모니터 상단에 맞추기<br>
-               4. 팔꿈치 각도는 직각으로 유지하기<br>
-               5. 머리는 턱을 당겨 어깨와 동일 선상으로 유지하기<br>
-            <p>🧘주기적으로 스트레칭하기🧘</p>
-         </div>
-         <div class="toggleBG">
-            <button class="toggleFG"></button>
-
-         </div>
-
-      </div>
-
-
-
-   </div>
-
-
-   <div class="section_type3 page_scroll">
-
-      <!--업로드 결과-->
-      <div class="uploadResult">
-
-         <h6 class="r">측정 결과</h6>
-
-         <div class="upload1">
-
-         </div>
-         <div class="upload2">
-
-         </div>
-         <div class="resultcontent">
-            <p>
-               1안녕하세요 여기는 결과 피드백이 들어갈 자리예요
-
-            </p>
-         </div>
-         <div class="resultcontent2">
-            <p>
-               2안녕하세요 여기는 결과 피드백이 들어갈 자리예요
-
-            </p>
-         </div>
-      </div>
-      <br>
-      <br>
-      <!--스크롤 화살표-->
-      <a class="scroll" href="#2"><span></span></a>
-      <br>
-      <!--차트-->
-      <br>
-      <br>
-      <div id="2"></div>
-      <div class="chartt">
-         <div class="chart-container">
-            <canvas id="chart"></canvas>
-         </div>
-
-         <div class="chart-container">
-            <canvas id="pieExample"></canvas>
-         </div>
+	<div class="section_type2 page_scroll" id="1">
 
 
-         <div class="chart-container">
-            <canvas id="myChart2"></canvas>
-         </div>
+		<div class="image-upload">
+			<form id="imageUploadForm" action="/upload" method="post"
+				enctype="multipart/form-data">
+				<label for="image-upload-1" class="custom-file-upload"> <img
+					id="preview-1" src="" alt="앞모습 이미지를 첨부해주세요"> <br> <input
+					type="file" id="image-upload-1" accept="image/*"
+					onchange="previewImage(this, 'preview-1')">
+				</label>
+			</form>
+		</div>
+
+		<div class="image-upload">
+			<form id="imageUploadForm2" action="/upload" method="post"
+				enctype="multipart/form-data">
+				<label for="image-upload-2" class="custom-file-upload"> <img
+					id="preview-2" src="" alt="옆모습 이미지를 첨부해주세요"> <br> <input
+					type="file" id="image-upload-2" accept="image/*"
+					onchange="previewImage(this, 'preview-2')">
+				</label>
+			</form>
+		</div>
+
+		<div class="center">
+			<div class="spinner-border roadingStatus" id="roadingStatus"
+				role="status" style="display: none;">
+				<span class="sr-only">Loading...</span>
+			</div>
+		</div>
+
+		<div class="upload_btn" id="buttonContainer">
+			<button class="btn_upload" id="testBtn" onclick="clickedBtn()">업로드하기</button>
+		</div>
+
+		<div id="modalContainer" class="hidden">
+			<div id="modalContent">
+				<img src="image1.jpg" alt="Image 1"> <img src="image2.jpg"
+					alt="Image 2">
+				<div>
+					<button id="closeModal">종료</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
 
 
-         <div class="chart-container">
-            <canvas id="pie-chart"></canvas>
-         </div>
 
-      </div>
-      
-   </div>
+	<div class="section_type1 page_scroll">
+		<!--cam-->
+		<div class="centered-container">
+			<img id="cameraview" width="720" height="480" />
+			<div class="guide-container">
+				<h6>올바른 자세 예시</h6>
+				<p>
+					1. 등받이에 엉덩이와 허리 붙이기<br> 2. 발바닥은 땅에 닿도록 앉기<br> 3. 모니터 눈높이는
+					모니터 상단에 맞추기<br> 4. 팔꿈치 각도는 직각으로 유지하기<br> 5. 머리는 턱을 당겨 어깨와
+					동일 선상으로 유지하기<br>
+				<p>🧘주기적으로 스트레칭하기🧘</p>
+			</div>
+			<div class="toggleBG">
+				<button class="toggleFG"></button>
 
-   <!-- // content -->
+			</div>
 
-   <hr class="hide">
+		</div>
 
-   <!-- footer -->
-   <!-- // footer -->
-   </div><!-- // prm_promo -->
-   <script>
+
+
+	</div>
+
+
+	<div class="section_type3 page_scroll">
+
+		<!--업로드 결과-->
+		<div class="uploadResult">
+
+			<h6 class="r">측정 결과</h6>
+
+			<div class="upload1">
+				<img src="" width="300px" />
+			</div>
+			<div class="upload2">
+				<img src="" width="300px" />
+			</div>
+			<div class="resultcontent">
+				<p>1안녕하세요 여기는 결과 피드백이 들어갈 자리예요</p>
+			</div>
+			<div class="resultcontent2">
+				<p>2안녕하세요 여기는 결과 피드백이 들어갈 자리예요</p>
+			</div>
+		</div>
+		<br> <br>
+		<!--스크롤 화살표-->
+		<a class="scroll" href="#2"><span></span></a> <br>
+		<!--차트-->
+		<br> <br>
+		<div id="2"></div>
+		<div class="chartt">
+			<div class="chart-container">
+				<canvas id="chart"></canvas>
+			</div>
+
+			<div class="chart-container">
+				<canvas id="pieExample"></canvas>
+			</div>
+
+
+			<div class="chart-container">
+				<canvas id="myChart2"></canvas>
+			</div>
+
+
+			<div class="chart-container">
+				<canvas id="pie-chart"></canvas>
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- // content -->
+
+	<hr class="hide">
+
+	<!-- footer -->
+	<!-- // footer -->
+	</div>
+	<!-- // prm_promo -->
+	<script>
       $(function () {
          var $banner = $('.banner'); // 배경을 변수에 넣기
          var $window = $(window);
@@ -287,7 +329,7 @@
          });
       });
    </script>
-   <script type="text/javascript">
+	<script type="text/javascript">
    $(document).ready(function() {
 	    var cameraView = document.getElementById("cameraview");
 	    var toggleButton = document.querySelector(".toggleBG");
@@ -335,39 +377,44 @@
 	    });
 
 	    $('.btn_upload').on('click', function(event) {
-	        event.preventDefault();
-	        var formData = new FormData();
-	        formData.append('fImg', $('#image-upload-1')[0].files[0]);
-	        formData.append('sImg', $('#image-upload-2')[0].files[0]);
-	        formData.append('dpId', '${user.dmId}');
+			event.preventDefault();
 
-	        $.ajax({
-	            url: 'upload',
-	            type: 'POST',
-	            data: formData,
-	            processData: false,
-	            contentType: false,
-	            success: function(data) {
-	                console.log('Upload successful!');
-	                $.ajax({
-	                    url: '/uploadRe/' + ${sessionScope.user.dmId},
-	                    type: 'GET',
-	                    success: function(data) {
-	                        $('#preview-1').attr('src', data[0].dpReImg);
-	                        $('#preview-2').attr('src', data[1].dpReImg);
-	                    },
-	                    error: function() {
-	                        console.log('Failed to fetch image data!');
-	                    }
-	                });
-	            },
-	            error: function() {
-	                console.log('Upload error!');
-	            }
-	        });
-	    });
+			var formData = new FormData();
+			formData.append('fImg', $('#image-upload-1')[0].files[0]);
+			formData.append('sImg', $('#image-upload-2')[0].files[0]);
+			formData.append('dpId', '${user.dmId}');
 
-	});
+			$.ajax({
+				url : 'upload',
+				type : 'POST',
+				data : formData,
+				processData : false,
+				contentType : false,
+				success : function(data) {
+					console.log('Upload successful!');
+					
+					// 업로드가 성공하면 이미지 정보를 요청
+					$.ajax({
+					    url: 'uploadRe',
+					    type: 'GET',
+					    success: function(data) {
+					        console.log("이미지 들어오냐?");
+					        console.log(data);
+					        
+					        // 서버로부터 받아온 이미지 데이터를 이용하여 이미지를 갱신
+					        $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
+					        $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
+					    },
+					    error: function() {
+					        console.log('이미지 데이터를 가져오지 못했습니다!');
+					    }
+					});
+				},
+				error : function() {
+					console.log('Upload error!');
+				}
+			});
+		});
 
    </script>
 
@@ -375,19 +422,22 @@
 </body>
 
 <footer>
-    <div class="footer-content">
-        
-        <br>
-        <p>(PROJECT)척추박사</p>
-        <p>Back-end : 김동영(팀장) <br>Back-end : 김현중(팀원) <br> Front-end : 봉민혁(팀원) <br> Front-end : 문경진(팀원) <br> AI ML :
-            강진구(부팀장)<br><br> Mentor : 전주형(신한AI) </p>
-            
-            <img class="footlogo" src="images/footer글씨로고.png">
-            <img class="smhrd" src="images/스마트인재개발원푸터.png">
-        </div>
-    </footer>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/alarm.js"></script>
-    <script src="assets/js/chart.js"></script>
+	<div class="footer-content">
+
+		<br>
+		<p>(PROJECT)척추박사</p>
+		<p>
+			Back-end : 김동영(팀장) <br>Back-end : 김현중(팀원) <br> Front-end :
+			봉민혁(팀원) <br> Front-end : 문경진(팀원) <br> AI ML : 강진구(부팀장)<br>
+			<br> Mentor : 전주형(신한AI)
+		</p>
+
+		<img class="footlogo" src="images/footer글씨로고.png"> <img
+			class="smhrd" src="images/스마트인재개발원푸터.png">
+	</div>
+</footer>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/alarm.js"></script>
+<script src="assets/js/chart.js"></script>
 
 </html>
