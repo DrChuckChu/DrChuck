@@ -387,6 +387,7 @@
         </div>
     </footer>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/alarm.js"></script>
     <script src="assets/js/chart.js"></script>
 
 </html>
