@@ -176,7 +176,7 @@ h6 span{
 }
 .input-icon {
   position: absolute;
-  top: 0;
+  top: 7px;
   left: 18px;
   height: 48px;
   font-size: 24px;
