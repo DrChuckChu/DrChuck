@@ -220,7 +220,7 @@
 		</div>
 
 		<div class="upload_btn" id="buttonContainer">
-			<button class="btn_upload" id="testBtn" onclick="clickedBtn()">업로드하기</button>
+			<button class="btn_upload">업로드하기</button>
 		</div>
 
 		<div id="modalContainer" class="hidden">
@@ -377,45 +377,78 @@
 	    });
 
 	    $('.btn_upload').on('click', function(event) {
-			event.preventDefault();
+	        event.preventDefault();
+	        
+	        var formData = new FormData();
+	        formData.append('fImg', $('#image-upload-1')[0].files[0]);
+	        formData.append('sImg', $('#image-upload-2')[0].files[0]);
+	        formData.append('dpId', '${user.dmId}');
 
-			var formData = new FormData();
-			formData.append('fImg', $('#image-upload-1')[0].files[0]);
-			formData.append('sImg', $('#image-upload-2')[0].files[0]);
-			formData.append('dpId', '${user.dmId}');
+	        // 로딩 화면 보여주기
+	        showLoading();
 
-			$.ajax({
-				url : 'upload',
-				type : 'POST',
-				data : formData,
-				processData : false,
-				contentType : false,
-				success : function(data) {
-					console.log('Upload successful!');
-					
-					// 업로드가 성공하면 이미지 정보를 요청
-					$.ajax({
-					    url: 'uploadRe',
-					    type: 'GET',
-					    success: function(data) {
-					        console.log("이미지 들어오냐?");
-					        console.log(data);
-					        
-					        // 서버로부터 받아온 이미지 데이터를 이용하여 이미지를 갱신
-					        $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
-					        $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
-					    },
-					    error: function() {
-					        console.log('이미지 데이터를 가져오지 못했습니다!');
-					    }
-					});
-				},
-				error : function() {
-					console.log('Upload error!');
-				}
-			});
-		});
+	        $.ajax({
+	            url : 'upload',
+	            type : 'POST',
+	            data : formData,
+	            processData : false,
+	            contentType : false,
+	            success : function(data) {
+	                console.log('Upload successful!');
+	                $.ajax({
+	                    url: 'uploadRe',
+	                    type: 'GET',
+	                    success: function(data) {
+	                        console.log("이미지 들어오냐?");
+	                        console.log(data);
+	                        $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
+	                        $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
 
+	                        // 로딩 화면 숨기기
+	                        hideLoading();
+
+	                        // 모달창 보여주기
+	                        document.getElementById('modalContainer').classList.remove('hidden');
+
+	                        // 모달창 닫기 버튼 이벤트 리스너 추가
+	                        const closeModal = document.getElementById('closeModal');
+	                        closeModal.addEventListener('click', () => {
+	                            document.getElementById('modalContainer').classList.add('hidden');
+	                            location.reload();
+	                        });
+	                    },
+	                    error: function() {
+	                        console.log('이미지 데이터를 가져오지 못했습니다!');
+	                    }
+	                });
+	            },
+	            error : function() {
+	                console.log('Upload error!');
+	            }
+	        });
+	    });
+
+	    function showLoading(){
+	        console.log('showLoading function called');
+	        var maskHeight = $(document).height();
+	        var maskWidth  = window.document.body.clientWidth;
+	        var mask ="<div id='mask' style='position:absolute; z-index:10000; background-color:#000000; left:0; top:0;'></div>";
+	        $('body').append(mask)
+	        $('#mask').css({
+	            'width' : maskWidth,
+	            'height': maskHeight,
+	            'opacity' :'0.7'
+	        });
+
+	        $("#roadingStatus").show();
+	    }
+
+	    function hideLoading(){
+	        console.log('hideLoading function called');
+	        $("#mask").remove();
+	        $("#roadingStatus").hide();
+	    }
+   });
    </script>
 
 
