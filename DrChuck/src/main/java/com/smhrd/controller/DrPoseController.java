@@ -48,112 +48,104 @@ import com.smhrd.repository.DrPoseRepository;
 
 @Controller // 추가: 이 클래스가 컨트롤러임을 나타내는 어노테이션
 public class DrPoseController {
-	
-	
-   @Autowired
-   private DrPoseRepository drPoseRepository;
-   
-   
 
-   private static final String UPLOAD_DIRECTORY = "C:\\Users\\smhrd\\git\\DrChuck\\DrChuck\\src\\main\\resources\\static\\images\\pose";
-   private static final String RESULT_DIRECTORY = "C:\\Users\\smhrd\\git\\DrChuck\\DrChuck\\src\\main\\resources\\static\\images\\resultpose";
+	@Autowired
+	private DrPoseRepository drPoseRepository;
 
-   @RequestMapping(value = "/upload", method = RequestMethod.POST)
-   public String uploadImage(
-		 @RequestParam("fImg") MultipartFile fImg,
-		 @RequestParam("sImg") MultipartFile sImg,
-         @RequestParam("dpId") String dpId,
-         HttpSession session) {
+	private static final String UPLOAD_DIRECTORY = "C:\\Users\\smhrd\\git\\DrChuck\\DrChuck\\src\\main\\resources\\static\\images\\pose";
+	private static final String RESULT_DIRECTORY = "C:\\Users\\smhrd\\git\\DrChuck\\DrChuck\\src\\main\\resources\\static\\images\\resultpose";
 
-      if (fImg.isEmpty() || sImg.isEmpty()) {
-         throw new RuntimeException("Both images must be provided.");
-      }
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	public String uploadImage(@RequestParam("fImg") MultipartFile fImg, @RequestParam("sImg") MultipartFile sImg,
+			@RequestParam("dpId") String dpId, HttpSession session) {
 
-      SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMddHHmmss");
-      String dayday = dateFormat.format(new Date());
+		if (fImg.isEmpty() || sImg.isEmpty()) {
+			throw new RuntimeException("Both images must be provided.");
+		}
 
-      String[] prefixes = { "F_", "S_" };
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMddHHmmss");
+		String dayday = dateFormat.format(new Date());
 
-      handleFileUpload(fImg, dpId, dayday, prefixes[0]);
-      handleFileUpload(sImg, dpId, dayday, prefixes[1]);
+		String[] prefixes = { "F_", "S_" };
 
-      try {
-         Thread.sleep(3000); // Delay for 3 seconds to ensure the image file is saved.
-      } catch (InterruptedException e) {
-         e.printStackTrace();
-      }
-      return "redirect:/uploadRe";
-   }
+		handleFileUpload(fImg, dpId, dayday, prefixes[0]);
+		handleFileUpload(sImg, dpId, dayday, prefixes[1]);
 
-   private void handleFileUpload(MultipartFile file, String dpId, String dayday, String prefix) {
-      String originalFilename = org.springframework.util.StringUtils.cleanPath(file.getOriginalFilename());
-      String fileExtension = FilenameUtils.getExtension(originalFilename);
-      String filename = prefix + dpId + "_" + dayday + "." + fileExtension;
+		try {
+			Thread.sleep(3000); // Delay for 3 seconds to ensure the image file is saved.
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return "redirect:/uploadRe";
+	}
 
-      Path uploadPath = Paths.get(UPLOAD_DIRECTORY);
-      Path filePath = uploadPath.resolve(filename);
+	private void handleFileUpload(MultipartFile file, String dpId, String dayday, String prefix) {
+		String originalFilename = org.springframework.util.StringUtils.cleanPath(file.getOriginalFilename());
+		String fileExtension = FilenameUtils.getExtension(originalFilename);
+		String filename = prefix + dpId + "_" + dayday + "." + fileExtension;
 
-      try {
-         file.transferTo(filePath.toFile());
+		Path uploadPath = Paths.get(UPLOAD_DIRECTORY);
+		Path filePath = uploadPath.resolve(filename);
 
-         DrPose drPose=new DrPose();
-         drPose.setDpId(dpId); 
+		try {
+			file.transferTo(filePath.toFile());
 
-         String relativePath="/images/pose/" + filename;
-         drPose.setDpImg(relativePath);
+			DrPose drPose = new DrPose();
+			drPose.setDpId(dpId);
 
-         if (prefix.equals("S_")) {
-             drPose.setDpStat("S");
-         } else if (prefix.equals("F_")) {
-             drPose.setDpStat("F");
-         }
-         drPoseRepository.save(drPose);  
-        
-         RestTemplate restTemplate = new RestTemplate();
-         String flaskUrl = "http://172.30.1.96:5000/upload"; // Flask 서버의 URL을 입력해주세요.
+			String relativePath = "/images/pose/" + filename;
+			drPose.setDpImg(relativePath);
 
-         HttpHeaders headers = new HttpHeaders();
-         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+			if (prefix.equals("S_")) {
+				drPose.setDpStat("S");
+			} else if (prefix.equals("F_")) {
+				drPose.setDpStat("F");
+			}
+			drPoseRepository.save(drPose);
 
-         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-         body.add("image", new FileSystemResource(filePath.toFile()));
+			RestTemplate restTemplate = new RestTemplate();
+			String flaskUrl = "http://172.30.1.96:5000/upload"; // Flask 서버의 URL을 입력해주세요.
 
-         HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
-         ResponseEntity<String> response = restTemplate.exchange(flaskUrl, HttpMethod.POST, requestEntity, String.class);
-           System.out.println("Response from Flask server: " + response.getBody());
+			MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+			body.add("image", new FileSystemResource(filePath.toFile()));
 
-           // Base64 문자열 디코딩하여 바이트 배열 얻기
-           byte[] decodedBytes = Base64.getDecoder().decode(response.getBody());
+			HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 
+			ResponseEntity<String> response = restTemplate.exchange(flaskUrl, HttpMethod.POST, requestEntity,
+					String.class);
+			System.out.println("Response from Flask server: " + response.getBody());
 
-        // 디코딩된 이미지를 결과 디렉토리에 저장
-           String outputFilename = prefix + dpId + "_" + dayday + ".jpg";  // 확장자를 jpg로 고정하였습니다.
-           Path outputPath = Paths.get(RESULT_DIRECTORY, outputFilename);
+			// Base64 문자열 디코딩하여 바이트 배열 얻기
+			byte[] decodedBytes = Base64.getDecoder().decode(response.getBody());
 
-           // 디코딩된 바이트 배열을 BufferedImage로 변환
-           ByteArrayInputStream bais = new ByteArrayInputStream(decodedBytes);
-           BufferedImage bufferedImage = ImageIO.read(bais);
+			// 디코딩된 이미지를 결과 디렉토리에 저장
+			String outputFilename = prefix + dpId + "_" + dayday + ".jpg"; // 확장자를 jpg로 고정하였습니다.
+			Path outputPath = Paths.get(RESULT_DIRECTORY, outputFilename);
 
-           // BufferedImage를 이미지 파일로 저장
-           ImageIO.write(bufferedImage, "jpg", outputPath.toFile());
+			// 디코딩된 바이트 배열을 BufferedImage로 변환
+			ByteArrayInputStream bais = new ByteArrayInputStream(decodedBytes);
+			BufferedImage bufferedImage = ImageIO.read(bais);
 
-   
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-   }
-   
+			// BufferedImage를 이미지 파일로 저장
+			ImageIO.write(bufferedImage, "jpg", outputPath.toFile());
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	@GetMapping("/uploadRe")
 	@ResponseBody
 	public List<DrPose> getUploadRe(HttpSession session) {
-	    DrMember user = (DrMember) session.getAttribute("user");
-	    String userId = user.getDmId();
-	    List<DrPose> imagesList = drPoseRepository.findTop2ByDpIdOrderByDpIdxDesc(userId);
-	    System.out.println("이미지에는 뭐가 들어갈까? : " + imagesList);
+		DrMember user = (DrMember) session.getAttribute("user");
+		String userId = user.getDmId();
+		List<DrPose> imagesList = drPoseRepository.findTop2ByDpIdOrderByDpIdxDesc(userId);
+		System.out.println("이미지에는 뭐가 들어갈까? : " + imagesList);
 
-	    return imagesList;
+		return imagesList;
 	}
-   
-   
+
 }
