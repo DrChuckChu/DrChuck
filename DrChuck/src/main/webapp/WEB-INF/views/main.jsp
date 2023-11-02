@@ -40,7 +40,7 @@
 
       </ul>
       <!-- 이벤트 메뉴-->
-      <button class="alarm"><img src="images/알림이미지최종.png" alt=""></button>
+      <button class="alarm"><img src="images/알람끔.png" alt=""></button>
       <ul class="list_util">
          <li><a role="buttons" onclick="toggleContent()" class="img_comm btn_home"><img
                   src="images/로그인로그아웃최종.png"></a>
@@ -308,7 +308,7 @@
 	                        isCameraOn = true;
 	                        toggleButton.style.background = "#53FF4C";
 	                        toggleInner.style.left = "40px";
-	                        cameraView.src = "http://172.30.1.96:5000/live_chu?" + new Date().getTime();
+	                        cameraView.src = "http://172.30.1.55:5000/live_chu?" + new Date().getTime();
 	                        cameraView.load();
 	                    },
 	                    error: function() {

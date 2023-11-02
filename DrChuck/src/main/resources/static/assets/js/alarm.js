@@ -24,7 +24,7 @@ function poseAndLiveNotify() {
         timerElement1.innerText = timeLeft1;
     } else if (alarmStatus) {
         $.ajax({
-            url: `/t/getLatestPosture`,
+            url: `/dr/getLatestPosture`,
             type: 'GET',
             dataType: 'json',
             success: function(data) {
@@ -59,7 +59,7 @@ function poseAndLiveNotify() {
     } else if (alarmStatus) {
         // 서버에 최신 자세 요청
         $.ajax({
-            url: `/t/getLatestPosture`,
+            url: `/dr/getLatestPosture`,
             type: 'GET',
             dataType: 'json',
             success: function(data) {
@@ -86,5 +86,5 @@ window.addEventListener('load', () => {
 // 알람 버튼 클릭 이벤트 핸들러는 그대로 사용하면 됩니다.
 document.querySelector('.alarm').addEventListener('click', function() {
     alarmStatus = !alarmStatus; 
-    this.children[0].src = alarmStatus ? 'images/알람이미지최종.jpg' : 'images/알람아님.png';
+    this.children[0].src = alarmStatus ? 'images/알람이미지최종.png' : 'images/알람끔.png';
 });
