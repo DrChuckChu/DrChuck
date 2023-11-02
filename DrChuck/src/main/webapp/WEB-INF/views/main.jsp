@@ -225,8 +225,12 @@
 
 		<div id="modalContainer" class="hidden">
 			<div id="modalContent">
-				<img src="image1.jpg" alt="Image 1"> <img src="image2.jpg"
-					alt="Image 2">
+				<div class="upload3">
+				<img src="" width="300px" />
+				</div>
+				<div class="upload4">
+				<img src="" width="300px" />
+				</div>
 				<div>
 					<button id="closeModal">종료</button>
 				</div>
@@ -329,53 +333,48 @@
          });
       });
    </script>
-	<script type="text/javascript">
-   $(document).ready(function() {
-	    var cameraView = document.getElementById("cameraview");
-	    var toggleButton = document.querySelector(".toggleBG");
-	    var toggleInner = document.querySelector(".toggleFG");
-	    var isCameraOn = false;
+	<script>
+	$(document).ready(function() {
+		var cameraView = document.getElementById("cameraview");
+		var toggleButton = document.querySelector(".toggleBG");
+		 var toggleInner = document.querySelector(".toggleFG");
+		var isCameraOn = false;
 
-	    toggleButton.addEventListener('click', function() {
-	        if (!isCameraOn) {
-	            if (confirm("카메라 권한을 요청하려고 합니다. 허용하시겠습니까?")) {
-	                $.ajax({
-	                    url: "openWebcam",
-	                    type: "POST",
-	                    contentType: "application/json",
-	                    data: JSON.stringify({
-	                        회원아이디: "1234"
-	                    }),
-	                    success: function(response) {
-	                        isCameraOn = true;
-	                        toggleButton.style.background = "#53FF4C";
-	                        toggleInner.style.left = "40px";
-	                        cameraView.src = "http://172.30.1.55:5000/live_chu?" + new Date().getTime();
-	                        cameraView.load();
-	                    },
-	                    error: function() {
-	                        console.error("웹캠 열기 요청이 실패했습니다.");
-	                    }
-	                });
-	            }
-	        } else {
-	            $.ajax({
-	                url: "closeWebcam",
-	                type: "POST",
-	                success: function(data) {
-	                    console.log(data);
-	                    isCameraOn = false;
-	                    toggleButton.style.background = "#CCCCCC";
-	                    toggleInner.style.left = "0px";
-	                    cameraView.src = "";
-	                },
-	                error: function() {
-	                    console.error("웹캠 닫기 요청이 실패했습니다.");
-	                }
-	            });
-	        }
-	    });
-
+		toggleButton.addEventListener('click', function() {
+		   if (!isCameraOn) {
+		      if (confirm("카메라 권한을 요청하려고 합니다. 허용하시겠습니까?")) {
+		         // Spring Controller에 웹캠 열기 요청 보내기
+		         $.ajax({
+		            url: "openWebcam",
+		            type: "POST",
+		            contentType: "application/json",
+		            data: JSON.stringify({ 회원아이디 : "1234" }),
+		            success: function(response) {
+		               isCameraOn = true;
+		               toggleButton.style.background = "#53FF4C";
+		               toggleInner.style.left = "40px"; // 이동
+		                     cameraView.src = "http://172.30.1.55:5000/live_chu?" + new Date().getTime();
+		            },
+		            error: function() { console.error("웹캠 열기 요청이 실패했습니다."); }
+		         });
+		      }
+		     } else {  
+		         // Spring Controller에 웹캠 닫기 요청 보내기
+		         $.ajax({
+		             url: "closeWebcam",
+		             type: "POST",
+		             success:function(data){
+		                 console.log(data);
+		                 isCameraOn=false;
+		                 toggleButton.style.background="#CCCCCC";
+		                 toggleInner.style.left = "0px"; // 이동
+		                 cameraView.src = "";
+		                 location.reload()
+		             },
+		             error:function(){console.error("웹캠 닫기 요청이 실패했습니다.");}
+		         });
+		     }
+		 });
 	    $('.btn_upload').on('click', function(event) {
 	        event.preventDefault();
 	        
@@ -404,6 +403,9 @@
 	                        $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
 	                        $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
 
+	                        $('.upload3 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
+	                        $('.upload4 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
+	                        
 	                        // 로딩 화면 숨기기
 	                        hideLoading();
 
@@ -414,7 +416,7 @@
 	                        const closeModal = document.getElementById('closeModal');
 	                        closeModal.addEventListener('click', () => {
 	                            document.getElementById('modalContainer').classList.add('hidden');
-	                            location.reload();
+	                            //location.reload();
 	                        });
 	                    },
 	                    error: function() {
@@ -452,6 +454,7 @@
    </script>
 
 
+</script>
 </body>
 
 <footer>
@@ -472,5 +475,6 @@
 <script src="assets/js/main.js"></script>
 <script src="assets/js/alarm.js"></script>
 <script src="assets/js/chart.js"></script>
+<script src="assets/js/jquery.min.js"></script>
 
 </html>

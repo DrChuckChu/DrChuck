@@ -180,84 +180,6 @@ function previewImage(input, imageId) {
 }
 
 
-
-// 다크 모드
-document.getElementById('darkModeToggle').addEventListener('click', function() {
-    const body = document.body;
-    const icon = this.firstChild;
-
-    body.classList.toggle('dark-mode');
-
-    if (body.classList.contains('dark-mode')) {
-        // Change the icon to a moon when dark mode is enabled
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-    } else {
-        // Change the icon to a sun when dark mode is disabled
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-    }
-});
-
-
-var isContentVisible = false;
-
-function toggleContent() {
-  var contentDiv = document.getElementById("content");
-  isContentVisible = !isContentVisible;
-  contentDiv.style.display = isContentVisible ? "block" : "none";
-}
-//기본 꺽은 선형 차트
-var ctx2 = document.getElementById("myChart2");
-var myLineChart2 = new Chart(ctx2, {
-    type: 'line',
-    data: {
-     labels: ["2023.01", "2023.02", "2023.04", "2023.05", "2023.06", "2023.07", "2023.08"],
-     datasets: [{
-      label: '좋은 자세',
-      data: [10,20,30,40,50,60,60],
-      borderColor: [
-                 'green',//green
-               ]            
-     },
-     {
-      label: '나쁜 자세',
-      data: [80,70,65,30,20,40,70],
-      borderColor: [
-                 'red',//red
-               ]            
-     }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                stacked: true
-            }]
-        }
-    }
-});
-
-
- 
-
-new Chart(document.getElementById("pie-chart"), {
-  type: 'pie',
-  data: {
-    labels: ["스탠드", "다수","자리비움"],
-    datasets: [{
-      label: "Population (millions)",
-      backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-      data: [734,784,43]
-    }]
-  },
-  options: {
-    title: {
-      display: true,
-      text: 'Predicted world population (millions) in 2050'
-    }
-  }
-});
-
 // 소개 바탕
 $(function() {
 
@@ -471,48 +393,7 @@ function checkMinSizes(el) {
 
 //cam
 
-$(document).ready(function() {
-var cameraView = document.getElementById("cameraview");
-var toggleButton = document.querySelector(".toggleBG");
- var toggleInner = document.querySelector(".toggleFG");
-var isCameraOn = false;
 
-toggleButton.addEventListener('click', function() {
-   if (!isCameraOn) {
-      if (confirm("카메라 권한을 요청하려고 합니다. 허용하시겠습니까?")) {
-         // Spring Controller에 웹캠 열기 요청 보내기
-         $.ajax({
-            url: "openWebcam",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({ 회원아이디 : "1234" }),
-            success: function(response) {
-               isCameraOn = true;
-               toggleButton.style.background = "#53FF4C";
-               toggleInner.style.left = "40px"; // 이동
-                     cameraView.src = "http://172.30.1.96:5000/video_feed";
-            },
-            error: function() { console.error("웹캠 열기 요청이 실패했습니다."); }
-         });
-      }
-     } else {  
-         // Spring Controller에 웹캠 닫기 요청 보내기
-         $.ajax({
-             url: "closeWebcam",
-             type: "POST",
-             success:function(data){
-                 console.log(data);
-                 isCameraOn=false;
-                 toggleButton.style.background="#CCCCCC";
-                 toggleInner.style.left = "0px"; // 이동
-                 cameraView.src = "";
-                 location.reload()
-             },
-             error:function(){console.error("웹캠 닫기 요청이 실패했습니다.");}
-         });
-     }
- });
-});
 
 
 
@@ -728,56 +609,7 @@ var contentDiv = document.getElementById("content");
 isContentVisible = !isContentVisible;
 contentDiv.style.display = isContentVisible ? "block" : "none";
 }
-//기본 꺽은 선형 차트
-var ctx2 = document.getElementById("myChart2");
-var myLineChart2 = new Chart(ctx2, {
-  type: 'line',
-  data: {
-   labels: ["2023.01", "2023.02", "2023.04", "2023.05", "2023.06", "2023.07", "2023.08"],
-   datasets: [{
-    label: '좋은 자세',
-    data: [10,20,30,40,50,60,60],
-    borderColor: [
-               'green',//green
-             ]            
-   },
-   {
-    label: '나쁜 자세',
-    data: [80,70,65,30,20,40,70],
-    borderColor: [
-               'red',//red
-             ]            
-   }]
-  },
-  options: {
-      scales: {
-          yAxes: [{
-              stacked: true
-          }]
-      }
-  }
-});
 
-
-
-
-new Chart(document.getElementById("pie-chart"), {
-type: 'pie',
-data: {
-  labels: ["스탠드", "다수","자리비움"],
-  datasets: [{
-    label: "Population (millions)",
-    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-    data: [734,784,43]
-  }]
-},
-options: {
-  title: {
-    display: true,
-    text: 'Predicted world population (millions) in 2050'
-  }
-}
-});
 
 // 소개 바탕
 $(function() {
@@ -1042,7 +874,7 @@ toggleButton.addEventListener('click', function() {
 //로딩
 
 
-
+/*
 function clickedBtn() {
   console.log('clickedBtn function called');
   showLoading();
@@ -1088,3 +920,4 @@ const closeModal = document.getElementById('closeModal');
 closeModal.addEventListener('click', () => {
     location.reload();
 });
+*/
