@@ -100,7 +100,7 @@ public class DrPoseController {
 			drPoseRepository.save(drPose);
 
 			RestTemplate restTemplate = new RestTemplate();
-			String flaskUrl = "http://172.30.1.96:5000/upload"; // Flask 서버의 URL을 입력해주세요.
+			String flaskUrl = "http://172.30.1.55:5000/upload"; // Flask 서버의 URL을 입력해주세요.
 
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.MULTIPART_FORM_DATA);

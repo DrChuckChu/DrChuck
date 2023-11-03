@@ -34,6 +34,7 @@ public class AlarmController {
        DrMember user = (DrMember) session.getAttribute("user");
        String userId = user.getDmId();
        DrLive dl = drLiveRepository.findTopByDlIdAndDlResultInOrderByDlDateDesc(userId, Arrays.asList("Good", "Bad", "Turtle"));
+       
        if (dl != null) {
            Map<String, Object> response = new HashMap<>();
            response.put("userId", userId);

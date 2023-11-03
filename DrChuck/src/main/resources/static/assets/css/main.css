@@ -180,11 +180,11 @@ var {
   }
   
 #modalContent {
-  background-color: #ffffff;
-  width: 1200px;
-  height: 550px;
-  padding: 15px;
-  text-align: center;
+    background-color: #ffffff;
+    width: 1200px;
+    height: 550px;
+    padding: 15px;
+    text-align: center;
 }
   
   #modalContainer.hidden {
@@ -242,28 +242,57 @@ var {
     background-color: black;
   }
   
+/*
 #modalContent img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+*/
+
+
+/* 현중이꺼
+#modalContent .upload3 {
+  width: 45%;
+  height: 95%;
+  float: left;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+#modalContent .upload4 {
+  width: 45%;
+  height: 95%;
+  float: left;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+*/
+
+#modalContent .upload3 {
+  width: 400px;
+  height: 400px;
+  float: left;
+  margin-left : 7%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+#modalContent .upload4 {
+ width: 400px;
+  height: 400px;
+  float: right;
+  margin-right : 7%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
 
 #modalContainer.hidden {
   display: none;
 }
 
   
-  #modalContent img:first-child {
-    margin-right: 10%;
-  }
-  
-  #modalContent div {
-    width: 100%;
-    text-align: center;
-    position: absolute;
-    bottom: 10px;
-  }
-  
+/* khj
+#modalContent img:first-child {
+	margin-top : 10px;
+	width : 90%;
+}
+
   #closeModal {
     background-color: #4CAF50;
     color: white;
@@ -277,7 +306,29 @@ var {
     cursor: pointer;
     border-radius: 12px;
   }
+*/
 
+  #closeModal {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    position: absolute;
+	top : 460px;
+	left : 46%;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+  }
+
+
+#modalContent img:first-child {
+	width : 395px;
+	height: 395px;
+}
 /* button */
 
 .btn_today:hover,
@@ -776,11 +827,12 @@ ul.list_util2 a.imgLogo img {
 
 .chart-container {
   display: inline-block;
-  width: 45%;
+  width : 33%;
+  height : 33%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   padding: 10px 0;
-  margin-bottom: 100px;
+  margin-bottom: 15px;
   }
 
 .right-chart {
@@ -818,6 +870,34 @@ ul.list_util2 a.imgLogo img {
   margin-top: 40px;
   display: block;
 }
+/* kdy */
+.upload1 img{
+  
+ vertical-align: middle;
+    border-style: none;
+    width: 400px;
+    height: 400px;
+    margin-top : 22px;
+}
+.upload2 img{
+  
+ vertical-align: middle;
+    border-style: none;
+    width: 400px;
+    height: 400px;
+    margin-top : 22px;
+}
+
+.uploadResult .resultcontent {
+  font-size: 16px; 
+  line-height : 50px;
+}
+.uploadResult .resultcontent2 {
+  font-size: 16px;
+  line-height : 50px;
+}
+/* kdy */
+
 
 .resultcontent{
   height: 170px;
@@ -841,16 +921,15 @@ ul.list_util2 a.imgLogo img {
 
 
 
-
+/* kdy */
   .alarm img{
-    width: 45px;
-    position: fixed;
-    margin-left: 545px;
-    margin-top: 12px;
-  
-    
-  }
- 
+ 	width: 45px;
+ 	height:45px;
+    position: absolute;
+    margin-left: 550px;
+    margin-top: 9px;
+    }
+ /* kdy */
 
   footer{
     background-color: #3C3C3C;
@@ -995,7 +1074,49 @@ border-radius:25px;
   height: 80px;
  
 }
+/* 현중이꺼	
+.upload3{
+  border: 2px solid rgb(60, 60, 60);
+  float: left;
+  margin-top: 40px;
+  display: block;
+  
+}
+*/
 
 
+/* kdy */
+.upload3{
+  border: 2px solid rgb(60, 60, 60);
+  float: left;
+  margin-top: 40px;
+  display: block;
+  
+}
+
+.upload4{
+  position : relative;
+  border: 2px solid rgb(60, 60, 60);
+  margin-top: 40px;
+  display: block;
+  float : right;
+}
+
+.feedb{
+width: 67.5%;
+    height: 0%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    line-height: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 16%;
+}
+
+
+/* kdy */
   /*가이드라인 모달창*/
   
