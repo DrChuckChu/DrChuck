@@ -38,7 +38,7 @@ public class DrLiveController {
 
       // POST 방식으로 플라스크 애플리케이션으로 웹캠을 열도록 요청을 보냅니다.
       RestTemplate restTemplate = new RestTemplate();
-      String flaskAppUrl = "http://172.30.1.55:5000/openWebcam"; // 플라스크 애플리케이션의 웹캠 열기 엔드포인트 URL
+      String flaskAppUrl = "http://172.30.1.96:5000/openWebcam"; // 플라스크 애플리케이션의 웹캠 열기 엔드포인트 URL
       HttpHeaders headers = new HttpHeaders();
       headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -56,7 +56,7 @@ public class DrLiveController {
    public ResponseEntity<String> stopWebcam(Model model) {
       // POST 방식으로 플라스크 애플리케이션으로 웹캠을 닫도록 요청을 보냅니다.
       RestTemplate restTemplate = new RestTemplate();
-      String flaskAppUrl = "http://172.30.1.55:5000/stopWebcam"; // 플라스크 애플리케이션의 웹캠 닫기 엔드포인트 URL
+      String flaskAppUrl = "http://172.30.1.96:5000/stopWebcam"; // 플라스크 애플리케이션의 웹캠 닫기 엔드포인트 URL
 
       HttpHeaders headers = new HttpHeaders();
       headers.setContentType(MediaType.APPLICATION_JSON);

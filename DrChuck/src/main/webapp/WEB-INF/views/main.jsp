@@ -37,20 +37,25 @@
 
 		<strong class="screen_out">이벤트 메뉴</strong>
 		<ul class="list_nav">
-			<li class="on"><a href="#none" class="link_nav link_nav1"
-				data-page="0">소개</a></li>
-			<li><a href="#none" class="link_nav link_nav2" data-page="1">측정</a>
+			<li class="on">
+			<a href="#none" class="link_nav link_nav1"	data-page="0">소개</a>
 			</li>
-			<li><a href="#none" class="link_nav link_nav3" data-page="2">실시간</a>
+			<li>
+			<a href="#none" class="link_nav link_nav2" data-page="1">측정</a>
 			</li>
-			<li><a href="#none" class="link_nav link_nav4" data-page="3">기록
-					확인</a></li>
-
+			<li>
+			<a href="#none" class="link_nav link_nav3" data-page="2">실시간</a>
+			</li>
+			<li>
+			<a href="#none" class="link_nav link_nav4" data-page="3">기록 확인</a>
+			<a hidden = "none" id = timer1>5</a>
+			<a hidden = "none" id = timer2>5</a>
+			</li>
 
 		</ul>
 		<!-- 이벤트 메뉴-->
 		<button class="alarm">
-			<img src="images/알림이미지최종.png" alt="">
+			<img src="images/알람오프.png">
 		</button>
 		<ul class="list_util">
 			<li><a role="buttons" onclick="toggleContent()"
@@ -194,7 +199,7 @@
 			<form id="imageUploadForm" action="/upload" method="post"
 				enctype="multipart/form-data">
 				<label for="image-upload-1" class="custom-file-upload"> <img
-					id="preview-1" src="" alt="앞모습 이미지를 첨부해주세요"> <br> <input
+					id="preview-1" src="images/앞모습 기본이미지.png" alt="앞모습 이미지를 첨부해주세요"> <br> <input
 					type="file" id="image-upload-1" accept="image/*"
 					onchange="previewImage(this, 'preview-1')">
 				</label>
@@ -205,7 +210,7 @@
 			<form id="imageUploadForm2" action="/upload" method="post"
 				enctype="multipart/form-data">
 				<label for="image-upload-2" class="custom-file-upload"> <img
-					id="preview-2" src="" alt="옆모습 이미지를 첨부해주세요"> <br> <input
+					id="preview-2" src="images/옆모습기본이미지.png" alt="옆모습 이미지를 첨부해주세요"> <br> <input
 					type="file" id="image-upload-2" accept="image/*"
 					onchange="previewImage(this, 'preview-2')">
 				</label>
@@ -223,19 +228,21 @@
 			<button class="btn_upload">업로드하기</button>
 		</div>
 
-		<div id="modalContainer" class="hidden">
-			<div id="modalContent">
-				<div class="upload3">
-				<img src="" width="300px" />
-				</div>
-				<div class="upload4">
-				<img src="" width="300px" />
-				</div>
-				<div>
-					<button id="closeModal">종료</button>
-				</div>
-			</div>
-		</div>
+
+ 		<div id="modalContainer" class="hidden">
+     		 <div id="modalContent">
+     		 <div class="upload3" >
+     		 	  <img src="">
+              <button id="closeModal">종료</button>
+        	</div>
+        	<div class ="upload4">
+        		  <img src = "">
+        	</div>
+        	</div>
+          	<div>
+          </div>
+    	  </div>
+
 
 	</div>
 
@@ -273,18 +280,22 @@
 			<h6 class="r">측정 결과</h6>
 
 			<div class="upload1">
-				<img src="" width="300px" />
+				<img src=""  alt = " ">
 			</div>
 			<div class="upload2">
-				<img src="" width="300px" />
+				<img src=""  alt =" ">
 			</div>
 			<div class="resultcontent">
-				<p>1안녕하세요 여기는 결과 피드백이 들어갈 자리예요</p>
+				1안녕하세요 여기는 결과 피드백이 들어갈 자리예요
 			</div>
 			<div class="resultcontent2">
-				<p>2안녕하세요 여기는 결과 피드백이 들어갈 자리예요</p>
+				2안녕하세요 여기는 결과 피드백이 들어갈 자리예요
 			</div>
 		</div>
+		
+		
+		
+		
 		<br> <br>
 		<!--스크롤 화살표-->
 		<a class="scroll" href="#2"><span></span></a> <br>
@@ -310,8 +321,11 @@
 				<canvas id="pie-chart"></canvas>
 			</div>
 
-		</div>
-
+			<div class="feedb">
+				<p class="feedback-text"></p>
+				<p class="feedback"></p>
+			</div>
+	</div>
 	</div>
 
 	<!-- // content -->
@@ -353,7 +367,7 @@
 		               isCameraOn = true;
 		               toggleButton.style.background = "#53FF4C";
 		               toggleInner.style.left = "40px"; // 이동
-		                     cameraView.src = "http://172.30.1.55:5000/live_chu?" + new Date().getTime();
+		                     cameraView.src = "http://172.30.1.96:5000/live_chu?" + new Date().getTime();
 		            },
 		            error: function() { console.error("웹캠 열기 요청이 실패했습니다."); }
 		         });
@@ -400,19 +414,21 @@
 	                    success: function(data) {
 	                        console.log("이미지 들어오냐?");
 	                        console.log(data);
-	                        $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
-	                        $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
+	                        $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
+	                        $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
 
-	                        $('.upload3 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
-	                        $('.upload4 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
+	                        $('.upload3 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
+	                        $('.upload4 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
 	                        
-	                        
-	                        $('.resultcontent').
+	                        var result1 = data[0].dpResult.split(",");
+	                        var result2 = data[1].dpResult.split(",");
+	                        var name1 = result1[0].split(",");
+	                        var name2 = result2[0].split(",");
+	                        var angle1 = name1[0].split(",");
+	                        var angle2 = name2[0].split(",");
+	                        $('.resultcontent').html(angle1[0]+'<br>'+angle1[1]+"강진구");
+	                        $('.resultcontent2').html(angle2[0]+'<br>'+angle2[1]+"스트롱진구");
 	                    
-	        			<div class="resultcontent2">
-	        				<p>2안녕하세요 여기는 결과 피드백이 들어갈 자리예요</p>
-	        			</div>
-	                        
 	                        // 로딩 화면 숨기기
 	                        hideLoading();
 
