@@ -890,11 +890,11 @@ ul.list_util2 a.imgLogo img {
 
 .uploadResult .resultcontent {
   font-size: 16px; 
-  line-height : 50px;
+  line-height : 24px;
 }
 .uploadResult .resultcontent2 {
   font-size: 16px;
-  line-height : 50px;
+  line-height : 24px;
 }
 /* kdy */
 
@@ -919,7 +919,10 @@ ul.list_util2 a.imgLogo img {
   float: right;
 }
 
-
+.special {
+  color: red; /* 또는 원하는 색상 설정 */
+  font-size : 14px;
+}
 
 /* kdy */
   .alarm img{

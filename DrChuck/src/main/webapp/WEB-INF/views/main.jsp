@@ -367,7 +367,7 @@
 		               isCameraOn = true;
 		               toggleButton.style.background = "#53FF4C";
 		               toggleInner.style.left = "40px"; // 이동
-		                     cameraView.src = "http://172.30.1.96:5000/live_chu?" + new Date().getTime();
+		                     cameraView.src = "http://172.30.1.55:5000/live_chu?" + new Date().getTime();
 		            },
 		            error: function() { console.error("웹캠 열기 요청이 실패했습니다."); }
 		         });
@@ -389,8 +389,11 @@
 		         });
 		     }
 		 });
+		
+		// 이미지 업로드 버튼 클릭 이벤트
 	    $('.btn_upload').on('click', function(event) {
 	        event.preventDefault();
+	        
 	        
 	        var formData = new FormData();
 	        formData.append('fImg', $('#image-upload-1')[0].files[0]);
@@ -399,7 +402,7 @@
 
 	        // 로딩 화면 보여주기
 	        showLoading();
-
+			// 이미지를 db에 넣는거 실행
 	        $.ajax({
 	            url : 'upload',
 	            type : 'POST',
@@ -408,6 +411,7 @@
 	            contentType : false,
 	            success : function(data) {
 	                console.log('Upload successful!');
+	                // db에 넣은거 jsp에서 실행
 	                $.ajax({
 	                    url: 'uploadRe',
 	                    type: 'GET',
@@ -420,14 +424,13 @@
 	                        $('.upload3 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
 	                        $('.upload4 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
 	                        
-	                        var result1 = data[0].dpResult.split(",");
-	                        var result2 = data[1].dpResult.split(",");
-	                        var name1 = result1[0].split(",");
-	                        var name2 = result2[0].split(",");
-	                        var angle1 = name1[0].split(",");
-	                        var angle2 = name2[0].split(",");
-	                        $('.resultcontent').html(angle1[0]+'<br>'+angle1[1]+"강진구");
-	                        $('.resultcontent2').html(angle2[0]+'<br>'+angle2[1]+"스트롱진구");
+	                        var result1 = data[1].dpResult.split(",");
+	                        var result2 = data[0].dpResult.split(",");
+	                        console.log(result1)
+							console.log(result2)
+	                        $('.resultcontent').html('<p class="special">' + result1[0]+ '</p>'+'<br>'+result1[1]+'<br>'+result1[2]+'<br>'+result1[3]+'<br>')
+	                        $('.resultcontent2').html(result2[0]+'<br>'+result2[1]+'<br>'+result2[2]+'<br>'+result2[3]+'<br>'+result2[4]
+                       							+'<br>'+result2[5]);
 	                    
 	                        // 로딩 화면 숨기기
 	                        hideLoading();
@@ -474,6 +477,28 @@
 	        $("#roadingStatus").hide();
 	    }
    });
+	
+	
+	   $.ajax({
+           url: "feedImg",
+           type: "GET",
+           success: function(data) {
+               console.log("이미지 넣어버리기");
+               console.log(data);
+               $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
+               $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
+               
+               var result1 = data[1].dpResult.split(",");
+               var result2 = data[0].dpResult.split(",");
+               console.log(result1)
+ 				console.log(result2)
+               $('.resultcontent').html('<p class="special">' + result1[0]+ '</p>'+'<br>'+result1[1]+'<br>'+result1[2]+'<br>'+result1[3]+'<br>')
+               $('.resultcontent2').html(result2[0]+'<br>'+result2[1]+'<br>'+result2[2]+'<br>'+result2[3]+'<br>'+result2[4]
+          							+'<br>'+result2[5]);
+           },
+           error:function(){console.error("웹캠 닫기 요청이 실패했습니다.");}
+       });
+	
    </script>
 
 
