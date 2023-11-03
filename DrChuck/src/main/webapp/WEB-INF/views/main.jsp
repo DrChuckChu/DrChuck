@@ -6,26 +6,15 @@
 
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
-<meta charset="utf-8" name="viewport"
-	content="width=device-width, initial-scale=1">
+<link rel="stylesheet" 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"	crossorigin="anonymous">
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 <title>스크롤 템플릿 1</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<script
-	src="http://s1.daumcdn.net/svc/original/U03/cssjs/jquery/jquery-1.8.3.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="http://s1.daumcdn.net/svc/original/U03/cssjs/jquery/jquery-1.8.3.min.js"></script>
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-<link
-	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
-	rel="stylesheet">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"	rel="stylesheet">
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <header>
 	<div id="kakaoHead" class="head_promo">
@@ -226,10 +215,10 @@
 		<div id="modalContainer" class="hidden">
 			<div id="modalContent">
 				<div class="upload3">
-				<img src="" width="300px" />
+				<img src=""  />
 				</div>
 				<div class="upload4">
-				<img src="" width="300px" />
+				<img src="" />
 				</div>
 				<div>
 					<button id="closeModal">종료</button>
@@ -273,10 +262,10 @@
 			<h6 class="r">측정 결과</h6>
 
 			<div class="upload1">
-				<img src="" width="300px" />
+				<img src="" />
 			</div>
 			<div class="upload2">
-				<img src="" width="300px" />
+				<img src="" />
 			</div>
 			<div class="resultcontent">
 				<p>1안녕하세요 여기는 결과 피드백이 들어갈 자리예요</p>
@@ -333,6 +322,7 @@
          });
       });
    </script>
+   
 	<script>
 	$(document).ready(function() {
 		var cameraView = document.getElementById("cameraview");
@@ -341,6 +331,7 @@
 		var isCameraOn = false;
 
 		toggleButton.addEventListener('click', function() {
+			
 		   if (!isCameraOn) {
 		      if (confirm("카메라 권한을 요청하려고 합니다. 허용하시겠습니까?")) {
 		         // Spring Controller에 웹캠 열기 요청 보내기
@@ -394,6 +385,7 @@
 	            contentType : false,
 	            success : function(data) {
 	                console.log('Upload successful!');
+	                
 	                $.ajax({
 	                    url: 'uploadRe',
 	                    type: 'GET',
@@ -405,13 +397,6 @@
 
 	                        $('.upload3 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
 	                        $('.upload4 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
-	                        
-	                        
-	                        $('.resultcontent').
-	                    
-	        			<div class="resultcontent2">
-	        				<p>2안녕하세요 여기는 결과 피드백이 들어갈 자리예요</p>
-	        			</div>
 	                        
 	                        // 로딩 화면 숨기기
 	                        hideLoading();
@@ -460,8 +445,6 @@
    });
    </script>
 
-
-</script>
 </body>
 
 <footer>
