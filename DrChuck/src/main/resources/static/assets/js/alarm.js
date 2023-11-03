@@ -1,5 +1,5 @@
-let timeLeft1 = 5;
-let timeLeft2 = 5;
+let timeLeft1 = 120; // 스트레칭 알람 타이머 (2분)
+let timeLeft2 = 60;  // 자세 알람 타이머 (1분)
 
 // 알람 on/off 상태 저장 변수 (기본값은 false)
 let alarmStatus = false;
@@ -22,6 +22,7 @@ function poseAndLiveNotify() {
 		timeLeft1--;
 		timerElement1.innerText = timeLeft1;
 	} else if (alarmStatus) {
+		// 스트레칭 알람 코드
 		$.ajax({
 			url: '/dr/getLatestPosture',
 			type: 'GET',
@@ -29,7 +30,7 @@ function poseAndLiveNotify() {
 			success: function(data) {
 				const randomIndex = Math.floor(Math.random() * youtubeLinks.length);
 				const randomLink = youtubeLinks[randomIndex];
-				const notification = new Notification('현재 사용자: ' + data.userId, { body: '스트레칭해야해요. 링크: ' + randomLink });
+				const notification = new Notification('현재 사용자: ' + data.userId, { body: '스트레칭해야 해요. 링크: ' + randomLink });
 				notification.onclick = function() {
 					window.open(randomLink);
 					notification.close();
@@ -46,13 +47,14 @@ function poseAndLiveNotify() {
     }
 		});
 
-		timeLeft1 = 5;
+		timeLeft1 = 120;
 	}
 
 	if (timeLeft2 > 0 && alarmStatus) {
 		timeLeft2--;
 		timerElement2.innerText = timeLeft2;
 	} else if (alarmStatus) {
+		// 자세 알람 코드
 		$.ajax({
 			url: '/dr/getLatestPosture',
 			type: 'GET',
@@ -71,16 +73,15 @@ function poseAndLiveNotify() {
     }
 		});
 
-		timeLeft2 = 5;
+		timeLeft2 = 60;
 	}
 }
-
 
 window.addEventListener('load', () => {
 	setInterval(poseAndLiveNotify, 1000);
 });
 
-// 알람 버튼 클릭 이벤트 핸들러는 그대로 사용하면 됩니다.
+// 알람 버튼 클릭 이벤트 핸들러
 document.querySelector('.alarm').addEventListener('click', function() {
 	alarmStatus = !alarmStatus;
 	if (alarmStatus) {
