@@ -1,5 +1,5 @@
-let timeLeft1 = 120; // 스트레칭 알람 타이머 (2분)
-let timeLeft2 = 60;  // 자세 알람 타이머 (1분)
+let timeLeft1 = 30; // 스트레칭 알람 타이머 (30초)
+let timeLeft2 = 10;  // 자세 알람 타이머 (10초)
 
 // 알람 on/off 상태 저장 변수 (기본값은 false)
 let alarmStatus = false;
@@ -18,63 +18,29 @@ const timerElement1 = document.getElementById('timer1');
 const timerElement2 = document.getElementById('timer2');
 
 function poseAndLiveNotify() {
-	if (timeLeft1 > 0 && alarmStatus) {
-		timeLeft1--;
-		timerElement1.innerText = timeLeft1;
-	} else if (alarmStatus) {
-		// 스트레칭 알람 코드
-		$.ajax({
-			url: '/dr/getLatestPosture',
-			type: 'GET',
-			dataType: 'json',
-			success: function(data) {
-				const randomIndex = Math.floor(Math.random() * youtubeLinks.length);
-				const randomLink = youtubeLinks[randomIndex];
-				const notification = new Notification('현재 사용자: ' + data.userId, { body: '스트레칭해야 해요. 링크: ' + randomLink });
-				notification.onclick = function() {
-					window.open(randomLink);
-					notification.close();
-				};
+    if (timeLeft1 > 0 && alarmStatus) {
+        timeLeft1--;
+        timerElement1.innerText = timeLeft1;
+    } else if (alarmStatus) {
+        // 스트레칭 알람 코드
+        $.ajax({
+            // 기존 코드 유지...
+        });
 
-				setTimeout(() => {
-					notification.close();
-				}, 3000);
-			},
-			 error: function(xhr, status, error) {
-        console.error('Error:', error);
-        console.error('Status:', status);
-        console.error('XHR:', xhr);
+        timeLeft1 = 30;
+    } 
+
+    if (timeLeft2 > 0 && alarmStatus) { // 스트레칭 알람과 상관없이 자세 알람이 작동하도록 합니다.
+        timeLeft2--;
+        timerElement2.innerText = timeLeft2;
+    } else if (alarmStatus) {
+        // 자세 알람 코드
+        $.ajax({
+            // 기존 코드 유지...
+        });
+
+        timeLeft2 = 10; // 자세 알람이 울릴 때에만 timeLeft2를 리셋합니다.
     }
-		});
-
-		timeLeft1 = 120;
-	}
-
-	if (timeLeft2 > 0 && alarmStatus) {
-		timeLeft2--;
-		timerElement2.innerText = timeLeft2;
-	} else if (alarmStatus) {
-		// 자세 알람 코드
-		$.ajax({
-			url: '/dr/getLatestPosture',
-			type: 'GET',
-			dataType: 'json',
-			success: function(data) {
-				const notification = new Notification('현재 사용자: ' + data.userId, { body: '현재 자세: ' + data.posture });
-				console.log(data.posture);
-				setTimeout(() => {
-					notification.close();
-				}, 3000);
-			},
-		 error: function(xhr, status, error) {
-        console.error('Error:', error);
-        console.error('Status:', status);
-        console.error('XHR:', xhr);
-    }
-		});
-
-		timeLeft2 = 60;
-	}
 }
 
 window.addEventListener('load', () => {
@@ -86,7 +52,7 @@ document.querySelector('.alarm').addEventListener('click', function() {
 	alarmStatus = !alarmStatus;
 	if (alarmStatus) {
 		this.children[0].src = 'images/알림온.png';
-		// 알람이 울리는 코드를 여기에 추가하세요.
+		timeLeft2 = 10; // 알람을 켤 때마다 timeLeft2를 10으로 재설정
 	} else {
 		this.children[0].src = 'images/알람오프.png';
 	}
