@@ -440,7 +440,7 @@
 	                            document.getElementById('modalContainer').classList.add('hidden');
 	                            // 모달창 닫을 경우 모달창에 갱신된 이미지를 다시 결과 이미지 피드백으로 넘겨주기
 	                            $.ajax({
-	                                url: "feedImg",
+	                                url: "resultImg",
 	                                type: "GET",
 	                                success: function(data) {
 	                                    console.log("이미지 넣어버리기");
@@ -509,8 +509,8 @@
            success: function(data) {
                console.log("이미지 넣어버리기");
                console.log(data);
-               if(data.length !== 0){
-            	   
+               if(data.length !== 1){
+            	   console.log(data.length)
                $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
                $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
                
@@ -518,7 +518,7 @@
                var result2 = data[0].dpResult.split(",");
                console.log(result1)
  				console.log(result2)
- 				$('.resultcontent').html.css()(
+ 				$('.resultcontent').html(
  				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[3] + '</span></p>' +
   				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[5] + '<br></span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[6] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[7] + '</span></p>' +
 				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[9] + result1[10] + '</span></p>');
