@@ -174,7 +174,7 @@
 						class="hash-contents">척추교정비용</span></strong>
 				</div>
 				</li> <br> <br>
-				<hr style="border: 1px solid black;">
+				
 				<h2>
 					<strong style="background-color: skyblue;">저희 웹 사이트와 함께
 						해결하세요!</strong>
@@ -367,7 +367,7 @@
 		               isCameraOn = true;
 		               toggleButton.style.background = "#53FF4C";
 		               toggleInner.style.left = "40px"; // 이동
-		                     cameraView.src = "http://172.30.1.96:5000/live_chu?" + new Date().getTime();
+		                     cameraView.src = "http://172.30.1.55:5000/live_chu?" + new Date().getTime();
 		            },
 		            error: function() { console.error("웹캠 열기 요청이 실패했습니다."); }
 		         });
