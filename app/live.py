@@ -178,15 +178,15 @@ def gen_frames(camera, get_session):
 
                 # 여기서 시간별로 db에 넣는 로직
                 # threading.Timer(1, dao.insert_live(id, val_dict_lst_str, class_pred)).start()
-                if cnt_exist == 50: # 1분은 600
+                if cnt_exist == 30: # 1분은 600
                     print(val_dict_lst_str)
                     print(class_pred)
-                    # vo = dao.chuckchuDao()
-                    # vo.insert_live(id, val_dict_lst_str, class_pred)
-                    # cnt_exist = 0
-                    # val_dict_lst = [{}]
-                    # val_dict_lst_str = ''
-                    # vo.close()
+                    vo = dao.chuckchuDao()
+                    vo.insert_live(id, val_dict_lst_str, class_pred)
+                    cnt_exist = 0
+                    val_dict_lst = [{}]
+                    val_dict_lst_str = ''
+                    vo.close()
 
                 yield (b'--frame\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
