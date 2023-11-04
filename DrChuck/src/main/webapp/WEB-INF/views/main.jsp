@@ -463,6 +463,7 @@
 	                                },
 	                                error:function(){console.error("결과피드백 실패");}
 	                            });   
+	                              
 	                            
 	                            
 	                            //location.reload();
@@ -508,6 +509,8 @@
            success: function(data) {
                console.log("이미지 넣어버리기");
                console.log(data);
+               if(data.length !== 0){
+            	   
                $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
                $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
                
@@ -515,7 +518,7 @@
                var result2 = data[0].dpResult.split(",");
                console.log(result1)
  				console.log(result2)
- 				$('.resultcontent').html(
+ 				$('.resultcontent').html.css()(
  				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[3] + '</span></p>' +
   				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[5] + '<br></span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[6] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[7] + '</span></p>' +
 				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[9] + result1[10] + '</span></p>');
@@ -523,6 +526,15 @@
  				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[3] + '</span></p>' +
   				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[5] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[6] + '<br></span><span style="color: blue; font-size: 20px; line-height: 24px;">' + result2[7] + '</span></p>' +
 				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[9] + result2[10] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[11] + '<br>'+result2[12]+ result2[13]+ result2[14]+'</span>');
+               }else{
+            	   $('.upload1 img').attr('src', 'images/앞모습 기본이미지.png');
+                   $('.upload2 img').attr('src', 'images/옆모습기본이미지.png');  
+            	   
+                   console.log(result1)
+     				console.log(result2)
+     				$('.resultcontent').html("아직 등록된 업로드 자세측정이 없습니다")
+    				$('.resultcontent2').html("아직 등록된 업로드 자세측정이 없습니다")
+               }
            },
            error:function(){console.error("결과피드백 실패");}
        });
