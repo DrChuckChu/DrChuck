@@ -285,10 +285,10 @@
 			<div class="upload2">
 				<img src=""  alt =" ">
 			</div>
-			<div class="resultcontent">
+			<div class = "resultcontent">
 				1안녕하세요 여기는 결과 피드백이 들어갈 자리예요
 			</div>
-			<div class="resultcontent2">
+			<div class = "resultcontent2">
 				2안녕하세요 여기는 결과 피드백이 들어갈 자리예요
 			</div>
 		</div>
@@ -321,11 +321,12 @@
 				<canvas id="pie-chart"></canvas>
 			</div>
 
+		
+	</div>
 			<div class="feedb">
 				<p class="feedback-text"></p>
 				<p class="feedback"></p>
 			</div>
-	</div>
 	</div>
 
 	<!-- // content -->
@@ -418,20 +419,10 @@
 	                    success: function(data) {
 	                        console.log("이미지 들어오냐?");
 	                        console.log(data);
-	                        $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
-	                        $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
 
 	                        $('.upload3 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
 	                        $('.upload4 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
 	                        
-	                        var result1 = data[1].dpResult.split(",");
-	                        var result2 = data[0].dpResult.split(",");
-	                        console.log(result1)
-							console.log(result2)
-	                        $('.resultcontent').html('<p class="special">' + result1[0]+ '</p>'+'<br>'+result1[1]+'<br>'+result1[2]+'<br>'+result1[3]+'<br>')
-	                        $('.resultcontent2').html(result2[0]+'<br>'+result2[1]+'<br>'+result2[2]+'<br>'+result2[3]+'<br>'+result2[4]
-                       							+'<br>'+result2[5]);
-	                    
 	                        // 로딩 화면 숨기기
 	                        hideLoading();
 
@@ -442,6 +433,33 @@
 	                        const closeModal = document.getElementById('closeModal');
 	                        closeModal.addEventListener('click', () => {
 	                            document.getElementById('modalContainer').classList.add('hidden');
+	                            // 모달창 닫을 경우 모달창에 갱신된 이미지를 다시 결과 이미지 피드백으로 넘겨주기
+	                            $.ajax({
+	                                url: "feedImg",
+	                                type: "GET",
+	                                success: function(data) {
+	                                    console.log("이미지 넣어버리기");
+	                                    console.log(data);
+	                                    $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
+	                                    $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
+	                                    
+	                                    var result1 = data[1].dpResult.split(",");
+	                                    var result2 = data[0].dpResult.split(",");
+	                                    console.log(result1)
+	                      				console.log(result2)
+	                      				$('.resultcontent').html(
+	                      				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[3] + '</span></p>' +
+	                       				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[5] + '<br></span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[6] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[7] + '</span></p>' +
+	                     				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[9] + result1[10] + '</span></p>');
+	                     				$('.resultcontent2').html(
+	                      				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[3] + '</span></p>' +
+	                       				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[5] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[6] + '<br></span><span style="color: blue; font-size: 20px; line-height: 24px;">' + result2[7] + '</span></p>' +
+	                     				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[9] + result2[10] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[11] + '<br>'+result2[12]+ result2[13]+ result2[14]+'</span>');
+	                                },
+	                                error:function(){console.error("결과피드백 실패");}
+	                            });   
+	                            
+	                            
 	                            //location.reload();
 	                        });
 	                    },
@@ -478,7 +496,7 @@
 	    }
    });
 	
-	
+	// 결과 이미지 보여주는잭슨
 	   $.ajax({
            url: "feedImg",
            type: "GET",
@@ -492,11 +510,16 @@
                var result2 = data[0].dpResult.split(",");
                console.log(result1)
  				console.log(result2)
-               $('.resultcontent').html('<p class="special">' + result1[0]+ '</p>'+'<br>'+result1[1]+'<br>'+result1[2]+'<br>'+result1[3]+'<br>')
-               $('.resultcontent2').html(result2[0]+'<br>'+result2[1]+'<br>'+result2[2]+'<br>'+result2[3]+'<br>'+result2[4]
-          							+'<br>'+result2[5]);
+ 				$('.resultcontent').html(
+ 				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[3] + '</span></p>' +
+  				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[5] + '<br></span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[6] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[7] + '</span></p>' +
+				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[9] + result1[10] + '</span></p>');
+				$('.resultcontent2').html(
+ 				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[3] + '</span></p>' +
+  				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[5] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[6] + '<br></span><span style="color: blue; font-size: 20px; line-height: 24px;">' + result2[7] + '</span></p>' +
+				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[9] + result2[10] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[11] + '<br>'+result2[12]+ result2[13]+ result2[14]+'</span>');
            },
-           error:function(){console.error("웹캠 닫기 요청이 실패했습니다.");}
+           error:function(){console.error("결과피드백 실패");}
        });
 	
    </script>

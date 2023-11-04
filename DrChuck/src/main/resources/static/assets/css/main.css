@@ -855,7 +855,7 @@ ul.list_util2 a.imgLogo img {
   
   height: 450px;
   border: 2px solid rgb(60, 60, 60);
-  width: 500px;
+  width: 520px;
   float: left;
   margin-left: 300px;
   margin-top: 40px;
@@ -864,7 +864,7 @@ ul.list_util2 a.imgLogo img {
 .upload2{
   height: 450px;
   border: 2px solid rgb(60, 60, 60);
-  width: 500px;
+  width: 520px;
   float: right;
   margin-right: 300px;
   margin-top: 40px;
@@ -891,27 +891,28 @@ ul.list_util2 a.imgLogo img {
 .uploadResult .resultcontent {
   font-size: 16px; 
   line-height : 24px;
+  text-align: left;
 }
 .uploadResult .resultcontent2 {
   font-size: 16px;
   line-height : 24px;
+  text-align: left;
 }
 /* kdy */
 
 
 .resultcontent{
   height: 170px;
-  width: 503px;
+  width: 520px;
   border: 2px solid whitesmoke;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
   margin-left: 15.7%;
   margin-top: 30px;
   float: left;
-  
 }
 .resultcontent2{
   height: 170px;
-  width: 503px;
+  width: 520px;
   border: 1px solid whitesmoke;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
   margin-right: 15.7%;
@@ -919,10 +920,6 @@ ul.list_util2 a.imgLogo img {
   float: right;
 }
 
-.special {
-  color: red; /* 또는 원하는 색상 설정 */
-  font-size : 14px;
-}
 
 /* kdy */
   .alarm img{

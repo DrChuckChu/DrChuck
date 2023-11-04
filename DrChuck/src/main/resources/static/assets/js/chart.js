@@ -332,6 +332,9 @@ $(document).ready(function() {
 				var feedbackHtml = '<p style="font-size: 12px;">1일전 좋아용 : ' + response.oneGoodCount + ' / 1일전 나빠용: ' + response.oneBadCount + '</p>';
 				feedbackHtml += '<p style="font-size: 12px;">2일전 나빠용 : ' + response.twoBadCount + ' / 2일전 나빠용: ' + response.twoGoodCount + '</p>';
 				feedbDiv.append(feedbackHtml);
+			}else{
+				var feedbackHtml = '<p style="font-size: 12px;">데이터가 없어용 </p>';
+				feedbDiv.append(feedbackHtml);
 			}
 		},
 		error: function(xhr, status, error) {
