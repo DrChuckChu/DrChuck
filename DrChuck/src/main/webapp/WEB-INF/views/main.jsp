@@ -6,26 +6,15 @@
 
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
-<meta charset="utf-8" name="viewport"
-	content="width=device-width, initial-scale=1">
+<link rel="stylesheet" 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"	crossorigin="anonymous">
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 <title>스크롤 템플릿 1</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<script
-	src="http://s1.daumcdn.net/svc/original/U03/cssjs/jquery/jquery-1.8.3.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="http://s1.daumcdn.net/svc/original/U03/cssjs/jquery/jquery-1.8.3.min.js"></script>
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-<link
-	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
-	rel="stylesheet">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"	rel="stylesheet">
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <header>
 	<div id="kakaoHead" class="head_promo">
@@ -174,7 +163,7 @@
 						class="hash-contents">척추교정비용</span></strong>
 				</div>
 				</li> <br> <br>
-				<hr style="border: 1px solid black;">
+				
 				<h2>
 					<strong style="background-color: skyblue;">저희 웹 사이트와 함께
 						해결하세요!</strong>
@@ -228,6 +217,19 @@
 			<button class="btn_upload">업로드하기</button>
 		</div>
 
+		<div id="modalContainer" class="hidden">
+			<div id="modalContent">
+				<div class="upload3">
+				<img src=""  />
+				</div>
+				<div class="upload4">
+				<img src="" />
+				</div>
+				<div>
+					<button id="closeModal">종료</button>
+				</div>
+			</div>
+		</div>
 
  		<div id="modalContainer" class="hidden">
      		 <div id="modalContent">
@@ -280,15 +282,15 @@
 			<h6 class="r">측정 결과</h6>
 
 			<div class="upload1">
-				<img src=""  alt = " ">
+				<img src="" />
 			</div>
 			<div class="upload2">
-				<img src=""  alt =" ">
+				<img src="" />
 			</div>
-			<div class="resultcontent">
+			<div class = "resultcontent">
 				1안녕하세요 여기는 결과 피드백이 들어갈 자리예요
 			</div>
-			<div class="resultcontent2">
+			<div class = "resultcontent2">
 				2안녕하세요 여기는 결과 피드백이 들어갈 자리예요
 			</div>
 		</div>
@@ -321,11 +323,12 @@
 				<canvas id="pie-chart"></canvas>
 			</div>
 
+		
+	</div>
 			<div class="feedb">
 				<p class="feedback-text"></p>
 				<p class="feedback"></p>
 			</div>
-	</div>
 	</div>
 
 	<!-- // content -->
@@ -347,6 +350,7 @@
          });
       });
    </script>
+   
 	<script>
 	$(document).ready(function() {
 		var cameraView = document.getElementById("cameraview");
@@ -355,6 +359,7 @@
 		var isCameraOn = false;
 
 		toggleButton.addEventListener('click', function() {
+			
 		   if (!isCameraOn) {
 		      if (confirm("카메라 권한을 요청하려고 합니다. 허용하시겠습니까?")) {
 		         // Spring Controller에 웹캠 열기 요청 보내기
@@ -367,7 +372,7 @@
 		               isCameraOn = true;
 		               toggleButton.style.background = "#53FF4C";
 		               toggleInner.style.left = "40px"; // 이동
-		                     cameraView.src = "http://172.30.1.96:5000/live_chu?" + new Date().getTime();
+		                     cameraView.src = "http://172.30.1.55:5000/live_chu?" + new Date().getTime();
 		            },
 		            error: function() { console.error("웹캠 열기 요청이 실패했습니다."); }
 		         });
@@ -383,14 +388,17 @@
 		                 toggleButton.style.background="#CCCCCC";
 		                 toggleInner.style.left = "0px"; // 이동
 		                 cameraView.src = "";
-		                 location.reload()
+			             location.reload()
 		             },
 		             error:function(){console.error("웹캠 닫기 요청이 실패했습니다.");}
 		         });
 		     }
 		 });
+		
+		// 이미지 업로드 버튼 클릭 이벤트
 	    $('.btn_upload').on('click', function(event) {
 	        event.preventDefault();
+	        
 	        
 	        var formData = new FormData();
 	        formData.append('fImg', $('#image-upload-1')[0].files[0]);
@@ -399,7 +407,7 @@
 
 	        // 로딩 화면 보여주기
 	        showLoading();
-
+			// 이미지를 db에 넣는거 실행
 	        $.ajax({
 	            url : 'upload',
 	            type : 'POST',
@@ -408,27 +416,18 @@
 	            contentType : false,
 	            success : function(data) {
 	                console.log('Upload successful!');
+	                // db에 넣은거 jsp에서 실행
+	                
 	                $.ajax({
 	                    url: 'uploadRe',
 	                    type: 'GET',
 	                    success: function(data) {
 	                        console.log("이미지 들어오냐?");
 	                        console.log(data);
-	                        $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
-	                        $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
 
 	                        $('.upload3 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
 	                        $('.upload4 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
 	                        
-	                        var result1 = data[0].dpResult.split(",");
-	                        var result2 = data[1].dpResult.split(",");
-	                        var name1 = result1[0].split(",");
-	                        var name2 = result2[0].split(",");
-	                        var angle1 = name1[0].split(",");
-	                        var angle2 = name2[0].split(",");
-	                        $('.resultcontent').html(angle1[0]+'<br>'+angle1[1]+"강진구");
-	                        $('.resultcontent2').html(angle2[0]+'<br>'+angle2[1]+"스트롱진구");
-	                    
 	                        // 로딩 화면 숨기기
 	                        hideLoading();
 
@@ -439,6 +438,33 @@
 	                        const closeModal = document.getElementById('closeModal');
 	                        closeModal.addEventListener('click', () => {
 	                            document.getElementById('modalContainer').classList.add('hidden');
+	                            // 모달창 닫을 경우 모달창에 갱신된 이미지를 다시 결과 이미지 피드백으로 넘겨주기
+	                            $.ajax({
+	                                url: "feedImg",
+	                                type: "GET",
+	                                success: function(data) {
+	                                    console.log("이미지 넣어버리기");
+	                                    console.log(data);
+	                                    $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
+	                                    $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
+	                                    
+	                                    var result1 = data[1].dpResult.split(",");
+	                                    var result2 = data[0].dpResult.split(",");
+	                                    console.log(result1)
+	                      				console.log(result2)
+	                      				$('.resultcontent').html(
+	                      				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[3] + '</span></p>' +
+	                       				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[5] + '<br></span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[6] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[7] + '</span></p>' +
+	                     				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[9] + result1[10] + '</span></p>');
+	                     				$('.resultcontent2').html(
+	                      				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[3] + '</span></p>' +
+	                       				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[5] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[6] + '<br></span><span style="color: blue; font-size: 20px; line-height: 24px;">' + result2[7] + '</span></p>' +
+	                     				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[9] + result2[10] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[11] + '<br>'+result2[12]+ result2[13]+ result2[14]+'</span>');
+	                                },
+	                                error:function(){console.error("결과피드백 실패");}
+	                            });   
+	                            
+	                            
 	                            //location.reload();
 	                        });
 	                    },
@@ -474,10 +500,35 @@
 	        $("#roadingStatus").hide();
 	    }
    });
+	
+	// 결과 이미지 보여주는잭슨
+	   $.ajax({
+           url: "feedImg",
+           type: "GET",
+           success: function(data) {
+               console.log("이미지 넣어버리기");
+               console.log(data);
+               $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
+               $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
+               
+               var result1 = data[1].dpResult.split(",");
+               var result2 = data[0].dpResult.split(",");
+               console.log(result1)
+ 				console.log(result2)
+ 				$('.resultcontent').html(
+ 				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[3] + '</span></p>' +
+  				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[5] + '<br></span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[6] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[7] + '</span></p>' +
+				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[9] + result1[10] + '</span></p>');
+				$('.resultcontent2').html(
+ 				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[3] + '</span></p>' +
+  				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[5] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[6] + '<br></span><span style="color: blue; font-size: 20px; line-height: 24px;">' + result2[7] + '</span></p>' +
+				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[9] + result2[10] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[11] + '<br>'+result2[12]+ result2[13]+ result2[14]+'</span>');
+           },
+           error:function(){console.error("결과피드백 실패");}
+       });
+	
    </script>
 
-
-</script>
 </body>
 
 <footer>

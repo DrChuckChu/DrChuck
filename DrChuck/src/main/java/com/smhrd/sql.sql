@@ -3,6 +3,8 @@ select * from board;
 select * from dr_member;
 
 
+
+
 select * from table;
 show tables;
 drop table files;
@@ -18,7 +20,7 @@ CREATE TABLE DR_MEMBER(
     Dm_Id VARCHAR(30),
     Dm_Pw VARCHAR(30),
     Dm_Name VARCHAR(10),
-    Dm_Key VARCHAR(5),
+    Dm_Key VARCHAR(5),  
     Dm_Muge VARCHAR(5),
     Dm_Sex VARCHAR(3),
     Dm_Job VARCHAR(20),

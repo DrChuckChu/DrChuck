@@ -26,20 +26,20 @@ $(document).ready(function() {
 						datasets: [{
 							label: '좋은 자세',
 							data: data.good,
-							backgroundColor: "rgb(111,205,205)",
-							borderColor: "rgb(111,205,205)",
+							backgroundColor: "rgb(0,200,0)",
+							borderColor: "rgb(0,200,0)",
 							borderWidth: 1
 						}, {
 							label: '나쁜 자세',
 							data: data.bad,
-							backgroundColor: "rgb(255, 130, 157)",
-							borderColor: "rgb(255, 130, 157)",
+							backgroundColor: "rgb(255,51,51)",
+							borderColor: "rgb(255,51,51)",
 							borderWidth: 1
 						}, {
 							label: '거북목',
 							data: data.turtle,
-							backgroundColor: 'rgb(255,215,120)',
-							borderColor: 'rgb(255,215,120)',
+							backgroundColor: 'rgb(51,154,255)',
+							borderColor: 'rgb(51,154,255)',
 							borderWidth: 1
 						}
 						]
@@ -112,8 +112,8 @@ $(document).ready(function() {
 						labels: labels.map((label, i) => `${label} ${percentages[i]}%`),
 						datasets: [{
 							data: [good, bad, turtle],
-							backgroundColor: ['rgb(111,205,205)', 'rgb(255, 130, 157)', 'rgb(255,215,120)'],
-							borderColor: ['rgb(111,205,205)', 'rgb(255, 130, 157)', 'rgb(255,215,120)'],
+							backgroundColor: ['rgb( 0,200,0)', 'rgb(255,51,51)', 'rgb(51,154,255)'],
+							borderColor: ['rgb( 0,200,0)', 'rgb(255,51,51)', 'rgb(51,154,255)'],
 							borderWidth: 1
 						}]
 					},
@@ -177,8 +177,8 @@ $(document).ready(function() {
 					labels: labels.map((label, i) => `${label} ${percentages[i]}%`),
 					datasets: [{
 						data: data,
-						backgroundColor: ['rgb(111,205,205)', 'rgb(255, 130, 157)', 'rgb(255,215,120)', "rgb(94,181,239)"],
-						borderColor: ['rgb(111,205,205)', 'rgb(255, 130, 157)', 'rgb(255,215,120)', "rgb(94,181,239)"],
+						backgroundColor: ['rgb( 0,200,0)', 'rgb(255,51,51)', 'rgb(51,154,255)', "rgb(255,174,60)"],
+						borderColor: ['rgb( 0,200,0)', 'rgb(255,51,51)', 'rgb(51,154,255)', "rgb(255,174,60)"],
 						borderWidth: 1
 					}]
 				},
@@ -236,8 +236,8 @@ $(document).ready(function() {
 					datasets: [{
 						label: '좋은 자세',
 						data: data.good,
-						backgroundColor: 'rgb(111,205,205)',
-						borderColor: 'rgb(111,205,205)',
+						backgroundColor: 'rgb(0,200,0)',
+						borderColor: 'rgb(0,200,0)',
 						borderWidth: 1,
 						fill: false,
 						tension: 0.1
@@ -245,8 +245,8 @@ $(document).ready(function() {
 					{
 						label: '나쁜 자세',
 						data: data.bad,
-						backgroundColor: 'rgb(255, 130, 157)',
-						borderColor: 'rgb(255, 130, 157)',
+						backgroundColor: 'rgb(255,51,51)',
+						borderColor: 'rgb(255,51,51)',
 						borderWidth: 1,
 						fill: false,
 						tension: 0.1
@@ -254,8 +254,8 @@ $(document).ready(function() {
 					{
 						label: '거북목 ',
 						data: data.turtle,
-						backgroundColor: 'rgb(255,215,120)',
-						borderColor: 'rgb(255,215,120)',
+						backgroundColor: 'rgb(51,154,255)',
+						borderColor: 'rgb(51,154,255)',
 						borderWidth: 1,
 						fill: false,
 						tension: 0.1
@@ -309,7 +309,7 @@ $(document).ready(function() {
 
 
 
-	// 피드백
+	// 피드백ㅇ
 	$.ajax({
 		url: 'feed',
 		method: 'GET',
@@ -331,6 +331,9 @@ $(document).ready(function() {
 			if (!response.feedback.includes("님 1일전 데이터 없음") && !response.feedback.includes("님 2일전 데이터 없음")) {
 				var feedbackHtml = '<p style="font-size: 12px;">1일전 좋아용 : ' + response.oneGoodCount + ' / 1일전 나빠용: ' + response.oneBadCount + '</p>';
 				feedbackHtml += '<p style="font-size: 12px;">2일전 나빠용 : ' + response.twoBadCount + ' / 2일전 나빠용: ' + response.twoGoodCount + '</p>';
+				feedbDiv.append(feedbackHtml);
+			}else{
+				var feedbackHtml = '<p style="font-size: 12px;">데이터가 없어용 </p>';
 				feedbDiv.append(feedbackHtml);
 			}
 		},

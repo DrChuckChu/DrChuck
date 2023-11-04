@@ -196,17 +196,17 @@ public class ChartController {
                 responseData.put("feedback", userId + "님 2일전 나빳는데 전날은 나빳다~"); // 나빠용을 데이터로 추가
             }
         } else {
-        	if (TwoGood == TwoBad) {
+        	if (TwoGood != 0 || TwoBad != 0 && TwoGood == TwoBad) {
                 responseData.put("feedback", userId + "님 2일전에도 좋나가 같앗는데 전날도 똑같다~"); // 좋아용을 데이터로 추가
             } 
         }
-        
 
         responseData.put("oneGoodCount", OneGood); // Good 값을 데이터로 추가
         responseData.put("oneBadCount", OneBad);   // Bad 값을 데이터로 추가
         responseData.put("twoBadCount", TwoGood);   // Bad 값을 데이터로 추가
         responseData.put("twoGoodCount", TwoBad);   // Bad 값을 데이터로 추가
 		
+        System.out.println(responseData+"뭐들어감?");
         System.out.println("피드백 간다리!");
 
         return ResponseEntity.ok(responseData);
