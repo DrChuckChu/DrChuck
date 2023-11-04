@@ -309,7 +309,7 @@ $(document).ready(function() {
 
 
 
-	// 피드백
+	// 피드백ㅇ
 	$.ajax({
 		url: 'feed',
 		method: 'GET',
