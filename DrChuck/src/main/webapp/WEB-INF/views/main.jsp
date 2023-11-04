@@ -6,15 +6,25 @@
 
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"	crossorigin="anonymous">
-<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<meta charset="utf-8" name="viewport"
+	content="width=device-width, initial-scale=1">
 <title>스크롤 템플릿 1</title>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script	src="http://s1.daumcdn.net/svc/original/U03/cssjs/jquery/jquery-1.8.3.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="http://s1.daumcdn.net/svc/original/U03/cssjs/jquery/jquery-1.8.3.min.js"></script>
 <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"	rel="stylesheet">
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <header>
 	<div id="kakaoHead" class="head_promo">
@@ -26,19 +36,14 @@
 
 		<strong class="screen_out">이벤트 메뉴</strong>
 		<ul class="list_nav">
-			<li class="on">
-			<a href="#none" class="link_nav link_nav1"	data-page="0">소개</a>
+			<li class="on"><a href="#none" class="link_nav link_nav1"
+				data-page="0">소개</a></li>
+			<li><a href="#none" class="link_nav link_nav2" data-page="1">측정</a>
 			</li>
-			<li>
-			<a href="#none" class="link_nav link_nav2" data-page="1">측정</a>
+			<li><a href="#none" class="link_nav link_nav3" data-page="2">실시간</a>
 			</li>
-			<li>
-			<a href="#none" class="link_nav link_nav3" data-page="2">실시간</a>
-			</li>
-			<li>
-			<a href="#none" class="link_nav link_nav4" data-page="3">기록 확인</a>
-			<a hidden = "none" id = timer1>5</a>
-			<a hidden = "none" id = timer2>5</a>
+			<li><a href="#none" class="link_nav link_nav4" data-page="3">기록
+					확인</a> <a hidden="none" id=timer1>5</a> <a hidden="none" id=timer2>5</a>
 			</li>
 
 		</ul>
@@ -163,7 +168,7 @@
 						class="hash-contents">척추교정비용</span></strong>
 				</div>
 				</li> <br> <br>
-				
+
 				<h2>
 					<strong style="background-color: skyblue;">저희 웹 사이트와 함께
 						해결하세요!</strong>
@@ -188,8 +193,8 @@
 			<form id="imageUploadForm" action="/upload" method="post"
 				enctype="multipart/form-data">
 				<label for="image-upload-1" class="custom-file-upload"> <img
-					id="preview-1" src="images/앞모습 기본이미지.png" alt="앞모습 이미지를 첨부해주세요"> <br> <input
-					type="file" id="image-upload-1" accept="image/*"
+					id="preview-1" src="images/앞모습 기본이미지.png" alt="앞모습 이미지를 첨부해주세요">
+					<br> <input type="file" id="image-upload-1" accept="image/*"
 					onchange="previewImage(this, 'preview-1')">
 				</label>
 			</form>
@@ -199,8 +204,8 @@
 			<form id="imageUploadForm2" action="/upload" method="post"
 				enctype="multipart/form-data">
 				<label for="image-upload-2" class="custom-file-upload"> <img
-					id="preview-2" src="images/옆모습기본이미지.png" alt="옆모습 이미지를 첨부해주세요"> <br> <input
-					type="file" id="image-upload-2" accept="image/*"
+					id="preview-2" src="images/옆모습기본이미지.png" alt="옆모습 이미지를 첨부해주세요">
+					<br> <input type="file" id="image-upload-2" accept="image/*"
 					onchange="previewImage(this, 'preview-2')">
 				</label>
 			</form>
@@ -220,10 +225,10 @@
 		<div id="modalContainer" class="hidden">
 			<div id="modalContent">
 				<div class="upload3">
-				<img src=""  />
+					<img src="" />
 				</div>
 				<div class="upload4">
-				<img src="" />
+					<img src="" />
 				</div>
 				<div>
 					<button id="closeModal">종료</button>
@@ -231,19 +236,18 @@
 			</div>
 		</div>
 
- 		<div id="modalContainer" class="hidden">
-     		 <div id="modalContent">
-     		 <div class="upload3" >
-     		 	  <img src="">
-              <button id="closeModal">종료</button>
-        	</div>
-        	<div class ="upload4">
-        		  <img src = "">
-        	</div>
-        	</div>
-          	<div>
-          </div>
-    	  </div>
+		<div id="modalContainer" class="hidden">
+			<div id="modalContent">
+				<div class="upload3">
+					<img src="">
+					<button id="closeModal">종료</button>
+				</div>
+				<div class="upload4">
+					<img src="">
+				</div>
+			</div>
+			<div></div>
+		</div>
 
 
 	</div>
@@ -287,17 +291,13 @@
 			<div class="upload2">
 				<img src="" />
 			</div>
-			<div class = "resultcontent">
-				1안녕하세요 여기는 결과 피드백이 들어갈 자리예요
-			</div>
-			<div class = "resultcontent2">
-				2안녕하세요 여기는 결과 피드백이 들어갈 자리예요
-			</div>
+			<div class="resultcontent">1안녕하세요 여기는 결과 피드백이 들어갈 자리예요</div>
+			<div class="resultcontent2">2안녕하세요 여기는 결과 피드백이 들어갈 자리예요</div>
 		</div>
-		
-		
-		
-		
+
+
+
+
 		<br> <br>
 		<!--스크롤 화살표-->
 		<a class="scroll" href="#2"><span></span></a> <br>
@@ -322,14 +322,26 @@
 			<div class="chart-container">
 				<canvas id="pie-chart"></canvas>
 			</div>
-
-		
-	</div>
-			<div class="feedb">
-				<p class="feedback-text"></p>
-				<p class="feedback"></p>
+			<div class="feedback-container">
+				<div class="feedb">
+					<p class="feedback-text"></p>
+					<p class="feedback"></p>
+				</div>
+				<div class="feedb">
+					<p class="feedback-text"></p>
+					<p class="feedback"></p>
+				</div>
+				<div class="feedb">
+					<p class="feedback-text"></p>
+					<p class="feedback"></p>
+				</div>
+				<div class="feedb">
+					<p class="feedback-text"></p>
+					<p class="feedback"></p>
+				</div>
 			</div>
-			
+		</div>
+
 	</div>
 
 	<!-- // content -->
@@ -351,7 +363,7 @@
          });
       });
    </script>
-   
+
 	<script>
 	$(document).ready(function() {
 		var cameraView = document.getElementById("cameraview");
