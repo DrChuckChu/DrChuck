@@ -23,7 +23,7 @@ mp_drawing_styles = mp.solutions.drawing_styles
 # 열린 캠에 모델 적용해서 .jpg로 인코딩하는 함수
 def gen_frames(camera, get_session):  
     # 모델 객체 가져오기
-    with open('./models/rf_model_opt4.pkl', 'rb') as f:
+    with open('./models/rf_model.pkl', 'rb') as f:
         model = pickle.load(f)
     
     id = get_session['id']
@@ -100,7 +100,7 @@ def gen_frames(camera, get_session):
 
                 # 이마-턱 사이의 거리
                 face_dis = cal.calculate_distance(ima_point, tuck_point)
-                print(face_dis)
+                # print(face_dis)
                 values_lst.append(face_dis)
 
                 # 성별 
@@ -128,6 +128,7 @@ def gen_frames(camera, get_session):
                 X = pd.DataFrame(data=[values_lst], columns=['shoulder_angle_lst', 'ear_angle_lst', 'turtle_dis_lst', 'face_dis_lst', 'gender_F', 'gender_M'])
                 class_pred = model.predict(X)[0]
 
+                # 결과확인
                 # print(class_pred)
                 cnt_exist += 1
                 
@@ -137,19 +138,19 @@ def gen_frames(camera, get_session):
                 
                 # 모델 결과별
                 if class_pred == 'Good':
-                    border_color = (0,255,0)
-                    word_color = (0,128,0)
+                    border_color = (0,204,0)
+                    word_color = (0,204,0)
                     text = 'Good'
 
                 elif class_pred == 'Bad':
-                    border_color = (0,0,255)
-                    word_color = (0,0,128)
+                    border_color = (51,51,255)
+                    word_color = (51,51,255)
                     text = 'Bad'
 
                 elif class_pred == 'Turtle':
-                    border_color = (255,0,0)
-                    word_color = (128,0,0)
-                    text = '거북목 위험!'
+                    border_color = (255,154,51)
+                    word_color = (255,154,51)
+                    text = '거북목'
 
                 # 사용자 얼굴크기기반 거리
                 if face_dis <= threshold: 
@@ -177,14 +178,15 @@ def gen_frames(camera, get_session):
 
                 # 여기서 시간별로 db에 넣는 로직
                 # threading.Timer(1, dao.insert_live(id, val_dict_lst_str, class_pred)).start()
-                if cnt_exist == 600:
+                if cnt_exist == 50: # 1분은 600
                     print(val_dict_lst_str)
-                    vo = dao.chuckchuDao()
-                    vo.insert_live(id, val_dict_lst_str, class_pred)
-                    cnt_exist = 0
-                    val_dict_lst = [{}]
-                    val_dict_lst_str = ''
-                    vo.close()
+                    print(class_pred)
+                    # vo = dao.chuckchuDao()
+                    # vo.insert_live(id, val_dict_lst_str, class_pred)
+                    # cnt_exist = 0
+                    # val_dict_lst = [{}]
+                    # val_dict_lst_str = ''
+                    # vo.close()
 
                 yield (b'--frame\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')

@@ -48,8 +48,8 @@ def gen_frames(img, f_name_lst, filename):
         
         det_results, vis_det = det_model.run("YOLOX-l", image, 0.3) # detection 결과 이미지가 List[np.ndarray], np.ndarray로 반환됨
         pose_results, vis_pose = pose_model.run("ViTPose-B (multi-task train, COCO)",
-                                                image, det_results, 0.5, 0.3, 4,
-                                                1) # pose_result: List[Dict[str, np.ndarray]] 형태, vis_pose: np.ndarray형태->결과 이미지에 선,점 표현한 이미지
+                                                image, det_results, 0.5, 0.3, 7,
+                                                3) # pose_result: List[Dict[str, np.ndarray]] 형태, vis_pose: np.ndarray형태->결과 이미지에 선,점 표현한 이미지
         # print(pose_results)
         h, w, _ = vis_pose.shape # vis_pose 높이, 너비
 
@@ -90,8 +90,9 @@ def gen_frames(img, f_name_lst, filename):
             print(val_dict_lst_str)
 
             result_str = f"""
-            고개 기울임 각도는 {ear_feedback}
-            어깨 기울임 각도는 {shoulder_feedback}
+            현재, {id},님의, 정면 결과입니다.,
+            고개 기울임 각도는, {ear_feedback}
+            어깨 기울임 각도는, {shoulder_feedback}
             정면에서 봤을 때 고개와 어깨는 기울어짐이 없이 균형적인 모습이어야 좋은 자세라고 할 수 있습니다.,
             PC작업을 할 때 책상의 끝에 손이 위치할 수 있도록 키보드를 위치해 보세요!,
             """
@@ -104,8 +105,8 @@ def gen_frames(img, f_name_lst, filename):
             vo.close()
         
         elif state == 'S':
-            cv2.line(vis_pose, (x_le, 0), (x_le, h), (0,0,255), 1)
-            cv2.line(vis_pose, (x_ls, 0), (x_ls, h), (0,255,0), 1)
+            cv2.line(vis_pose, (x_le, 0), (x_le, h), (0,0,255), 3)
+            cv2.line(vis_pose, (x_ls, 0), (x_ls, h), (0,255,0), 3)
 
             if x_lh > x_lkn: # 왼쪽 방향일 때
                 turtle_angle = int(cal.cal_angle((x_le, y_le), (x_ls, y_ls)))
@@ -119,18 +120,19 @@ def gen_frames(img, f_name_lst, filename):
             
             if turtle_angle >= 50:
                 result_str = f"""
-                현재 {id}님의, 전방머리자세각도(CVA) 추정값은 {turtle_angle}도 입니다.,
+                현재, {id},님의, 측면 결과입니다.,
+                전방머리자세각도(CVA), 추정값은 {turtle_angle},도 입니다.,
                 거북목이 아닌 자세를 유지하고 계시군요!,
-                일반적으로 CVA각도가 50도 미만일 때 거북목이라고 판단합니다.,
+                일반적으로 CVA각도가, 50도 미만,일 때, 거북목이라고 판단합니다.,
                 또한, 사진에 그려진 귀 선과 어깨 선이 일치할 수록 거북목이 아닌 좋은 자세입니다.,
                 좋은 자세를 유지할 수 있도록 노력해봐요!,
                 장시간 앉아 있는 경우 자세가 흐트러질 수 있습니다., 틈틈히 자리에서 일어나 스트레칭도 해봐요!,
                 """
             else:
                 result_str = f"""
-                현재 {id}님의, 전방머리자세각도(CVA) 추정값은 {turtle_angle}도 입니다.,
+                현재, {id},님의, 전방머리자세각도(CVA), 추정값은 {turtle_angle},도 입니다.,
                 거북목이 의심됩니다.,
-                일반적으로 CVA각도가 50도 미만일 때 거북목이라고 판단합니다.,
+                일반적으로 CVA각도가, 50도 미만,일 때, 거북목이라고 판단합니다.,
                 또한, 사진에 그려진 귀 선과 어깨 선이 일치할 수록 거북목이 아닌 좋은 자세입니다.,
                 PC작업을 하실 때 자세에 조금 더 신경써봐요!,
                 장시간 앉아 있는 경우 자세가 흐트러질 수 있습니다., 틈틈히 자리에서 일어나 스트레칭도 해봐요!,

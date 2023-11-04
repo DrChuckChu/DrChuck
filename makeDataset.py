@@ -78,7 +78,7 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
             p_landmarks = results.pose_landmarks
             f_landmarks = results.face_landmarks
 
-            if time_num == 10: # 숫자는 본인이 편한걸로 바꾸면 됨/어느정도 속도로 되는지 확인하려면 중간에 있는 print 하나 주석 풀면됨.
+            if time_num == 50: # 숫자는 본인이 편한걸로 바꾸면 됨/어느정도 속도로 되는지 확인하려면 중간에 있는 print 하나 주석 풀면됨.
                 # 어깨 좌표
                 left_shoulder = get_coordinate(p_landmarks.landmark[11], w, h)
                 right_shoulder = get_coordinate(p_landmarks.landmark[12], w, h)
