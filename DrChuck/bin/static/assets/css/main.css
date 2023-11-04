@@ -223,7 +223,7 @@ var {
   .btn_upload {
     width: 110px;
     height: 50px;
-    margin-top: 750px;
+    margin-top: 400px;
     background-color: skyblue;
     font-size: 18px;
     font-weight: bold;
@@ -557,13 +557,13 @@ p{
 }
 
 .toggleFG {
-  background: white;
-  width: 24px;
-  height: 24px;
+  background: skyblue;
+  width: 30px;
+  height: 30px;
   border: none;
   border-radius: 15px;
   position: relative;
-  margin-bottom: 90px;
+  margin-bottom: 100px;
   margin-right: 40px
 }
 
@@ -855,7 +855,7 @@ ul.list_util2 a.imgLogo img {
   
   height: 450px;
   border: 2px solid rgb(60, 60, 60);
-  width: 520px;
+  width: 500px;
   float: left;
   margin-left: 300px;
   margin-top: 40px;
@@ -864,7 +864,7 @@ ul.list_util2 a.imgLogo img {
 .upload2{
   height: 450px;
   border: 2px solid rgb(60, 60, 60);
-  width: 520px;
+  width: 500px;
   float: right;
   margin-right: 300px;
   margin-top: 40px;
@@ -890,35 +890,35 @@ ul.list_util2 a.imgLogo img {
 
 .uploadResult .resultcontent {
   font-size: 16px; 
-  line-height : 24px;
-  text-align: left;
+  line-height : 50px;
 }
 .uploadResult .resultcontent2 {
   font-size: 16px;
-  line-height : 24px;
-  text-align: left;
+  line-height : 50px;
 }
 /* kdy */
 
 
 .resultcontent{
   height: 170px;
-  width: 520px;
+  width: 503px;
   border: 2px solid whitesmoke;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
   margin-left: 15.7%;
   margin-top: 30px;
   float: left;
+  
 }
 .resultcontent2{
   height: 170px;
-  width: 520px;
+  width: 503px;
   border: 1px solid whitesmoke;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
   margin-right: 15.7%;
   margin-top: 30px;
   float: right;
 }
+
 
 
 /* kdy */

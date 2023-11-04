@@ -48,7 +48,7 @@ public class DrPoseController {
 	@Autowired
 	private DrPoseRepository drPoseRepository;
 	
-	private static final String UPLOAD_DIRECTORY = "C:\\Users\\helllo\\git\\DrChuck\\DrChuck\\src\\main\\resources\\static\\images\\pose";
+	private static final String UPLOAD_DIRECTORY = "C:\\Users\\smhrd\\git\\DrChuckChu\\DrChuck\\src\\main\\resources\\static\\images\\pose";
 	private static final String RESULT_DIRECTORY = "C:\\Users\\helllo\\git\\DrChuck\\DrChuck\\src\\main\\resources\\static\\images\\resultpose";
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
@@ -144,4 +144,18 @@ public class DrPoseController {
 		return imagesList;
 	}
 
+	
+	@GetMapping("/feedImg")
+	@ResponseBody
+	public List<DrPose> getFeedImg(HttpSession session) {
+		DrMember user = (DrMember) session.getAttribute("user");
+		String userId = user.getDmId();
+		List<DrPose> imagesList = drPoseRepository.findTop2ByDpIdOrderByDpIdxDesc(userId);
+		System.out.println("이미지에는 뭐가 들어갈까? : " + imagesList);
+
+		return imagesList;
+	}
+	
+	
+	
 }
