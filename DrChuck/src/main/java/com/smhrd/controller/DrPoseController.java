@@ -48,8 +48,8 @@ public class DrPoseController {
 	@Autowired
 	private DrPoseRepository drPoseRepository;
 	
-	private static final String UPLOAD_DIRECTORY = "C:\\Users\\smhrd\\git\\DrChuck\\DrChuck\\src\\main\\resources\\static\\images\\pose";
-	private static final String RESULT_DIRECTORY = "C:\\Users\\smhrd\\git\\DrChuck\\DrChuck\\src\\main\\resources\\static\\images\\resultpose";
+	private static final String UPLOAD_DIRECTORY = "C:\\Users\\helllo\\git\\DrChuck\\DrChuck\\src\\main\\resources\\static\\images\\pose";
+	private static final String RESULT_DIRECTORY = "C:\\Users\\helllo\\git\\DrChuck\\DrChuck\\src\\main\\resources\\static\\images\\resultpose";
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public String uploadImage(@RequestParam("fImg") MultipartFile fImg, @RequestParam("sImg") MultipartFile sImg,
@@ -100,7 +100,7 @@ public class DrPoseController {
 			drPoseRepository.save(drPose);
 
 			RestTemplate restTemplate = new RestTemplate();
-			String flaskUrl = "http://172.30.1.96:5000/upload"; // Flask 서버의 URL을 입력해주세요.
+			String flaskUrl = "http://172.30.1.55:5000/upload"; // Flask 서버의 URL을 입력해주세요.
 
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.MULTIPART_FORM_DATA);
