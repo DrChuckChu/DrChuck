@@ -313,7 +313,6 @@ $(document).ready(function() {
 			var feedbB = $("#fdB")
 			if (response.feedback) {
 				// 피드백 데이터가 있는 경우
-				feedbId.text(response.feedId + "님의 통계");
 				feedbTxt.text(response.feedback);
 				feedbG.text("1일전 좋은자세는 " + response.oneGoodCount + "개 입니다");
 				feedbG.append(document.createElement('br'));

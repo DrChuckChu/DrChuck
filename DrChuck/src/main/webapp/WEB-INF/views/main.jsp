@@ -313,18 +313,16 @@
 				<canvas id="pieExample"></canvas>
 			</div>
 
+			<div class="chart-container">
+				<canvas id="pie-chart"></canvas>
+			</div>
 
 			<div class="chart-container">
 				<canvas id="myChart2"></canvas>
 			</div>
 
 
-			<div class="chart-container">
-				<canvas id="pie-chart"></canvas>
-			</div>
 			<div class="feedback-container">
-				<div id = "fdId">
-				</div>
 				<div id="fdTxt">
 				</div>
 				<div id="fdG">
