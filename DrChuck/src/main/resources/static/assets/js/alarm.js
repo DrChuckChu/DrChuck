@@ -23,8 +23,27 @@ function poseAndLiveNotify() {
         timerElement1.innerText = timeLeft1;
     } else if (alarmStatus) {
         // 스트레칭 알람 코드
-        $.ajax({
-            // 기존 코드 유지...
+       $.ajax({
+            url: `/getLatestPosture`,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                const randomIndex = Math.floor(Math.random() * youtubeLinks.length);
+                const randomLink = youtubeLinks[randomIndex];
+                const notification = new Notification(`현재 사용자: ${data.userId}`, { body: `스트레칭해야해요. 링크: ${randomLink}` });
+                
+                notification.onclick = function() {
+                    window.open(randomLink);
+                    notification.close();
+                };
+
+                setTimeout(() => {
+                    notification.close();
+                }, 3000);
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
         });
 
         timeLeft1 = 30;
@@ -35,8 +54,20 @@ function poseAndLiveNotify() {
         timerElement2.innerText = timeLeft2;
     } else if (alarmStatus) {
         // 자세 알람 코드
-        $.ajax({
-            // 기존 코드 유지...
+          $.ajax({
+            url: `/dr/getLatestPosture`,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                const notification = new Notification(`현재 사용자: ${data.userId}`, { body: `현재 자세: ${data.posture}` });
+                console.log(`${data.dl_result}`)
+                setTimeout(() => {
+                    notification.close();
+                }, 3000);
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
         });
 
         timeLeft2 = 10; // 자세 알람이 울릴 때에만 timeLeft2를 리셋합니다.

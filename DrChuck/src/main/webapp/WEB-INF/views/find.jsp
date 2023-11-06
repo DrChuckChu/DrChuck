@@ -24,7 +24,7 @@
 			<div class="row full-height justify-content-center">
 				<div class="col-12 text-center align-self-center py-5">
 					<div class="logoImg">
-						<a href="./startPage.html" class="logo" target="_blank"> <img
+						<a href="goLogin" class="logo" target="_blank"> <img
 							src="images/최종_로고-배경제거.png" alt="로고 이미지 준비 중">
 						</a>
 					</div>
@@ -32,61 +32,58 @@
 						<h6 class="mb-0 pb-3">
 							<span>FIND ID </span><span>FIND PW</span>
 						</h6>
-						<input class="checkbox" type="checkbox" id="reg-log"
-							name="reg-log" /> <label for="reg-log"></label>
-						<div class="card-3d-wrap mx-auto">
-							<div class="card-3d-wrapper">
-								<div class="card-3d-wrapper">
-									<div class="card-front">
-										<div class="center-wrap">
-											<div class="section text-center">
-												<h4 class="mb-4 pb-3">FIND ID</h4>
-												<div class="form-group">
-													<form id="findId" action="findId" method="post">
-														<input type="email" name="dmEmail" class="form-style"
-															placeholder="EMAIL을 입력해주세요." id="logemail"
-															autocomplete="off"> <i
-															class="input-icon uil uil-at"></i>
-												</div>
-												<div class="form-group mt-2">
-													<input type="text" name="dmName" class="form-style"
-														placeholder="이름을 입력해주세요." id="logname" autocomplete="off">
-													<i class="input-icon uil uil-user"></i>
-												</div>
-												<input type="submit" class="btn mt-4" value="FIND">
-												</form>
-											</div>
-										</div>
-									</div>
-									<div class="card-back">
-										<div class="center-wrap">
-											<div class="section text-center">
-												<h4 class="mb-4 pb-3">FIND PW</h4>
-
-												<form id="findPw" action="findPw" method="post">
-													<div class="form-group mt-2">
-														<input type="num" name="dmId" class="form-style"
-															placeholder="ID를 입력해주세요" id="logpass" autocomplete="off">
-														<i class="input-icon uil uil-user"></i>
-													</div>
-													<div class="form-group mt-2">
-														<input type="email" name="dmEmail" class="form-style"
-															placeholder="EMAIL을 입력해주세요" id="logemail"
-															autocomplete="off"> <i
-															class="input-icon uil uil-at"></i>
-													</div>
-													<input type="submit" class="btn mt-4" value="FIND">
-												</form>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+						<input class="checkbox" type="checkbox" id="reg-log" name="reg-log" />
+						<label for="reg-log"></label>
+                        <div class="card-3d-wrap mx-auto">
+                            <div class="card-3d-wrapper">
+                                <div class="card-front">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <h4 class="mb-4 pb-3">FIND ID</h4>
+                                            <div class="form-group">
+                                            <form id="findId" action="findId" method="post">
+                                                <input type="email" name="dmEmail" class="form-style"
+                                                    placeholder="EMAIL을 입력해주세요." id="logemail" autocomplete="off">
+                                                <i class="input-icon uil uil-at"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="text" name="dmName" class="form-style"
+                                                    placeholder="이름을 입력해주세요." id="logname" autocomplete="off">
+                                                <i class="input-icon uil uil-user"></i>
+                                            </div>
+                                            <input type = "submit" class="btn mt-4" value="FIND">
+                                            	</form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <h4 class="mb-4 pb-3">FIND PW</h4>
+                                            
+                                            <form id="findPw" action="findPw" method="post">
+                                            <div class="form-group mt-2">
+                                                <input type="num" name="dmId" class="form-style"
+                                                    placeholder="ID를 입력해주세요" id="logpass" autocomplete="off">
+                                                <i class="input-icon uil uil-user"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="email" name="dmEmail" class="form-style"
+                                                    placeholder="EMAIL을 입력해주세요" id="logemail" autocomplete="off">
+                                                <i class="input-icon uil uil-at"></i>
+                                            </div>
+                                            <input type="submit" class="btn mt-4" value = "FIND">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 		<!-- partial -->
 		<script src="assets/js/script.js"></script>
 

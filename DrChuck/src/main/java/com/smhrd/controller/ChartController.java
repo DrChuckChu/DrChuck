@@ -176,31 +176,32 @@ public class ChartController {
         int TwoBad = drLiveRepository.findTwoBad(userId).orElse(0);
         
         if (OneGood == 0 || OneBad == 0 ) {
-        	responseData.put("feedback", userId + "님 1일전 데이터 없음");
+        	responseData.put("feedback", userId + "님의 1일전 데이터 없음");
         }
         
         if (TwoGood == 0 || OneBad == 0 ) {
-        	responseData.put("feedback", userId + "님 2일전 데이터 없음");
+        	responseData.put("feedback", userId + "님의 2일전 데이터 없음");
         }
         
         if (OneGood > OneBad) {
         	if (TwoGood > TwoBad) {
-                responseData.put("feedback", userId + "님 2일전에도 좋았는데 전날은 좋았다~"); // 좋아용을 데이터로 추가
+                responseData.put("feedback", "2일 연속 좋은 자세를 많이하고 있습니다"); // 좋아용을 데이터로 추가
             } else if (TwoGood < TwoBad) {
-                responseData.put("feedback", userId + "님 2일전 나빳는데 전날은 좋았다~"); // 나빠용을 데이터로 추가
+                responseData.put("feedback", "2일전과 다르게 어제는 좋은자세를 많이 했습니다"); // 나빠용을 데이터로 추가
             }
         } else if (OneGood < OneBad) {
         	if (TwoGood > TwoBad) {
-                responseData.put("feedback", userId + "님 2일전에도 좋았는데 전날은 나빳다~"); // 좋아용을 데이터로 추가
+                responseData.put("feedback", "어제는 2일전에 비해 자세가 나쁜자세를 많이 했습니다"); // 좋아용을 데이터로 추가
             } else if (TwoGood < TwoBad) {
-                responseData.put("feedback", userId + "님 2일전 나빳는데 전날은 나빳다~"); // 나빠용을 데이터로 추가
+                responseData.put("feedback",  "2일연속 나쁜 자세를 많이하고 있습니다."); // 나빠용을 데이터로 추가
             }
         } else {
         	if (TwoGood != 0 || TwoBad != 0 && TwoGood == TwoBad) {
-                responseData.put("feedback", userId + "님 2일전에도 좋나가 같앗는데 전날도 똑같다~"); // 좋아용을 데이터로 추가
+                responseData.put("feedback", "2일 연속 바른자세, 나쁜자세가 같습니다"); // 좋아용을 데이터로 추가
             } 
         }
 
+        responseData.put("feedId", userId); // Good 값을 데이터로 추가
         responseData.put("oneGoodCount", OneGood); // Good 값을 데이터로 추가
         responseData.put("oneBadCount", OneBad);   // Bad 값을 데이터로 추가
         responseData.put("twoBadCount", TwoGood);   // Bad 값을 데이터로 추가
