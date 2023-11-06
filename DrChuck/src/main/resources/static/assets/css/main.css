@@ -1162,10 +1162,41 @@ border-radius:25px;
     padding: 10px 0;
     margin-bottom: 15px;
     align-content: center;
-    line-height: 140%
-      
+    line-height: 140%;
+	
 }
 
+#fdTxt{
+	font-size : 14px;
+    border-radius: 4px;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    line-height: 20%;
+    display: grid;
+    align-content: center;
+	
+}
+
+#fdG{
+	font-size : 14px;
+    border-radius: 4px;
+    width: 20%;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    align-content: center;
+    line-height: 140%
+    /* align-items: center; */
+	
+}
+#fdB{
+	font-size : 14px;
+    border-radius: 4px;
+    width: 20%;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    align-content: center;
+    line-height: 140%
+		
 
 /* kdy */
   /*가이드라인 모달창*/
