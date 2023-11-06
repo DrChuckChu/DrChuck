@@ -176,11 +176,7 @@ public class ChartController {
         int TwoBad = drLiveRepository.findTwoBad(userId).orElse(0);
         
         if (OneGood == 0 || OneBad == 0 ) {
-        	responseData.put("feedback", userId + "님의 1일전 데이터 없음");
-        }
-        
-        if (TwoGood == 0 || OneBad == 0 ) {
-        	responseData.put("feedback", userId + "님의 2일전 데이터 없음");
+        	responseData.put("feedback", userId + "님의 금일 데이터 없음");
         }
         
         if (OneGood > OneBad) {

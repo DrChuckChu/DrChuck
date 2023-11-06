@@ -521,7 +521,7 @@
            url: "feedImg",
            type: "GET",
            success: function(data) {
-               if(data.length === 1){
+               if(data.length !== 0){
             	   console.log(data.length)
                $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
                $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
