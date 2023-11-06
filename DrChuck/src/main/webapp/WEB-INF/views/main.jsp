@@ -401,103 +401,124 @@
 		 });
 		
 		// 이미지 업로드 버튼 클릭 이벤트
-		$('.btn_upload').on('click', function(event) {
-		    event.preventDefault();
-		    
-		    var fImg = $('#image-upload-1')[0].files[0];
-		    var sImg = $('#image-upload-2')[0].files[0];
-		    var formData = new FormData();
-		    formData.append('fImg', fImg);
-		    formData.append('sImg', sImg);
-		    formData.append('dpId', '${user.dmId}');
+	    $('.btn_upload').on('click', function(event) {
+	        event.preventDefault();
+	        
+	        var fImg = $('#image-upload-1')[0].files[0];
+	        var sImg = $('#image-upload-2')[0].files[0];
 
-		    showLoading();
+	        if (!fImg || !sImg) {
+	            alert('두 장의 이미지를 업로드해주세요.');
+	            return;
+	        }
 
-		    $.ajax({
-		        url : 'upload',
-		        type : 'POST',
-		        data : formData,
-		        processData : false,
-		        contentType : false,
-		        success : function(data) {
-		            console.log('Upload successful!');
+	        // 이미지 파일 타입 검사
+	        var fileTypes = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+	        var fImgExtension = fImg.name.split('.').pop().toLowerCase();
+	        var sImgExtension = sImg.name.split('.').pop().toLowerCase();
 
-		            $.ajax({
-		                url: 'uploadRe',
-		                type: 'GET',
-		                success: function(data) {
-		                    console.log("이미지 들어오냐?");
-		                    console.log(data);
+	        if (!fileTypes.includes(fImgExtension) || !fileTypes.includes(sImgExtension)) {
+	            alert('이미지 파일만 업로드 가능합니다. (jpg, jpeg, png, gif, bmp)');
+	            return;
+	        }
 
-		                    $('.upload3 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
-		                    $('.upload4 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
-		                    
-		                    hideLoading();
+	        var formData = new FormData();
+	        formData.append('fImg', fImg);
+	        formData.append('sImg', sImg);
+	        formData.append('dpId', '${user.dmId}');
+	        
+	        // 로딩 화면 보여주기
+	        showLoading();
+			// 이미지를 db에 넣는거 실행
+	        $.ajax({
+	            url : 'upload',
+	            type : 'POST',
+	            data : formData,
+	            processData : false,
+	            contentType : false,
+	            success : function(data) {
+	                console.log('Upload successful!');
+	                // db에 넣은거 jsp에서 실행
+	                
+	                $.ajax({
+	                    url: 'uploadRe',
+	                    type: 'GET',
+	                    success: function(data) {
+	                        console.log("이미지 들어오냐?");
+	                        console.log(data);
 
-		                    document.getElementById('modalContainer').classList.remove('hidden');
+	                        $('.upload3 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
+	                        $('.upload4 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
+	                        
+	                        // 로딩 화면 숨기기
+	                        hideLoading();
 
-		                    const closeModal = document.getElementById('closeModal');
-		                    closeModal.addEventListener('click', () => {
-		                        document.getElementById('modalContainer').classList.add('hidden');
+	                        // 모달창 보여주기
+	                        document.getElementById('modalContainer').classList.remove('hidden');
 
-		                        $.ajax({
-		                            url: "resultImg",
-		                            type: "GET",
-		                            success: function(data) {
-		                                console.log("이미지 넣어버리기");
-		                                console.log(data);
-		                                $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
-		                                $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
-		                                
-		                                var result1 = data[1].dpResult.split(",");
-		                                var result2 = data[0].dpResult.split(",");
-		                                console.log(result1)
-		                                console.log(result2)
-		                                $('.resultcontent').html(
-		                                    '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[3] + '</span></p>' +
-		                                    '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[5] + '<br></span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[6] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[7] + '</span></p>' +
-		                                    '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[9] + result1[10] + '</span></p>');
-		                                $('.resultcontent2').html(
-		                                    '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[3] + '</span></p>' +
-		                                    '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[5] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[6] + '<br></span><span style="color: blue; font-size: 20px; line-height: 24px;">' + result2[7] + '</span></p>' +
-		                                    '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[9] + result2[10] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[11] + '<br>'+result2[12]+ result2[13]+ result2[14]+'</span>');
-		                            },
-		                            error:function(){console.error("결과피드백 실패");}
-		                        });   
-		                    });
-		                },
-		                error: function() {
-		                    console.log('이미지 데이터를 가져오지 못했습니다!');
-		                }
-		            });
-		        },
-		        error : function() {
-		            console.log('Upload error!');
-		        }
-		    });
-		});
+	                        // 모달창 닫기 버튼 이벤트 리스너 추가
+	                        const closeModal = document.getElementById('closeModal');
+	                        closeModal.addEventListener('click', () => {
+	                            document.getElementById('modalContainer').classList.add('hidden');
+	                            // 모달창 닫을 경우 모달창에 갱신된 이미지를 다시 결과 이미지 피드백으로 넘겨주기
+	                            $.ajax({
+	                                url: "resultImg",
+	                                type: "GET",
+	                                success: function(data) {
+	                                    console.log("이미지 넣어버리기");
+	                                    console.log(data);
+	                                    $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
+	                                    $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
+	                                    
+	                                    var result1 = data[1].dpResult.split(",");
+	                                    var result2 = data[0].dpResult.split(",");
+	                                    console.log(result1)
+	                      				console.log(result2)
+	                      				$('.resultcontent').html(
+	                      				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[3] + '</span></p>' +
+	                       				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[5] + '<br></span><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[6] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result1[7] + '</span></p>' +
+	                     				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result1[9] + result1[10] + '</span></p>');
+	                     				$('.resultcontent2').html(
+	                      				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[3] + '</span></p>' +
+	                       				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[5] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[6] + '<br></span><span style="color: blue; font-size: 20px; line-height: 24px;">' + result2[7] + '</span></p>' +
+	                     				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[9] + result2[10] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[11] + '<br>'+result2[12]+ result2[13]+ result2[14]+'</span>');
+	                                },
+	                                error:function(){console.error("결과피드백 실패");}
+	                            });   
+	                        });
+	                    },
+	                    error: function() {
+	                        console.log('이미지 데이터를 가져오지 못했습니다!');
+	                    }
+	                });
+	            },
+	            error : function() {
+	                console.log('Upload error!');
+	            }
+	        });
+	    });
 
-		function showLoading(){
-		    console.log('showLoading function called');
-		    var maskHeight = $(document).height();
-		    var maskWidth  = window.document.body.clientWidth;
-		    var mask ="<div id='mask' style='position:absolute; z-index:10000; background-color:#000000; left:0; top:0;'></div>";
-		    $('body').append(mask)
-		    $('#mask').css({
-		        'width' : maskWidth,
-		        'height': maskHeight,
-		        'opacity' :'0.7'
-		    });
+	    function showLoading(){
+	        console.log('showLoading function called');
+	        var maskHeight = $(document).height();
+	        var maskWidth  = window.document.body.clientWidth;
+	        var mask ="<div id='mask' style='position:absolute; z-index:10000; background-color:#000000; left:0; top:0;'></div>";
+	        $('body').append(mask)
+	        $('#mask').css({
+	            'width' : maskWidth,
+	            'height': maskHeight,
+	            'opacity' :'0.7'
+	        });
 
-		    $("#roadingStatus").show();
-		}
+	        $("#roadingStatus").show();
+	    }
 
-		function hideLoading(){
-		    console.log('hideLoading function called');
-		    $("#mask").remove();
-		    $("#roadingStatus").hide();
-		}
-
+	    function hideLoading(){
+	        console.log('hideLoading function called');
+	        $("#mask").remove();
+	        $("#roadingStatus").hide();
+	    }
+   });
 	
 	// 결과 이미지 보여주는잭슨
 	   $.ajax({
@@ -535,12 +556,8 @@
            },
            error:function(){console.error("결과피드백 실패");}
        });
+	
    </script>
-
-<script src="assets/js/main.js"></script>
-<script src="assets/js/alarm.js"></script>
-<script src="assets/js/chart.js"></script>
-<script src="assets/js/jquery.min.js"></script>
 
 </body>
 
@@ -559,5 +576,9 @@
 			class="smhrd" src="images/스마트인재개발원푸터.png">
 	</div>
 </footer>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/alarm.js"></script>
+<script src="assets/js/chart.js"></script>
+<script src="assets/js/jquery.min.js"></script>
 
 </html>
