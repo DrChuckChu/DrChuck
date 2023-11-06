@@ -235,6 +235,40 @@
 				</div>
 			</div>
 		</div>
+		
+		   <div id="guideModalContainer">
+         <div id="guideModalContent">
+            <br>
+            <h2>
+               <span class="highlight">[사진 업로드 가이드라인]</span>
+            </h2>
+            <p>- 사진에는 한 명만 나오도록 하고 평소에 앉는 모습으로 촬영해주세요!</p>
+            <br>
+            <p>- 사진은 기울여서 찍으면 측정결과가 잘못나올 수 있습니다.</p>
+            <br>
+            <p>- 정면 사진은 상체만 나오도록 촬영해주세요!</p>
+            <br>
+            <p>- 측면 사진은 전신이 나오고 피사체와 평행하게 촬영해주세요!</p>
+            <br>
+
+
+
+
+            <h2>
+               <span class="highlight">[안내 사항]</span>
+            </h2>
+            <p>본 프로그램은 사용자가 본인의 평소 자세를 인지하고 바른 자세를 유지하도록 도움을 주는 서비스입니다.</p>
+            <br>
+            <p>측정 결과는 참고용으로 제공되며, 전문적인 의학적 조언이나 진단, 치료를 대체할 수 없습니다.</p>
+            <br>
+            <p>개인의 건강 상태에 대한 의사의 조언이 필요한 경우 반드시 전문적인 의료 서비스를 이용하시기 바랍니다.</p>
+            <br>
+            <p>이 프로그램을 너무 신뢰하지 않도록 주의하시기 바랍니다.</p>
+            <br>
+
+            <button id="guideModalCloseButton">닫기</button>
+         </div>
+      </div>
 
 	</div>
 
@@ -532,6 +566,10 @@
            },
            error:function(){console.error("결과피드백 실패");}
        });
+	
+	   document.getElementById('guideModalCloseButton').addEventListener('click', function() {
+	       document.getElementById('guideModalContainer').style.display = 'none'; // 가이드라인 모달창 숨기기
+	   });
 	
    </script>
 
