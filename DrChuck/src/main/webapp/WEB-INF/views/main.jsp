@@ -444,8 +444,6 @@
 	                    url: 'uploadRe',
 	                    type: 'GET',
 	                    success: function(data) {
-	                        console.log("이미지 들어오냐?");
-	                        console.log(data);
 
 	                        $('.upload3 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
 	                        $('.upload4 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
@@ -465,8 +463,6 @@
 	                                url: "resultImg",
 	                                type: "GET",
 	                                success: function(data) {
-	                                    console.log("이미지 넣어버리기");
-	                                    console.log(data);
 	                                    $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
 	                                    $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
 	                                    
@@ -525,8 +521,6 @@
            url: "feedImg",
            type: "GET",
            success: function(data) {
-               console.log("이미지 넣어버리기");
-               console.log(data);
                if(data.length === 1){
             	   console.log(data.length)
                $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);

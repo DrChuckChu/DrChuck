@@ -114,6 +114,13 @@
    </div>
 <!-- partial -->
   <script  src="./script.js"></script>
+  <script>
+        // 서버에서 에러 메시지를 받았다면 alert을 표시
+        <c:if test="${not empty errorMessage}">
+            alert('<c:out value="${errorMessage}"/>');
+        </c:if>
+        
+    </script>
 <footer class="footer">
 </footer>
 

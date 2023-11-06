@@ -6,8 +6,6 @@ $(document).ready(function() {
 			url: 'myChart',
 			method: 'GET',
 			success: function(response) {
-				console.log("차트1");
-				console.log(response);
 
 				// 데이터 받아오기
 				var data = response;
@@ -86,9 +84,6 @@ $(document).ready(function() {
 			url: 'pieChart',
 			method: 'GET',
 			success: function(response) {
-				console.log("차트2");
-				console.log(response);
-
 
 				// 데이터 받아오기
 				var data = response;
@@ -158,8 +153,6 @@ $(document).ready(function() {
 		url: 'donutChart',
 		method: 'GET',
 		success: function(response) {
-			console.log("차트3 데이터:");
-			console.log(response);
 
 			// 데이터 받아오기
 			var data = response.data;
@@ -218,8 +211,6 @@ $(document).ready(function() {
 		url: 'lineChart',
 		method: 'GET',
 		success: function(response) {
-			console.log("차트4");
-			console.log(response);
 			// 데이터 받아오기
 			var data = response;
 
@@ -314,8 +305,6 @@ $(document).ready(function() {
 		url: 'feed',
 		method: 'GET',
 		success: function(response) {
-			console.log("피드백");
-			console.log(response);
 
 			// 데이터를 HTML에 삽입
 			var feedbId = $("#fdId")
