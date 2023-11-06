@@ -236,20 +236,6 @@
 			</div>
 		</div>
 
-		<div id="modalContainer" class="hidden">
-			<div id="modalContent">
-				<div class="upload3">
-					<img src="">
-					<button id="closeModal">종료</button>
-				</div>
-				<div class="upload4">
-					<img src="">
-				</div>
-			</div>
-			<div></div>
-		</div>
-
-
 	</div>
 
 
@@ -323,11 +309,9 @@
 
 
 			<div class="feedback-container">
-				<div id="fdTxt">
+				<div id="fdId">
 				</div>
-				<div id="fdG">
-				</div>
-				<div id="fdB">
+				<div id="fdMent">
 				</div>
 			</div>
 		</div>
