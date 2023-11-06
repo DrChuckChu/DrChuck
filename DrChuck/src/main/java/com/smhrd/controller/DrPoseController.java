@@ -151,7 +151,7 @@ public class DrPoseController {
 		DrMember user = (DrMember) session.getAttribute("user");
 		String userId = user.getDmId();
 		List<DrPose> imagesList = drPoseRepository.findTop2ByDpIdOrderByDpIdxDesc(userId);
-		System.out.println("이미지에는 뭐가 들어갈까? : " + imagesList);
+		System.out.println("피드백에는 들어갈까? : " + imagesList);
 
 		return imagesList;
 	}
@@ -162,7 +162,7 @@ public class DrPoseController {
 		DrMember user = (DrMember) session.getAttribute("user");
 		String userId = user.getDmId();
 		List<DrPose> imagesList = drPoseRepository.findTop2ByDpIdOrderByDpIdxDesc(userId);
-		System.out.println("이미지에는 뭐가 들어갈까? : " + imagesList);
+		System.out.println("결과이미지는 들어갈까? : " + imagesList);
 
 		return imagesList;
 	}

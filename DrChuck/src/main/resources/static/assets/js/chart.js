@@ -314,20 +314,33 @@ $(document).ready(function() {
 		url: 'feed',
 		method: 'GET',
 		success: function(response) {
-			console.log("차트5");
+			console.log("피드백");
 			console.log(response);
 
 			// 데이터를 HTML에 삽입
-			var feedbDiv = $(".feedb"); // .feedb 클래스를 가진 div 요소 선택
-
+			var feedbId = $("#fdId")
+			var feedbTxt = $("#fdTxt")
+			var feedbG = $("#fdG")
+			var feedbB = $("#fdB")
 			if (response.feedback) {
 				// 피드백 데이터가 있는 경우
-				feedbDiv.html('<p style="font-size: 12px;"> ' + response.feedback + '</p>');
+				feedbId.text(response.feedId + "님의 피드백");
+				feedbTxt.text(response.feedback);
+				feedbG.text("1일전 좋은자세는 " + response.oneGoodCount + "개 입니다");
+				feedbG.append(document.createElement('br'));
+				feedbG.append("2일전 좋은자세는 " + response.twoGoodCount + "개 입니다");
+				feedbB.text("1일전 나쁜자세는 " + response.oneBadCount + "개 입니다");
+				feedbB.append(document.createElement('br'));
+				feedbB.append("2일전 나쁜자세는 " + response.twoBadCount + "개 입니다");
+
 			} else {
-				feedbDiv.html('<p style="font-size: 12px;">피드백 데이터 없음</p>');
+				feedbId.html('<p style="font-size: 12px;"> ' + response.feedId + "님의 피드백" + '</p>');
+				feedbTxt.html('<p style="font-size: 12px;"> ' + response.feedId + "님의 피드백" + '</p>');
+				feedbG.html('<p style="font-size: 12px;"> ' + response.feedId + "님의 피드백" + '</p>');
+				feedbB.html('<p style="font-size: 12px;"> ' + response.feedId + "님의 피드백" + '</p>');
 			}
 
-			// Good와 Bad 카운트를 표시
+			/* Good와 Bad 카운트를 표시
 			if (!response.feedback.includes("님 1일전 데이터 없음") && !response.feedback.includes("님 2일전 데이터 없음")) {
 				var feedbackHtml = '<p style="font-size: 12px;">1일전 좋아용 : ' + response.oneGoodCount + ' / 1일전 나빠용: ' + response.oneBadCount + '</p>';
 				feedbackHtml += '<p style="font-size: 12px;">2일전 나빠용 : ' + response.twoBadCount + ' / 2일전 나빠용: ' + response.twoGoodCount + '</p>';
@@ -336,6 +349,7 @@ $(document).ready(function() {
 				var feedbackHtml = '<p style="font-size: 12px;">데이터가 없어용 </p>';
 				feedbDiv.append(feedbackHtml);
 			}
+			*/
 		},
 		error: function(xhr, status, error) {
 			console.error('차트5 : ' + xhr.status);

@@ -323,21 +323,13 @@
 				<canvas id="pie-chart"></canvas>
 			</div>
 			<div class="feedback-container">
-				<div class="feedb">
-					<p class="feedback-text"></p>
-					<p class="feedback"></p>
+				<div id = "fdId">
 				</div>
-				<div class="feedb">
-					<p class="feedback-text"></p>
-					<p class="feedback"></p>
+				<div id="fdTxt">
 				</div>
-				<div class="feedb">
-					<p class="feedback-text"></p>
-					<p class="feedback"></p>
+				<div id="fdG">
 				</div>
-				<div class="feedb">
-					<p class="feedback-text"></p>
-					<p class="feedback"></p>
+				<div id="fdB">
 				</div>
 			</div>
 		</div>
@@ -522,7 +514,7 @@
            success: function(data) {
                console.log("이미지 넣어버리기");
                console.log(data);
-               if(data.length !== 1){
+               if(data.length === 1){
             	   console.log(data.length)
                $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
                $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
