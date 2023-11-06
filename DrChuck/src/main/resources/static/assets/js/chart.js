@@ -299,8 +299,7 @@ $(document).ready(function() {
 	});
 
 
-
-	// 피드백ㅇ
+	// 피드백
 	$.ajax({
 		url: 'feed',
 		method: 'GET',
