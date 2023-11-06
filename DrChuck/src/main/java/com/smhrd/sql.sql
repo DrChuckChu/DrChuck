@@ -1,6 +1,5 @@
 select * from board;
 
-select * from dr_member;
 
 
 
