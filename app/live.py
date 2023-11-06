@@ -208,7 +208,7 @@ def gen_frames(camera, get_session):
                 ret, buffer = cv2.imencode('.jpg', flipped_image)
                 frame = buffer.tobytes()
 
-                if cnt_none == 1500:
+                if cnt_none == 1500: # 1분은 1500
                     print('객체 인식 X')
                     vo = dao.chuckchuDao()
                     vo.insert_live_none(id)
