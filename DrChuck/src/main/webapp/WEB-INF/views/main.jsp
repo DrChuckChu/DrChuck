@@ -236,20 +236,40 @@
 				</div>
 			</div>
 		</div>
+		
+		   <div id="guideModalContainer">
+         <div id="guideModalContent">
+            <br>
+            <h2>
+               <span class="highlight">[사진 업로드 가이드라인]</span>
+            </h2>
+            <p>- 사진에는 한 명만 나오도록 하고 평소에 앉는 모습으로 촬영해주세요!</p>
+            <br>
+            <p>- 사진은 기울여서 찍으면 측정결과가 잘못나올 수 있습니다.</p>
+            <br>
+            <p>- 정면 사진은 상체만 나오도록 촬영해주세요!</p>
+            <br>
+            <p>- 측면 사진은 전신이 나오고 피사체와 평행하게 촬영해주세요!</p>
+            <br>
 
-		<div id="modalContainer" class="hidden">
-			<div id="modalContent">
-				<div class="upload3">
-					<img src="">
-					<button id="closeModal">종료</button>
-				</div>
-				<div class="upload4">
-					<img src="">
-				</div>
-			</div>
-			<div></div>
-		</div>
 
+
+
+            <h2>
+               <span class="highlight">[안내 사항]</span>
+            </h2>
+            <p>본 프로그램은 사용자가 본인의 평소 자세를 인지하고 바른 자세를 유지하도록 도움을 주는 서비스입니다.</p>
+            <br>
+            <p>측정 결과는 참고용으로 제공되며, 전문적인 의학적 조언이나 진단, 치료를 대체할 수 없습니다.</p>
+            <br>
+            <p>개인의 건강 상태에 대한 의사의 조언이 필요한 경우 반드시 전문적인 의료 서비스를 이용하시기 바랍니다.</p>
+            <br>
+            <p>이 프로그램을 너무 신뢰하지 않도록 주의하시기 바랍니다.</p>
+            <br>
+
+            <button id="guideModalCloseButton">닫기</button>
+         </div>
+      </div>
 
 	</div>
 
@@ -347,31 +367,19 @@
 				<canvas id="pieExample"></canvas>
 			</div>
 
+			<div class="chart-container">
+				<canvas id="pie-chart"></canvas>
+			</div>
 
 			<div class="chart-container">
 				<canvas id="myChart2"></canvas>
 			</div>
 
 
-			<div class="chart-container">
-				<canvas id="pie-chart"></canvas>
-			</div>
 			<div class="feedback-container">
-				<div class="feedb">
-					<p class="feedback-text"></p>
-					<p class="feedback"></p>
+				<div id="fdId">
 				</div>
-				<div class="feedb">
-					<p class="feedback-text"></p>
-					<p class="feedback"></p>
-				</div>
-				<div class="feedb">
-					<p class="feedback-text"></p>
-					<p class="feedback"></p>
-				</div>
-				<div class="feedb">
-					<p class="feedback-text"></p>
-					<p class="feedback"></p>
+				<div id="fdMent">
 				</div>
 			</div>
 		</div>
@@ -446,12 +454,29 @@
 	    $('.btn_upload').on('click', function(event) {
 	        event.preventDefault();
 	        
-	        
-	        var formData = new FormData();
-	        formData.append('fImg', $('#image-upload-1')[0].files[0]);
-	        formData.append('sImg', $('#image-upload-2')[0].files[0]);
-	        formData.append('dpId', '${user.dmId}');
+	        var fImg = $('#image-upload-1')[0].files[0];
+	        var sImg = $('#image-upload-2')[0].files[0];
 
+	        if (!fImg || !sImg) {
+	            alert('두 장의 이미지를 업로드해주세요.');
+	            return;
+	        }
+
+	        // 이미지 파일 타입 검사
+	        var fileTypes = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+	        var fImgExtension = fImg.name.split('.').pop().toLowerCase();
+	        var sImgExtension = sImg.name.split('.').pop().toLowerCase();
+
+	        if (!fileTypes.includes(fImgExtension) || !fileTypes.includes(sImgExtension)) {
+	            alert('이미지 파일만 업로드 가능합니다. (jpg, jpeg, png, gif, bmp)');
+	            return;
+	        }
+
+	        var formData = new FormData();
+	        formData.append('fImg', fImg);
+	        formData.append('sImg', sImg);
+	        formData.append('dpId', '${user.dmId}');
+	        
 	        // 로딩 화면 보여주기
 	        showLoading();
 			// 이미지를 db에 넣는거 실행
@@ -469,8 +494,6 @@
 	                    url: 'uploadRe',
 	                    type: 'GET',
 	                    success: function(data) {
-	                        console.log("이미지 들어오냐?");
-	                        console.log(data);
 
 	                        $('.upload3 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
 	                        $('.upload4 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
@@ -487,11 +510,9 @@
 	                            document.getElementById('modalContainer').classList.add('hidden');
 	                            // 모달창 닫을 경우 모달창에 갱신된 이미지를 다시 결과 이미지 피드백으로 넘겨주기
 	                            $.ajax({
-	                                url: "feedImg",
+	                                url: "resultImg",
 	                                type: "GET",
 	                                success: function(data) {
-	                                    console.log("이미지 넣어버리기");
-	                                    console.log(data);
 	                                    $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
 	                                    $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
 	                                    
@@ -510,9 +531,6 @@
 	                                },
 	                                error:function(){console.error("결과피드백 실패");}
 	                            });   
-	                            
-	                            
-	                            //location.reload();
 	                        });
 	                    },
 	                    error: function() {
@@ -553,8 +571,8 @@
            url: "feedImg",
            type: "GET",
            success: function(data) {
-               console.log("이미지 넣어버리기");
-               console.log(data);
+               if(data.length !== 0){
+            	   console.log(data.length)
                $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
                $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
                
@@ -570,10 +588,20 @@
  				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[0] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[1] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[2] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[3] + '</span></p>' +
   				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[4] + '</span><span style="color: red; font-size: 14px; line-height: 24px;">' + result2[5] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[6] + '<br></span><span style="color: blue; font-size: 20px; line-height: 24px;">' + result2[7] + '</span></p>' +
 				 '<p style="font-size: 14px; line-height: 24px;"><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[9] + result2[10] + '</span><span style="color: black; font-size: 14px; line-height: 24px;">' + result2[11] + '<br>'+result2[12]+ result2[13]+ result2[14]+'</span>');
+               }else{
+            	   $('.upload1 img').attr('src', 'images/앞모습 기본이미지.png');
+                   $('.upload2 img').attr('src', 'images/옆모습기본이미지.png');  
+            	   
+                   console.log(result1)
+     				console.log(result2)
+     				$('.resultcontent').html("아직 등록된 업로드 자세측정이 없습니다")
+    				$('.resultcontent2').html("아직 등록된 업로드 자세측정이 없습니다")
+               }
            },
            error:function(){console.error("결과피드백 실패");}
        });
 	
+
 	   let currentPage = 0;
 	      const guideContainers = document.querySelectorAll('.guide-container');
 	      const prevBtn = document.getElementById('prev-btn');
@@ -602,6 +630,12 @@
 	      });
 	  
 	      displayPage();
+
+	   document.getElementById('guideModalCloseButton').addEventListener('click', function() {
+	       document.getElementById('guideModalContainer').style.display = 'none'; // 가이드라인 모달창 숨기기
+	   });
+	
+
    </script>
 
 </body>

@@ -1,6 +1,26 @@
 select * from board;
 
 
+<<<<<<< HEAD
+
+
+select * from table;
+show tables;
+drop table files;
+
+select * from images;
+select * from DR_MEMBER;
+select * from DR_LIVE_RESULT;
+select * from DR_S_POSE;
+
+ALTER TABLE images CONVERT TO CHARSET utf8;
+
+CREATE TABLE DR_MEMBER(
+    Dm_Id VARCHAR(30),
+    Dm_Pw VARCHAR(30),
+    Dm_Name VARCHAR(10),
+    Dm_Key VARCHAR(5),  
+=======
 select * from table;
 show tables;
 drop table files;
@@ -17,6 +37,7 @@ CREATE TABLE DR_MEMBER(
     Dm_Pw VARCHAR(30),
     Dm_Name VARCHAR(10),
     Dm_Key VARCHAR(5),
+>>>>>>> branch 'master' of https://github.com/DrChuckChu/DrChuck.git
     Dm_Muge VARCHAR(5),
     Dm_Sex VARCHAR(3),
     Dm_Job VARCHAR(20),
