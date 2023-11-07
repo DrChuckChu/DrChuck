@@ -21,6 +21,12 @@ public class DrMemberController {
 	@Autowired
 	private DrMemberRepository repo;
 	
+	// 가페이지로 이동
+	@RequestMapping("/goStart")
+	public String goStart() {
+		return "main_fake";
+	}
+	
 	
 	//로그인,회원가입 페이지
 	@RequestMapping("/goLogin")
@@ -28,12 +34,6 @@ public class DrMemberController {
 		return "loginpage";
 	}
 	
-	//로그인,회원가입 페이지
-		@RequestMapping("/goTest")
-		public String goTest() {
-			return "testMain_save";
-		}
-
 	// 아이디 찾기 페이지 이동
 		@RequestMapping("/goFind")
 		public String goFind() {
@@ -67,21 +67,22 @@ public class DrMemberController {
 	// 로그인기능
 	@RequestMapping("/login")
 	public String login(String dmId, String dmPw, HttpSession session, RedirectAttributes redirectAttrs) {
-	    DrMember dm = repo.findByDmIdAndDmPw(dmId, dmPw);
+	    DrMember dm = repo.findByDmId(dmId);
 
-	    System.out.println("로그인" + dmId + "/" + dmPw);
-
-	    if (dm != null) {
-	        session.setAttribute("user", dm);
-	    } else {
-	        System.out.println("로그인 실패");
-	        String errorMessage = "로그인에 실패하였습니다. 다시 시도해 주세요.";
+	    if (dm == null) {
+	        String errorMessage = "존재하지 않는 아이디입니다.";
+	        redirectAttrs.addFlashAttribute("errorMessage", errorMessage);
+	        return "redirect:/goLogin";
+	    } else if (!dm.getDmPw().equals(dmPw)) {
+	        String errorMessage = "비밀번호가 틀렸습니다.";
 	        redirectAttrs.addFlashAttribute("errorMessage", errorMessage);
 	        return "redirect:/goLogin";
 	    }
 
+	    session.setAttribute("user", dm);
 	    return "redirect:/goMain";
 	}
+
 
 	// 회원가입 기능
 	@RequestMapping("/join")

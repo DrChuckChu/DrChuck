@@ -8,6 +8,13 @@
     url(//i1.daumcdn.net/img-contents/webfont/NanumGothic-Regular.woff) format('woff');
 } */
 
+@font-face {
+    font-family: 'NPSfontBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+   	font-weight: 500;
+    
+}
+
 /* reset */
 body,
 div,
@@ -17,7 +24,7 @@ dd,
 ul,
 ol,
 li,
-h1,
+h1,s
 h2,
 h3,
 h5,
@@ -37,6 +44,7 @@ select,
 button {
   margin: 0;
   padding: 0
+  
 }
 
 fieldset,
@@ -80,11 +88,14 @@ input::-ms-clear {
 button {
   border: 0 none;
   background-color: transparent;
- 
+  
+  
 }
 
 body {
-  background: white
+	font-family: 'NPSfontBold';
+  	background: white;
+  
 }
 
 body,
@@ -96,17 +107,19 @@ textarea,
 button {
   font-size: 12px;
   line-height: 1.5;
-  font-family: NanumGothic, '나눔고딕', 'Malgun Gothic', '맑은 고딕', Helvetica, 'Apple SD Gothic Neo', AppleGothic, Dotum, '돋움', Arial, sans-serif;
+ 
   color: #333
 }
 
 a {
   color: skyblue;
   text-decoration: none;
+  
+  
 }
 
 a:active {
-  background-color: transparent
+  background-color: transparent;
 }
 
 address,
@@ -117,7 +130,7 @@ dfn,
 em,
 var {
   font-style: normal;
-  font-weight: normal
+  font-weight: normal;
 }
 
 /* global */
@@ -289,8 +302,8 @@ var {
   
 /* khj
 #modalContent img:first-child {
-	margin-top : 10px;
-	width : 90%;
+   margin-top : 10px;
+   width : 90%;
 }
 
   #closeModal {
@@ -316,8 +329,8 @@ var {
     text-align: center;
     text-decoration: none;
     position: absolute;
-	top : 460px;
-	left : 46%;
+   top : 460px;
+   left : 46%;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
@@ -326,8 +339,8 @@ var {
 
 
 #modalContent img:first-child {
-	width : 395px;
-	height: 395px;
+   width : 395px;
+   height: 395px;
 }
 /* button */
 
@@ -517,7 +530,7 @@ body {
   border: 1px solid #CCCCCC;
   border-radius: 15px;
   margin-top: 350px;
-  margin-right: 600px;
+  margin-right: 600px ;
   
 }
 h6{
@@ -563,7 +576,7 @@ p{
   border: none;
   border-radius: 15px;
   position: relative;
-  margin-bottom: 90px;
+  margin-bottom: 103px;
   margin-right: 40px
 }
 
@@ -581,7 +594,7 @@ p{
 
 .section_type3 {
   margin-bottom:20px;
-  height: 1500px;
+  height: 1250px;
 }
 
 
@@ -850,6 +863,8 @@ ul.list_util2 a.imgLogo img {
 .uploadResult{
   height: 500px;
   display: block;
+ 
+  
 }
 .upload1{
   
@@ -923,8 +938,8 @@ ul.list_util2 a.imgLogo img {
 
 /* kdy */
   .alarm img{
- 	width: 45px;
- 	height:45px;
+    width: 45px;
+    height:45px;
     position: absolute;
     margin-left: 550px;
     margin-top: 9px;
@@ -970,10 +985,7 @@ ul.list_util2 a.imgLogo img {
  
  }
  
- body {
-  font-family: Arial, sans-serif;
-  
-}
+
 .banner {
   background-color: black;
   padding: 20px;
@@ -1074,7 +1086,7 @@ border-radius:25px;
   height: 80px;
  
 }
-/* 현중이꺼	
+/* 현중이꺼   
 .upload3{
   border: 2px solid rgb(60, 60, 60);
   float: left;
@@ -1122,14 +1134,93 @@ border-radius:25px;
 }
 
 #fdId{
-	font-size : 30px;
-	width: 20%;
+   font-size : 30px;
+   width: 20%;
     border-radius: 4px;
     padding: 10px 0;
     margin-bottom: 15px;
     line-height: 20%;
     display: grid;
     align-content: center;
+   
+}
+/*페이징*/
+.nav-buttons{
+    position: relative;
+    bottom: 140px;
+    left: 400px;
+  }
+  #prev-btn{
+    width: 30px;
+    height: 30px;
+    background-color: skyblue;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    color: white;
+    border-radius: 10px;
+  }
+  #next-btn{
+    width: 30px;
+    height: 30px;
+    background-color: skyblue;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    color: white;
+    border-radius: 10px;
+  
+  }
+
+
+  .guide-container{
+    float: left;
+    width:500px; 
+    height:750px; 
+    border:2px solid #3C3C3C; 
+    float:left;
+    margin-left: 800px;
+    margin-bottom: 35px;
+    border-radius: 5px;
+    line-height:40px;
+    
+   
+  }
+  p.f{
+    font-size: 16px;
+    text-align: left;
+  }
+  
+
+#fdTxt{
+   font-size : 14px;
+    border-radius: 4px;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    line-height: 20%;
+    display: grid;
+    align-content: center;
+   
+}
+
+
+#fdG{
+   font-size : 14px;
+    border-radius: 4px;
+    width: 20%;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    align-content: center;
+    line-height: 140%
+    /* align-items: center; */
+   
+}
+#fdB{
+   font-size : 14px;
+    border-radius: 4px;
+    width: 20%;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    align-content: center;
+    line-height: 140%;
 	
 }
 
@@ -1163,10 +1254,55 @@ border-radius:25px;
     margin-bottom: 15px;
     align-content: center;
     line-height: 140%
-		
 }
 
+#guideModalContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);  /* Darken the background overlay */
+  z-index: 1000;
+}
 
-/* kdy */
-  /*가이드라인 모달창*/
-  
+#guideModalContent {
+  background-color: #ffffff;  /* Change to white background for contrast */
+  max-width: 70%;
+  height: auto;
+  padding: 20px;
+  font-size: 0.2em;
+  line-height: 1.5em;
+  border-radius: 15px;
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.2);  /* Darken and increase shadow */
+  color: #343a40;  /* Change to black text for contrast */
+}
+
+#guideModalContent h2 {
+  color: #343a40;  /* Change to black title */
+  border-bottom: 2px solid #495057;  /* Thicken and darken the title border */
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+#guideModalCloseButton {
+  cursor: pointer;
+  background-color: #495057;  /* Darken the button */
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  color: #ffffff;  /* Change text to white for contrast */
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);  /* Darken the button shadow */
+}
+.hidden {
+  display: none;
+}
+
+.highlight {
+  color: #007BFF;
+  margin-top: 300px;
+}

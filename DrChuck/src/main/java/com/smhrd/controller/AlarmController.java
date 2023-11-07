@@ -33,7 +33,7 @@ public class AlarmController {
        // 최신의 자세 정보 가져오기
        DrMember user = (DrMember) session.getAttribute("user");
        String userId = user.getDmId();
-       DrLive dl = drLiveRepository.findTopByDlIdAndDlResultInOrderByDlDateDesc(userId, Arrays.asList("Good", "Bad", "Turtle"));
+       DrLive dl = drLiveRepository.findTopByDlIdAndDlResultInOrderByDlDateDesc(userId, Arrays.asList("Good", "Bad", "Turtle","Emp"));
        
        if (dl != null) {
            Map<String, Object> response = new HashMap<>();

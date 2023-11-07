@@ -5,6 +5,7 @@
 <html lang="ko">
 
 <head>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -219,7 +220,7 @@
 		</div>
 
 		<div class="upload_btn" id="buttonContainer">
-			<button class="btn_upload">업로드하기</button>
+			<button class="btn_upload">결과확인</button>
 		</div>
 
 		<div id="modalContainer" class="hidden">
@@ -235,20 +236,40 @@
 				</div>
 			</div>
 		</div>
+		
+		   <div id="guideModalContainer">
+         <div id="guideModalContent">
+            <br>
+            <h2>
+               <span class="highlight">[사진 업로드 가이드라인]</span>
+            </h2>
+            <p>- 사진에는 한 명만 나오도록 하고 평소에 앉는 모습으로 촬영해주세요!</p>
+            <br>
+            <p>- 사진은 기울여서 찍으면 측정결과가 잘못나올 수 있습니다.</p>
+            <br>
+            <p>- 정면 사진은 상체만 나오도록 촬영해주세요!</p>
+            <br>
+            <p>- 측면 사진은 전신이 나오고 피사체와 평행하게 촬영해주세요!</p>
+            <br>
 
-		<div id="modalContainer" class="hidden">
-			<div id="modalContent">
-				<div class="upload3">
-					<img src="">
-					<button id="closeModal">종료</button>
-				</div>
-				<div class="upload4">
-					<img src="">
-				</div>
-			</div>
-			<div></div>
-		</div>
 
+
+
+            <h2>
+               <span class="highlight">[안내 사항]</span>
+            </h2>
+            <p>본 프로그램은 사용자가 본인의 평소 자세를 인지하고 바른 자세를 유지하도록 도움을 주는 서비스입니다.</p>
+            <br>
+            <p>측정 결과는 참고용으로 제공되며, 전문적인 의학적 조언이나 진단, 치료를 대체할 수 없습니다.</p>
+            <br>
+            <p>개인의 건강 상태에 대한 의사의 조언이 필요한 경우 반드시 전문적인 의료 서비스를 이용하시기 바랍니다.</p>
+            <br>
+            <p>이 프로그램을 너무 신뢰하지 않도록 주의하시기 바랍니다.</p>
+            <br>
+
+            <button id="guideModalCloseButton">닫기</button>
+         </div>
+      </div>
 
 	</div>
 
@@ -258,14 +279,47 @@
 		<!--cam-->
 		<div class="centered-container">
 			<img id="cameraview" width="720" height="480" />
-			<div class="guide-container">
-				<h6>올바른 자세 예시</h6>
-				<p>
-					1. 등받이에 엉덩이와 허리 붙이기<br> 2. 발바닥은 땅에 닿도록 앉기<br> 3. 모니터 눈높이는
-					모니터 상단에 맞추기<br> 4. 팔꿈치 각도는 직각으로 유지하기<br> 5. 머리는 턱을 당겨 어깨와
-					동일 선상으로 유지하기<br>
-				<p>🧘주기적으로 스트레칭하기🧘</p>
+			<div class="page-container">
+				<div class="guide-container">
+					<h6>올바른 앉은 자세</h6>
+					<p>
+						1. 등받이에 엉덩이와 허리 붙이기<br> (허리 과하게 젖히기 / 둥글게 말기 X)
+					</p>
+
+					<br>
+					<p>2. 앉을 때 무게 중심은 엉덩이 중앙부에 위치 시키기</p>
+
+					<br>
+					<p>3. 발바닥은 땅에 닿도록 앉기</p>
+
+					<br>
+					<p>4. 시선은 모니터 상단에 맞추기</p>
+
+					<br>
+					<p>5. 손과 키보드는 책상끝에 위치</p>
+
+					<br>
+					<p>6. 턱을 당겨 귀, 어깨, 골반이 동일선상에 위치</p>
+					<br>
+					<p>🧘주기적으로 스트레칭하기🧘</p>
+
+				</div>
+				<div class="guide-container" style="display: none;">
+					<h6>결과 예시</h6>
+					<img src="images/삼진구.png">
+					<p class="f">Good: 턱을 당겨 허리를 펴고 고개와 어깨가 기울어지지 않은 상태</p>
+					<p class="f">Bad : 고개각도가 10도 이상이거나 어깨 각도가 6도 이상 기울어진 상태, 등받이에 과하게 기대어 누운 상태, 화면과 멀어진 상태</p>
+					<p class="f">Turtle : 고개를 과하게 앞으로 빼어 화면상 턱과 쇄골 사이 거리가 짧아진 상태, 화면과 과하게 가까워 거북목 위험이 올라간 상태</p>
+					<p class="f">그 외 : 화면과 일정 거리이상 멀어지거나 화면상에 아무도 없는 상태</p>
+				</div>
+
+				<div class="nav-buttons">
+					<button id="prev-btn" disabled>1</button>
+					<button id="next-btn">2</button>
+				</div>
+
 			</div>
+
 			<div class="toggleBG">
 				<button class="toggleFG"></button>
 
@@ -313,23 +367,19 @@
 				<canvas id="pieExample"></canvas>
 			</div>
 
+			<div class="chart-container">
+				<canvas id="pie-chart"></canvas>
+			</div>
 
 			<div class="chart-container">
 				<canvas id="myChart2"></canvas>
 			</div>
 
 
-			<div class="chart-container">
-				<canvas id="pie-chart"></canvas>
-			</div>
 			<div class="feedback-container">
-				<div id = "fdId">
+				<div id="fdId">
 				</div>
-				<div id="fdTxt">
-				</div>
-				<div id="fdG">
-				</div>
-				<div id="fdB">
+				<div id="fdMent">
 				</div>
 			</div>
 		</div>
@@ -404,12 +454,29 @@
 	    $('.btn_upload').on('click', function(event) {
 	        event.preventDefault();
 	        
-	        
-	        var formData = new FormData();
-	        formData.append('fImg', $('#image-upload-1')[0].files[0]);
-	        formData.append('sImg', $('#image-upload-2')[0].files[0]);
-	        formData.append('dpId', '${user.dmId}');
+	        var fImg = $('#image-upload-1')[0].files[0];
+	        var sImg = $('#image-upload-2')[0].files[0];
 
+	        if (!fImg || !sImg) {
+	            alert('두 장의 이미지를 업로드해주세요.');
+	            return;
+	        }
+
+	        // 이미지 파일 타입 검사
+	        var fileTypes = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+	        var fImgExtension = fImg.name.split('.').pop().toLowerCase();
+	        var sImgExtension = sImg.name.split('.').pop().toLowerCase();
+
+	        if (!fileTypes.includes(fImgExtension) || !fileTypes.includes(sImgExtension)) {
+	            alert('이미지 파일만 업로드 가능합니다. (jpg, jpeg, png, gif, bmp)');
+	            return;
+	        }
+
+	        var formData = new FormData();
+	        formData.append('fImg', fImg);
+	        formData.append('sImg', sImg);
+	        formData.append('dpId', '${user.dmId}');
+	        
 	        // 로딩 화면 보여주기
 	        showLoading();
 			// 이미지를 db에 넣는거 실행
@@ -427,8 +494,6 @@
 	                    url: 'uploadRe',
 	                    type: 'GET',
 	                    success: function(data) {
-	                        console.log("이미지 들어오냐?");
-	                        console.log(data);
 
 	                        $('.upload3 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
 	                        $('.upload4 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
@@ -448,8 +513,6 @@
 	                                url: "resultImg",
 	                                type: "GET",
 	                                success: function(data) {
-	                                    console.log("이미지 넣어버리기");
-	                                    console.log(data);
 	                                    $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
 	                                    $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
 	                                    
@@ -468,10 +531,6 @@
 	                                },
 	                                error:function(){console.error("결과피드백 실패");}
 	                            });   
-	                              
-	                            
-	                            
-	                            //location.reload();
 	                        });
 	                    },
 	                    error: function() {
@@ -512,9 +571,7 @@
            url: "feedImg",
            type: "GET",
            success: function(data) {
-               console.log("이미지 넣어버리기");
-               console.log(data);
-               if(data.length === 1){
+               if(data.length !== 0){
             	   console.log(data.length)
                $('.upload1 img').attr('src', '${pageContext.request.contextPath}' + data[1].dpReImg);
                $('.upload2 img').attr('src', '${pageContext.request.contextPath}' + data[0].dpReImg);
@@ -544,6 +601,41 @@
            error:function(){console.error("결과피드백 실패");}
        });
 	
+
+	   let currentPage = 0;
+	      const guideContainers = document.querySelectorAll('.guide-container');
+	      const prevBtn = document.getElementById('prev-btn');
+	      const nextBtn = document.getElementById('next-btn');
+	  
+	      function displayPage() {
+	          guideContainers.forEach((container, index) => {
+	              container.style.display = index === currentPage ? 'block' : 'none';
+	          });
+	          prevBtn.disabled = currentPage === 0;
+	          nextBtn.disabled = currentPage === guideContainers.length - 1;
+	      }
+	  
+	      prevBtn.addEventListener('click', () => {
+	          if (currentPage > 0) {
+	              currentPage--;
+	              displayPage();
+	          }
+	      });
+	  
+	      nextBtn.addEventListener('click', () => {
+	          if (currentPage < guideContainers.length - 1) {
+	              currentPage++;
+	              displayPage();
+	          }
+	      });
+	  
+	      displayPage();
+
+	   document.getElementById('guideModalCloseButton').addEventListener('click', function() {
+	       document.getElementById('guideModalContainer').style.display = 'none'; // 가이드라인 모달창 숨기기
+	   });
+	
+
    </script>
 
 </body>

@@ -48,8 +48,8 @@ public class DrPoseController {
 	@Autowired
 	private DrPoseRepository drPoseRepository;
 	
-	private static final String UPLOAD_DIRECTORY = "C:\\Users\\smhrd\\git\\DrChuck\\DrChuck\\src\\main\\resources\\static\\images\\pose";
-	private static final String RESULT_DIRECTORY = "C:\\Users\\smhrd\\git\\DrChuck\\DrChuck\\src\\main\\resources\\static\\images\\resultpose";
+	private static final String UPLOAD_DIRECTORY = "C:\\Users\\USER\\git\\DrChuckChu\\DrChuck\\src\\main\\resources\\static\\images\\pose";
+	private static final String RESULT_DIRECTORY = "C:\\Users\\USER\\git\\DrChuckChu\\DrChuck\\src\\main\\resources\\static\\images\\resultpose";
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public String uploadImage(@RequestParam("fImg") MultipartFile fImg, @RequestParam("sImg") MultipartFile sImg,
