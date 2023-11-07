@@ -31,6 +31,7 @@ def gen_frames(img, f_name_lst, filename):
     img_file = [img]
     state = f_name_lst[0] # 사진 구분
     id = f_name_lst[1] # 사용자 아이디
+
     f_name = filename # 파일 이름
     print(state, id, f_name) # 잘 들어왔나 확인
     print(img_file)

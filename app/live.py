@@ -177,7 +177,6 @@ def gen_frames(camera, get_session):
                 val_dict_lst_str = json.dumps(val_dict_lst)
 
                 # 여기서 시간별로 db에 넣는 로직
-                # threading.Timer(1, dao.insert_live(id, val_dict_lst_str, class_pred)).start()
                 if cnt_exist == 600: # 1분은 600
                     print(val_dict_lst_str)
                     print(class_pred)
