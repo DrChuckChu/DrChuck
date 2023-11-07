@@ -8,6 +8,13 @@
     url(//i1.daumcdn.net/img-contents/webfont/NanumGothic-Regular.woff) format('woff');
 } */
 
+@font-face {
+    font-family: 'NPSfontBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+   	font-weight: 500;
+    
+}
+
 /* reset */
 body,
 div,
@@ -17,7 +24,7 @@ dd,
 ul,
 ol,
 li,
-h1,
+h1,s
 h2,
 h3,
 h5,
@@ -37,6 +44,7 @@ select,
 button {
   margin: 0;
   padding: 0
+  
 }
 
 fieldset,
@@ -80,11 +88,14 @@ input::-ms-clear {
 button {
   border: 0 none;
   background-color: transparent;
- 
+  
+  
 }
 
 body {
-  background: white
+	font-family: 'NPSfontBold';
+  	background: white;
+  
 }
 
 body,
@@ -96,17 +107,19 @@ textarea,
 button {
   font-size: 12px;
   line-height: 1.5;
-  font-family: NanumGothic, '나눔고딕', 'Malgun Gothic', '맑은 고딕', Helvetica, 'Apple SD Gothic Neo', AppleGothic, Dotum, '돋움', Arial, sans-serif;
+ 
   color: #333
 }
 
 a {
   color: skyblue;
   text-decoration: none;
+  
+  
 }
 
 a:active {
-  background-color: transparent
+  background-color: transparent;
 }
 
 address,
@@ -117,7 +130,7 @@ dfn,
 em,
 var {
   font-style: normal;
-  font-weight: normal
+  font-weight: normal;
 }
 
 /* global */
@@ -517,7 +530,7 @@ body {
   border: 1px solid #CCCCCC;
   border-radius: 15px;
   margin-top: 350px;
-  margin-right: 600px;
+  margin-right: 600px ;
   
 }
 h6{
@@ -563,7 +576,7 @@ p{
   border: none;
   border-radius: 15px;
   position: relative;
-  margin-bottom: 90px;
+  margin-bottom: 103px;
   margin-right: 40px
 }
 
@@ -850,6 +863,8 @@ ul.list_util2 a.imgLogo img {
 .uploadResult{
   height: 500px;
   display: block;
+ 
+  
 }
 .upload1{
   
@@ -970,10 +985,7 @@ ul.list_util2 a.imgLogo img {
  
  }
  
- body {
-  font-family: Arial, sans-serif;
-  
-}
+
 .banner {
   background-color: black;
   padding: 20px;
@@ -1121,7 +1133,50 @@ border-radius:25px;
     flex-direction: column;
    
 }
+/*페이징*/
+.nav-buttons{
+    position: relative;
+    bottom: 140px;
+    left: 400px;
+  }
+  #prev-btn{
+    width: 30px;
+    height: 30px;
+    background-color: skyblue;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    color: white;
+    border-radius: 10px;
+  }
+  #next-btn{
+    width: 30px;
+    height: 30px;
+    background-color: skyblue;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    color: white;
+    border-radius: 10px;
+  
+  }
 
+  .guide-container{
+    float: left;
+    width:500px; 
+    height:750px; 
+    border:2px solid #3C3C3C; 
+    float:left;
+    margin-left: 800px;
+    margin-bottom: 35px;
+    border-radius: 5px;
+    line-height:40px;
+    
+   
+  }
+  p.f{
+    font-size: 16px;
+    text-align: left;
+  }
+  
 
 /* kdy */
   /*가이드라인 모달창*/
