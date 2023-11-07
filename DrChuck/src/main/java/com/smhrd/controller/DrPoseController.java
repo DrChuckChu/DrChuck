@@ -78,7 +78,7 @@ public class DrPoseController {
 	private void handleFileUpload(MultipartFile file, String dpId, String dayday, String prefix) {
 		String originalFilename = org.springframework.util.StringUtils.cleanPath(file.getOriginalFilename());
 		String fileExtension = FilenameUtils.getExtension(originalFilename);
-		String filename = prefix + dpId + "_" + dayday + "." + fileExtension;
+		String filename = prefix + dpId + "_" + dayday + "." + "jpg";
 
 		Path uploadPath = Paths.get(UPLOAD_DIRECTORY);
 		Path filePath = uploadPath.resolve(filename);

@@ -43,8 +43,8 @@ input,
 select,
 button {
   margin: 0;
-  padding: 0
-  
+  padding: 0;
+  box-sizing: border-box;
 }
 
 fieldset,
@@ -114,8 +114,6 @@ button {
 a {
   color: skyblue;
   text-decoration: none;
-  
-  
 }
 
 a:active {
@@ -152,7 +150,7 @@ var {
 }
 
 .hide {
-  display: none
+  display: none;
 }
 
 .img_thumb {
@@ -395,7 +393,7 @@ var {
   font-weight: bold;
   line-height: 86px;
   color: black;
-  text-align: center
+  text-align: center;
   
   
 }
@@ -413,7 +411,7 @@ var {
   position: absolute;
   top: 10px;
   right: 8px;
-  overflow: hidden
+  overflow: hidden;
 }
 
 .list_util2 {
@@ -498,7 +496,8 @@ var {
 /*cam*/
 body {
   height: 100%;
-  margin: 0;
+  margin:0;
+  padding:0;
   overflow: auto;
 }
 
@@ -576,7 +575,7 @@ p{
   border: none;
   border-radius: 15px;
   position: relative;
-  margin-bottom: 103px;
+  margin-bottom: 93px;
   margin-right: 40px
 }
 
@@ -596,6 +595,11 @@ p{
   margin-bottom:20px;
   height: 1250px;
 }
+
+.section_type1{
+	margin-top :100px;
+	
+	}
 
 
 
@@ -755,8 +759,8 @@ ul.list_util2 a.imgLogo img {
   border-bottom: 3px solid #000000;
   -webkit-transform: rotate(-45deg) translate(-50%, -50%); /* 수정: 가운데 정렬을 위한 translate 추가 */
   transform: rotate(-45deg) translate(-50%, -50%); /* 수정: 가운데 정렬을 위한 translate 추가 */
-  -webkit-animation: sdb 1.5s infinite;
-  animation: sdb 1.5s infinite;
+  -webkit-animation: sdb 3s infinite;
+  animation: sdb 3s infinite;
   box-sizing: border-box;
 }
 .scroll2 span {
@@ -941,7 +945,7 @@ ul.list_util2 a.imgLogo img {
     width: 45px;
     height:45px;
     position: absolute;
-    margin-left: 550px;
+    margin-left: 460px;
     margin-top: 9px;
     }
  /* kdy */
@@ -1148,7 +1152,7 @@ border-radius:25px;
 .nav-buttons{
     position: relative;
     bottom: 140px;
-    left: 400px;
+   
   }
   #prev-btn{
     width: 30px;
