@@ -21,6 +21,12 @@ public class DrMemberController {
 	@Autowired
 	private DrMemberRepository repo;
 	
+	// 가페이지로 이동
+	@RequestMapping("/goStart")
+	public String goStart() {
+		return "main_fake";
+	}
+	
 	
 	//로그인,회원가입 페이지
 	@RequestMapping("/goLogin")
@@ -28,12 +34,6 @@ public class DrMemberController {
 		return "loginpage";
 	}
 	
-	//로그인,회원가입 페이지
-		@RequestMapping("/goTest")
-		public String goTest() {
-			return "testMain_save";
-		}
-
 	// 아이디 찾기 페이지 이동
 		@RequestMapping("/goFind")
 		public String goFind() {

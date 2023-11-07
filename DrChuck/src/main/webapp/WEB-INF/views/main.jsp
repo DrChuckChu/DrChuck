@@ -5,6 +5,7 @@
 <html lang="ko">
 
 <head>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -282,14 +283,47 @@
 		<!--cam-->
 		<div class="centered-container">
 			<img id="cameraview" width="720" height="480" />
-			<div class="guide-container">
-				<h6>올바른 자세 예시</h6>
-				<p>
-					1. 등받이에 엉덩이와 허리 붙이기<br> 2. 발바닥은 땅에 닿도록 앉기<br> 3. 모니터 눈높이는
-					모니터 상단에 맞추기<br> 4. 팔꿈치 각도는 직각으로 유지하기<br> 5. 머리는 턱을 당겨 어깨와
-					동일 선상으로 유지하기<br>
-				<p>🧘주기적으로 스트레칭하기🧘</p>
+			<div class="page-container">
+				<div class="guide-container">
+					<h6>올바른 앉은 자세</h6>
+					<p>
+						1. 등받이에 엉덩이와 허리 붙이기<br> (허리 과하게 젖히기 / 둥글게 말기 X)
+					</p>
+
+					<br>
+					<p>2. 앉을 때 무게 중심은 엉덩이 중앙부에 위치 시키기</p>
+
+					<br>
+					<p>3. 발바닥은 땅에 닿도록 앉기</p>
+
+					<br>
+					<p>4. 시선은 모니터 상단에 맞추기</p>
+
+					<br>
+					<p>5. 손과 키보드는 책상끝에 위치</p>
+
+					<br>
+					<p>6. 턱을 당겨 귀, 어깨, 골반이 동일선상에 위치</p>
+					<br>
+					<p>🧘주기적으로 스트레칭하기🧘</p>
+
+				</div>
+				<div class="guide-container" style="display: none;">
+					<h6>결과 예시</h6>
+					<img src="images/삼진구.png">
+					<p class="f">Good: 턱을 당겨 허리를 펴고 고개와 어깨가 기울어지지 않은 상태</p>
+					<p class="f">Bad : 고개각도가 10도 이상이거나 어깨 각도가 6도 이상 기울어진 상태, 등받이에 과하게 기대어 누운 상태, 화면과 멀어진 상태</p>
+					<p class="f">Turtle : 고개를 과하게 앞으로 빼어 화면상 턱과 쇄골 사이 거리가 짧아진 상태, 화면과 과하게 가까워 거북목 위험이 올라간 상태</p>
+					<p class="f">그 외 : 화면과 일정 거리이상 멀어지거나 화면상에 아무도 없는 상태</p>
+				</div>
+
+				<div class="nav-buttons">
+					<button id="prev-btn" disabled>1</button>
+					<button id="next-btn">2</button>
+				</div>
+
 			</div>
+
 			<div class="toggleBG">
 				<button class="toggleFG"></button>
 
@@ -566,10 +600,41 @@
            error:function(){console.error("결과피드백 실패");}
        });
 	
+
+	   let currentPage = 0;
+	      const guideContainers = document.querySelectorAll('.guide-container');
+	      const prevBtn = document.getElementById('prev-btn');
+	      const nextBtn = document.getElementById('next-btn');
+	  
+	      function displayPage() {
+	          guideContainers.forEach((container, index) => {
+	              container.style.display = index === currentPage ? 'block' : 'none';
+	          });
+	          prevBtn.disabled = currentPage === 0;
+	          nextBtn.disabled = currentPage === guideContainers.length - 1;
+	      }
+	  
+	      prevBtn.addEventListener('click', () => {
+	          if (currentPage > 0) {
+	              currentPage--;
+	              displayPage();
+	          }
+	      });
+	  
+	      nextBtn.addEventListener('click', () => {
+	          if (currentPage < guideContainers.length - 1) {
+	              currentPage++;
+	              displayPage();
+	          }
+	      });
+	  
+	      displayPage();
+
 	   document.getElementById('guideModalCloseButton').addEventListener('click', function() {
 	       document.getElementById('guideModalContainer').style.display = 'none'; // 가이드라인 모달창 숨기기
 	   });
 	
+
    </script>
 
 </body>

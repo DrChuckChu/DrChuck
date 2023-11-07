@@ -23,7 +23,4 @@ public class DrLiveResult {
     private String dlr_bad;
     private String dlr_turtle;
     private String dlr_emp;
-    
-    
-    
 }
