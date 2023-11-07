@@ -42,9 +42,13 @@
 			</li>
 			<li><a href="#none" class="link_nav link_nav3" data-page="2">실시간</a>
 			</li>
-			<li><a href="#none" class="link_nav link_nav4" data-page="3">기록
-					확인</a> <a hidden="none" id=timer1>5</a> <a hidden="none" id=timer2>5</a>
+			<li><a href="#none" class="link_nav link_nav4" data-page="3">측정결과
+					</a> <a hidden="none" id=timer1>5</a> <a hidden="none" id=timer2>5</a>
+					
 			</li>
+			<li><a href="#none" class="link_nav link_nav5" data-page="4">차트 통계</a>
+         
+         </li>
 
 		</ul>
 		<!-- 이벤트 메뉴-->
@@ -219,7 +223,7 @@
 		</div>
 
 		<div class="upload_btn" id="buttonContainer">
-			<button class="btn_upload">업로드하기</button>
+			<button class="btn_upload">결과확인</button>
 		</div>
 
 		<div id="modalContainer" class="hidden">
@@ -323,7 +327,8 @@
 		<a class="scroll" href="#2"><span></span></a> <br>
 		<!--차트-->
 		<br> <br>
-		<div id="2"></div>
+		
+		<div class="section_type5 page_scroll" >
 		<div class="chartt">
 			<div class="chart-container">
 				<canvas id="chart"></canvas>
@@ -341,15 +346,9 @@
 				<canvas id="myChart2"></canvas>
 			</div>
 
-
-			<div class="feedback-container">
-				<div id="fdId">
-				</div>
-				<div id="fdMent">
-				</div>
-			</div>
 		</div>
 
+	</div>
 	</div>
 
 	<!-- // content -->
