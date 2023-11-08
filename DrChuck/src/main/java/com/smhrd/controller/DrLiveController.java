@@ -62,9 +62,8 @@ public class DrLiveController {
       headers.setContentType(MediaType.APPLICATION_JSON);
 
       // 요청 본문 데이터, 필요에 따라 JSON 형식으로 데이터를 만들어 보낼 수 있습니다.
-      String requestBody = "{\"회원아이디\": \"123\"}";
 
-      HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
+      HttpEntity<String> entity = new HttpEntity<>(headers);
 
       String response = restTemplate.postForObject(flaskAppUrl, entity, String.class);
 
