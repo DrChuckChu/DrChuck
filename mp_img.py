@@ -19,7 +19,7 @@ img1 = './img/myimg.jpg'
 img2 = './img/myimg2.jpg'
 img3 = './img/myimg3.jpg'
 img4 = './img/red_gril.jpg'
-img_files = [img2] # 이미지 리스트
+img_files = [img3] # 이미지 리스트
 bg_color = (192, 192, 192) # 회색
 
 # 랜드마크를 잇는 기울기 구하는 함수
@@ -81,28 +81,28 @@ with mp_pose.Pose(
             mp_drawing.draw_landmarks(
                 annotated_image,
                 result_p.pose_landmarks,
-                mp_pose.POSE_CONNECTIONS,
-                landmark_drawing_spec = mp_drawing_style.get_default_pose_landmarks_style()
+                mp_pose.POSE_CONNECTIONS
+                # landmark_drawing_spec = mp_drawing_style.get_default_pose_landmarks_style()
             )
 
         # face ------------------------------------------------------------------------
-        if result_f.detections:
-            for detection in result_f.detections:
-                bboxC = detection.location_data.relative_bounding_box
-                x, y, w, h = int(bboxC.xmin * image_width), int(bboxC.ymin * image_height), int(bboxC.width * image_width), int(bboxC.height * image_height)
+        # if result_f.detections:
+        #     for detection in result_f.detections:
+        #         bboxC = detection.location_data.relative_bounding_box
+        #         x, y, w, h = int(bboxC.xmin * image_width), int(bboxC.ymin * image_height), int(bboxC.width * image_width), int(bboxC.height * image_height)
 
-                result_mesh = face_mesh.process(cv2.cvtColor(annotated_image, cv2.COLOR_BGR2RGB))
+        #         result_mesh = face_mesh.process(cv2.cvtColor(annotated_image, cv2.COLOR_BGR2RGB))
 
                 
 
-                # if result_mesh.multi_face_landmarks:
-                #     for face_landmarks in result_mesh.multi_face_landmarks:
-                #         left_ear = face_landmarks.landmark[454]
-                #         right_ear = face_landmarks.landmark[234]
-                #         print('Left Ear : ', left_ear)
-                #         print('Right Ear : ', right_ear)
+        #         # if result_mesh.multi_face_landmarks:
+        #         #     for face_landmarks in result_mesh.multi_face_landmarks:
+        #         #         left_ear = face_landmarks.landmark[454]
+        #         #         right_ear = face_landmarks.landmark[234]
+        #         #         print('Left Ear : ', left_ear)
+        #         #         print('Right Ear : ', right_ear)
 
-                mp_drawing.draw_detection(annotated_image, detection)
+        #         mp_drawing.draw_detection(annotated_image, detection)
 
 
         # 좌표, 각도, 기울기 로직--------------------------------------------------------

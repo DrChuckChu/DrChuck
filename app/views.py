@@ -49,7 +49,7 @@ def gen_frames(img, f_name_lst, filename):
         
         det_results, vis_det = det_model.run("YOLOX-l", image, 0.3) # detection 결과 이미지가 List[np.ndarray], np.ndarray로 반환됨
         pose_results, vis_pose = pose_model.run("ViTPose-B (multi-task train, COCO)",
-                                                image, det_results, 0.5, 0.3, 7,
+                                                image, det_results, 0.5, 0.3, 5,
                                                 3) # pose_result: List[Dict[str, np.ndarray]] 형태, vis_pose: np.ndarray형태->결과 이미지에 선,점 표현한 이미지
         # print(pose_results)
         h, w, _ = vis_pose.shape # vis_pose 높이, 너비
@@ -106,8 +106,8 @@ def gen_frames(img, f_name_lst, filename):
             vo.close()
         
         elif state == 'S':
-            cv2.line(vis_pose, (x_le, 0), (x_le, h), (0,0,255), 3)
-            cv2.line(vis_pose, (x_ls, 0), (x_ls, h), (0,255,0), 3)
+            # cv2.line(vis_pose, (x_le, 0), (x_le, h), (0,0,255), 3)
+            # cv2.line(vis_pose, (x_ls, 0), (x_ls, h), (0,255,0), 3)
 
             if x_lh > x_lkn: # 왼쪽 방향일 때
                 turtle_angle = int(cal.cal_angle((x_le, y_le), (x_ls, y_ls)))
