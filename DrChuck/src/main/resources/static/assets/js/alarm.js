@@ -30,7 +30,7 @@ function poseAndLiveNotify() {
             success: function(data) {
                 const randomIndex = Math.floor(Math.random() * youtubeLinks.length);
                 const randomLink = youtubeLinks[randomIndex];
-                const notification = new Notification(`현재 사용자: ${data.userId}`, { body: `스트레칭해야해요. 링크: ${randomLink}` });
+                const notification = new Notification(`현재 사용자: ${data.userId}`, { body: `스트레칭 영상 클릭` });
                 
                 notification.onclick = function() {
                     window.open(randomLink);
@@ -39,7 +39,7 @@ function poseAndLiveNotify() {
 
                 setTimeout(() => {
                     notification.close();
-                }, 3000);
+                }, 10000);
             },
             error: function(error) {
                 console.error('Error:', error);

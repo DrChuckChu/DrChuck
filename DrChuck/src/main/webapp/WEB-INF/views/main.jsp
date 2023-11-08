@@ -13,7 +13,7 @@
 	crossorigin="anonymous">
 <meta charset="utf-8" name="viewport"
 	content="width=device-width, initial-scale=1">
-<title>스크롤 템플릿 1</title>
+<title>DR.CHUCK-CHU</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
