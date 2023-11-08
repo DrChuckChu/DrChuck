@@ -1154,7 +1154,7 @@ border-radius:25px;
     bottom: 140px;
    
   }
-  #prev-btn{
+   #prev-btn{
     width: 30px;
     height: 30px;
     background-color: skyblue;
@@ -1162,6 +1162,8 @@ border-radius:25px;
     transition: background-color 0.3s;
     color: white;
     border-radius: 10px;
+    margin-left: 800px;
+      
   }
   #next-btn{
     width: 30px;
