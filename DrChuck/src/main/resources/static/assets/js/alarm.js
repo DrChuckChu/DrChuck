@@ -1,5 +1,5 @@
 let timeLeft1 = 30; // 스트레칭 알람 타이머 (30초)
-let timeLeft2 = 60;  // 자세 알람 타이머 (10초)
+let timeLeft2 = 35;  // 자세 알람 타이머 (50초)
 
 // 알람 on/off 상태 저장 변수 (기본값은 false)
 let alarmStatus = false;
@@ -102,7 +102,7 @@ function poseAndLiveNotify() {
             }
         });
 
-        timeLeft2 = 60; // 자세 알람이 울릴 때에만 timeLeft2를 리셋합니다.
+        timeLeft2 = 35; // 자세 알람이 울릴 때에만 timeLeft2를 50으로 리셋합니다.
     }
 }
 
@@ -115,7 +115,7 @@ document.querySelector('.alarm').addEventListener('click', function() {
    alarmStatus = !alarmStatus;
    if (alarmStatus) {
       this.children[0].src = 'images/알림온.png';
-      timeLeft2 = 10; // 알람을 켤 때마다 timeLeft2를 10으로 재설정
+      timeLeft2 = 35; // 알람을 켤 때마다 timeLeft2를 50으로 재설정
    } else {
       this.children[0].src = 'images/알람오프.png';
    }
