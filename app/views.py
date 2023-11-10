@@ -106,8 +106,8 @@ def gen_frames(img, f_name_lst, filename):
             vo.close()
         
         elif state == 'S':
-            # cv2.line(vis_pose, (x_le, 0), (x_le, h), (0,0,255), 3)
-            # cv2.line(vis_pose, (x_ls, 0), (x_ls, h), (0,255,0), 3)
+            cv2.line(vis_pose, (x_le, 0), (x_le, h), (0,0,255), 3)
+            cv2.line(vis_pose, (x_ls, 0), (x_ls, h), (0,255,0), 3)
 
             if x_lh > x_lkn: # 왼쪽 방향일 때
                 turtle_angle = int(cal.cal_angle((x_le, y_le), (x_ls, y_ls)))

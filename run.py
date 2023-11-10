@@ -81,5 +81,5 @@ def close_webcam():
 
 if __name__ == '__main__': # 만약 파일이 실행된다면, __main__으로 값이 변경
     # 이 파일을 실행한다면~~~
-    app.run(host="172.30.1.55", # Flask 코드를 실행하는 컴퓨터의 ip주소
+    app.run(host="192.168.56.1", # Flask 코드를 실행하는 컴퓨터의 ip주소
            port=5000)
